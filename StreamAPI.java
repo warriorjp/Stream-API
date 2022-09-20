@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +12,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import com.sun.net.httpserver.Filter;
 
 
 public class StreamAPI {
@@ -86,6 +90,21 @@ public class StreamAPI {
       
       //Find Top 3 max salary
       emp.stream().sorted(Comparator.comparing(Employe::getSalary).reversed()).limit(3).forEach(ss->System.out.println("<>"+ss.getSalary()));
+     
+      //Return Duplicate character from string
+      String dump="Characters Duplicate";
+      HashSet<String> hashSet=new HashSet<>();
+      Arrays.stream(dump.replaceAll(" " , "").toLowerCase().split("")).filter(x-> !hashSet.add(x)).forEach(System.out::println);
+      
+      //find special character
+      String dump2="!Characters@1)&";
+      for(int i=0;i<dump2.length();i++) {
+    	  if(!Character.isSpaceChar(dump2.charAt(i))) {
+    		  System.out.println(dump2.charAt(i));
+    	  }
+      }
+      
+      
       //Find Duplicate
      ArrayList<String> name=new ArrayList<>();
      name.add("Jay"); name.add("Naman");name.add("Rajan");
