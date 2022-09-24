@@ -96,15 +96,21 @@ public class StreamAPI {
       HashSet<String> hashSet=new HashSet<>();
       Arrays.stream(dump.replaceAll(" " , "").toLowerCase().split("")).filter(x-> !hashSet.add(x)).forEach(System.out::println);
       
-      //find special character
+     System.out.println(" //find special character");
       String dump2="!Characters@1)&";
       for(int i=0;i<dump2.length();i++) {
-    	  if(!Character.isSpaceChar(dump2.charAt(i))) {
+    	  if(Character.isDigit(dump2.charAt(i)) || !Character.isLetter(dump2.charAt(i))) {
     		  System.out.println(dump2.charAt(i));
     	  }
       }
       
+      //Group Employee by Department
       
+      Map<String, List<Employe>>  emp1=emp.stream().collect(Collectors.groupingBy(Employe::getDept));
+     emp1.forEach((k,v)->{
+    	 System.out.print(k+"<>");
+    	 v.forEach(e->System.out.print(" "+e.getName()+","));
+     });
       //Find Duplicate
      ArrayList<String> name=new ArrayList<>();
      name.add("Jay"); name.add("Naman");name.add("Rajan");
