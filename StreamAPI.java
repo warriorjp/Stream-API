@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.sun.net.httpserver.Filter;
+
 
 
 public class StreamAPI {
@@ -61,9 +63,15 @@ public class StreamAPI {
       emp.add(new Employe("Sagar",46 , 320000,"Testing",new Date(2016,03,02)));
       emp.add(new Employe("Abhijit",26 , 50000,"IT",new Date(2010,06,23)));
       
+      System.out.println(">>>>>>>>>>>>>>Count Employee By Dept>>>>>>>>>>>>>>>>>>>.");
       Map<String, Long> re=emp.stream().collect(Collectors.groupingBy(Employe::getDept,Collectors.counting()));
        re.forEach((k,v)->{System.out.println(k+" "+v);});
        
+       System.out.println(">>>>>>>>>>>>>>Max Salary By Dept>>>>>>>>>>>>>>>>>>>.");
+       Map<String, Employe> maxEmp=emp.stream().collect(Collectors.toMap(
+    		   e->e.getDept(),e->e,BinaryOperator.maxBy(Comparator.comparingInt(e->e.getSalary()))));
+        maxEmp.forEach((k,v)->System.out.println("Max Salary By Dept: "+k+" "+v.getSalary()));
+        
        emp.stream().filter(e->e.getName().startsWith("R")).forEach(e->System.out.println(e.getName()));
        
        emp.stream().filter(e->e.getDoj().getYear()>2010).forEach(e->System.out.println(e.getName()));
@@ -77,6 +85,16 @@ public class StreamAPI {
    
        emp.stream().sorted(Comparator.comparing(Employe::getAge).thenComparing(Employe::getDept)).
        collect(Collectors.toList()).forEach(s->System.out.println(s.getAge()+"::"+s.getDept()));
+       
+       //Increases salary of employee whose age greater than 25 
+       emp.stream().map(e->{
+    	   if(e.getAge()>25) {
+    		   e.setSalary(e.getSalary()+10000);
+    		   return e;
+    	   }
+    	   return e;
+       }).forEach(e1->System.out.print(e1.getName()+" <::>"+e1.getSalary()));
+       System.out.println();
        
        //Find Vowels
         String dem0="Java Is Good For APP Devleopment";
