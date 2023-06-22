@@ -66,7 +66,10 @@ public class StreamAPI {
       System.out.println(">>>>>>>>>>>>>>Count Employee By Dept>>>>>>>>>>>>>>>>>>>.");
       Map<String, Long> re=emp.stream().collect(Collectors.groupingBy(Employe::getDept,Collectors.counting()));
        re.forEach((k,v)->{System.out.println(k+" "+v);});
-       
+
+
+       System.out.println(">>>>>>>>>>>>>>Sum of All Salaries>>>>>>>>>>>>>>>>>>>.");
+	int a= ls.stream().collect(Collectors.summingInt(Integer::intValue));
        System.out.println(">>>>>>>>>>>>>>Max Salary By Dept>>>>>>>>>>>>>>>>>>>.");
        Map<String, Employe> maxEmp=emp.stream().collect(Collectors.toMap(
     		   e->e.getDept(),e->e,BinaryOperator.maxBy(Comparator.comparingInt(e->e.getSalary()))));
