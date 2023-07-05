@@ -1,0 +1,3 @@
+
+//To find duplicate records from table
+select count(name) from employee group by name having count(name)>1;
