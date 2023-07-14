@@ -120,7 +120,7 @@ public class StreamAPI {
      System.out.println(" //find special character");
       String dump2="!Characters@1)&";
       for(int i=0;i<dump2.length();i++) {
-    	  if(Character.isDigit(dump2.charAt(i)) || !Character.isLetter(dump2.charAt(i))) {
+    	  if(!Character.isDigit(dump2.charAt(i)) || !Character.isLetter(dump2.charAt(i))) {
     		  System.out.println(dump2.charAt(i));
     	  }
       }
