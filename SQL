@@ -5,3 +5,13 @@ select count(name) from employee group by name having count(name)>1;
 //find N th highest salary
 SELECT ename,sal from Employee e1 where 
 N-1 = (SELECT COUNT(DISTINCT sal)from Employee e2 where e2.sal > e1.sal) 
+
+//JOIN
+-> INNER JOIN
+-> LEFT JOIN
+-> RIGHT JOIN
+-> FULL OUTER JOIN
+Ex:
+SELECT A.OrderID, B.CustomerName, A.OrderDate
+FROM Orders A
+INNER JOIN Customers B ON A.CustomerID=B.CustomerID;
