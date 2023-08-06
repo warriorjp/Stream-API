@@ -1,0 +1,179 @@
+>>>>>>>>>>>>>>>>find Pincode>>>>>>>>>>>>>>>>>>>>>>>>>
+class HelloWorld {
+    public static void main(String[] args) {
+        String s="Ichhapur,Mukatainagar,Jalgaon,425306";
+        String s1[]=s.split(",");
+        for(String ss:s1){
+            if(Character.isDigit(ss.charAt(0)) && ss.length()==6)
+                   System.out.println(" "+ss); 
+        }
+
+    }
+}
+>>>>>>>>>>>>>>>>Revsered String>>>>>>>>>>>>>>>>>>>>>>>>>
+class HelloWorld {
+    public static void main(String[] args) {
+        String s="Ichhapur,Mukatainagar,Jalgaon,425306";
+        String s1[]=s.split("");
+        String temp="";
+        for(int i=s1.length-1;i>=0;i--){
+           temp+=s1[i];
+                   
+        }
+        System.out.print(temp);
+
+    }
+}
+>>>>>>>>>>>>>>>>>>>>Palimdrom>>>>>>>>>>>>>>>>>>>>>>
+ class Palindrome {
+              String s="BOB";
+		String ss="";
+		
+		for(int i=s.length()-1;i>=0;i--){
+		    ss+=s.charAt(i);
+		}
+	  if(s.equals(ss)){
+	      	System.out.println("String is Palindrome");
+	  }else{
+	      	System.out.println("String is not Palindrome");
+	  }
+		
+	}
+>>>>>>>>>>>>>>>>>>>>Palimdrom>>>>>>>>>>>>>>>>>>>>>>
+ class PalindromeInt {
+		
+		int num=121,temp=0,n=0,sum=0,rem=0;
+		n=num;
+		while(n>0){
+		    rem=n%10;
+		    sum=sum*10+rem;
+		    n=n/10;
+		}
+	if(sum==num){
+	      	System.out.println("Palindrome");
+	  }else{
+	      	System.out.println("not Palindrome");
+	  }
+	}
+>>>>>>>>>>>>>>>>>>>>>>Amstrong>>>>>>>>>>>>>>>>>>>>>>>>
+ class Amstrong {
+               int num=156,temp=0,n=0,sum=0,rem=0;
+		n=num;
+		while(n>0){
+		    rem=n%10;
+		    sum+=rem*rem*rem;
+		    n=n/10;
+		}
+	if(num==sum){
+	      	System.out.println("Amstrong"+sum);
+	  }else{
+	      	System.out.println("Not Amstrong"+sum);
+	  }
+	}
+>>>>>>>>>>>>>>>>>>>>>>>Anagrams>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+public class Main
+{
+
+    String s = "abdfhrrekouhrke";
+     String a="ffggddhh";
+     String b="ggffhhdd";
+     char ch[] =a.toCharArray();
+     char ch1[]=b.toCharArray();
+     Arrays.sort(ch);
+     Arrays.sort(ch1);
+    boolean t= Arrays.equals(ch,ch1);
+    if(t){
+        System.out.println("Equal");
+    }else{
+        System.out.println("Not Equal");
+    }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>Find Special Char>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+public class Main
+{
+	public static void main(String[] args) {
+       String s="asdh76778&8*)(-=656jhjfjk";
+       char ch[]=s.toCharArray();
+       for(Character c:ch){
+           if(!Character.isDigit(c) && !Character.isAlphabetic(c)){
+               System.out.print(c);
+           }
+       }
+    }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>Balance Bracket>>>>>>>>>>>>>>>>>>>>>>>>>>>
+import java.util.Stack;
+
+public class Main {
+
+    public static void main(String args[]) {
+
+        System.out.println(balancedParenthensies("{()}{"));
+        System.out.println(balancedParenthensies("{(a},b)"));
+        System.out.println(balancedParenthensies("{)(a,b}"));
+    }
+
+    public static boolean balancedParenthensies(String s) {
+        Stack<Character> stack  = new Stack<Character>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == '[' || c == '(' || c == '{' ) {     
+                stack.push(c);
+            } else if(c == ']') {
+                if(stack.isEmpty() || stack.pop() != '[') {
+                    return false;
+                }
+            } else if(c == ')') {
+                if(stack.isEmpty() || stack.pop() != '(') {
+                    return false;
+                }           
+            } else if(c == '}') {
+                if(stack.isEmpty() || stack.pop() != '{') {
+                    return false;
+                }
+            }
+
+        }
+        return stack.isEmpty();
+    }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Find Element start with 1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ArrayList<Integer> ls=new ArrayList<>(Arrays.asList(11,15,6,18,44,23,90));
+ls.stream().map(Object::toString).filter(e->e.startsWith("1")).forEach(e->System.out.println(e));
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>Random NO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		Random no=new Random();
+		no.ints(1,100).limit(10).forEach(System.out::println);
+	}
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Find First Repetating>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    //String s[]={"ABAC","ACBC","CACA"};
+	    List<String> ss=Arrays.asList("ABAC","ACBC","CACA","BABA");
+	    ss.stream().map(s->{
+	        Set<Character> hash_set=new HashSet<>();
+	        for(int i=0;i<s.length();i++){
+	            if(!hash_set.add(s.charAt(i))){
+	                return s.charAt(i);
+	            }
+	        }
+	        return s;
+	    }).forEach(System.out::println);
+	}
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
