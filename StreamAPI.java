@@ -70,6 +70,7 @@ public class StreamAPI {
 
        System.out.println(">>>>>>>>>>>>>>Sum of All Salaries>>>>>>>>>>>>>>>>>>>.");
 	int a= ls.stream().collect(Collectors.summingInt(Integer::intValue));
+		
        System.out.println(">>>>>>>>>>>>>>Max Salary By Dept>>>>>>>>>>>>>>>>>>>.");
        Map<String, Employe> maxEmp=emp.stream().collect(Collectors.toMap(
     		   e->e.getDept(),e->e,BinaryOperator.maxBy(Comparator.comparingInt(e->e.getSalary()))));
