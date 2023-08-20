@@ -1,0 +1,30 @@
+//Parent class  
+class Parent {     
+    void showMessage()   
+    {   
+        System.out.println("Parent method is called");   
+    }   
+}   
+    
+// Child class   
+class Child extends Parent {   
+    @Override  
+    void showMessage()   
+    {   
+        System.out.println("Child method is called");   
+    }   
+}   
+    
+public class Downcasting{  
+    
+    public static void main(String[] args)   
+    { 
+          
+        // Performing Downcasting Implicitly   
+        //Child c = new Parent(); // it gives compile-time error   
+          
+        // Performing Downcasting Explicitly   
+        Child c = (Child)p;   
+        c.showMessage();   
+    }   
+}  
