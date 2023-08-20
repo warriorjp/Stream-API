@@ -169,7 +169,24 @@ public class Main
 	    }).forEach(System.out::println);
 	}
 }
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+********************************Find String of Anagrams from Array**************************************/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		String a[] ={"abc","bca","aa","bb","cca","acc"};
+		Set<String> st=new HashSet<>();
+		
+		for(int i=0;i<a.length;i++){
+		    char ch[]=a[i].toCharArray();
+		    Arrays.sort(ch);
+		    if(!st.add(new String(ch))){
+		        System.out.println('Anagrams'+ch);
+		    }
+		    
+		}
+	}
+}
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
