@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import com.sun.net.httpserver.Filter;
-
 
 
 public class StreamAPI {
@@ -69,7 +67,8 @@ public class StreamAPI {
 
 
        System.out.println(">>>>>>>>>>>>>>Sum of All Salaries>>>>>>>>>>>>>>>>>>>.");
-	int a= ls.stream().collect(Collectors.summingInt(Integer::intValue));
+        Integer a= emp.stream().collect(Collectors.summingInt(Employe::getSalary));
+	Integer a= arr.stream().collect(Collectors.summingInt(Integer::intValue));
 		
        System.out.println(">>>>>>>>>>>>>>Max Salary By Dept>>>>>>>>>>>>>>>>>>>.");
        Map<String, Employe> maxEmp=emp.stream().collect(Collectors.toMap(
