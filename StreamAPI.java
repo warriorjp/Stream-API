@@ -75,7 +75,13 @@ public class StreamAPI {
        Map<String, Employe> maxEmp=emp.stream().collect(Collectors.toMap(
     		   e->e.getDept(),e->e,BinaryOperator.maxBy(Comparator.comparingInt(e->e.getSalary()))));
         maxEmp.forEach((k,v)->System.out.println("Max Salary By Dept: "+k+" "+v.getSalary()));
-        
+
+       System.out.println(">>>>>>>>>>>>>>Digit Start With 1 >>>>>>>>>>>>>>>>>>>.");
+        List<Integer> lsDigit=Arrays.asList(11,20,45,60,10,16,100);
+        List<String> strings = lsDigit.stream().map(Object::toString).collect(Collectors.toList());             
+    	strings.stream().filter(s->s.startsWith("1")).forEach(System.out::println);
+
+	System.out.println(">>>>>>>>>>>>>>String Start With R >>>>>>>>>>>>>>>>>>>.");
        emp.stream().filter(e->e.getName().startsWith("R")).forEach(e->System.out.println(e.getName()));
        
        emp.stream().filter(e->e.getDoj().getYear()>2010).forEach(e->System.out.println(e.getName()));
