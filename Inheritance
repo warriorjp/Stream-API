@@ -21,7 +21,8 @@ public class Downcasting{
     { 
           
         // Performing Downcasting Implicitly   
-        //Child c = new Parent(); // it gives compile-time error   
+        //Child c = new Parent(); // it gives compile-time error  
+          Parent p = new Child();
           
         // Performing Downcasting Explicitly   
         Child c = (Child)p;   
