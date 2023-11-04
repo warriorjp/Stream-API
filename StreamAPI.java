@@ -87,7 +87,13 @@ public class StreamAPI {
        
        long n11=emp.stream().filter(e->e.getAge()>30).count();
        System.out.println(n11);
-       
+
+       System.out.println(">>>>>>>>>>>>>>Concat List Of String >>>>>>>>>>>>>>>>>>>.");
+		List<Integer> things = Arrays.asList("Welcome","Guys","Bye");
+		 String joined = things.stream().map(Object::toString).collect(Collectors.joining(", "));
+		
+		String joined = emp.stream().map(Person::getName).collect(Collectors.joining(", "));
+       //**************************************************************************************************************
        emp.stream().sorted(Comparator.comparingInt(Employe::getSalary)).collect(Collectors.toList()).forEach(e->System.out.print("-"+e.getSalary()));;
     
        emp.stream().sorted(Comparator.comparingInt(Employe::getSalary).reversed()).collect(Collectors.toList()).forEach(e->System.out.println("-"+e.getSalary()));;
