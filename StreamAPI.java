@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class StreamAPI {
 	public static void main(String[] args) {
 
-		System.out.println(">>>>>>>>>>>Remove Duplicate>>>>>>>>>>>>>>>>>>>>>>.");
+	System.out.println(">>>>>>>>>>>Remove Duplicate>>>>>>>>>>>>>>>>>>>>>>.");
         ArrayList<Integer> arr=new ArrayList<>(Arrays.asList(12,44,76,11,8,9,9));	
        List<Integer> temp=  arr.stream().distinct().filter(n->n<20).collect(Collectors.toList());
         temp.forEach(s->System.out.println(s));
