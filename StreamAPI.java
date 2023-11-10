@@ -23,7 +23,7 @@ public class StreamAPI {
 
 	System.out.println(">>>>>>>>>>>Remove Duplicate>>>>>>>>>>>>>>>>>>>>>>.");
         ArrayList<Integer> arr=new ArrayList<>(Arrays.asList(12,44,76,11,8,9,9));	
-       List<Integer> temp=  arr.stream().distinct().filter(n->n<20).collect(Collectors.toList());
+       List<Integer> temp=  arr.stream().distinct().collect(Collectors.toList());
         temp.forEach(s->System.out.println(s));
         
         System.out.println(">>>>>>>>>>>Find First>>>>>>>>>>>>>>>>>>>>>>.");
@@ -42,6 +42,18 @@ public class StreamAPI {
         String ch=String.valueOf(str.replace(" ",""));
         Map<String,Long> map=Arrays.stream(ch.split("")).collect(Collectors.groupingBy(c->c,Collectors.counting()));
         map.forEach((k,v)->System.out.println(k+"  "+v));
+
+       System.out.println(">>>>>>>>>>>>>>>>>>non repeating character from string >>>>>>>>>>>>>>>.");
+       String s="AAHJAKTMJ";
+       Map<String, Long> counts = Arrays.stream(s.split(""))
+            .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
+
+      // Display repeating elements and their counts
+       counts.forEach((element, count) -> {
+        if (count == 1) {
+            System.out.println("Non Repeating Character From String: " +element);
+        }
+        });
         
         System.out.println(">>>>>>>>>>>>>>return nth highest>>>>>>>>>>>>>>>>>>>.");
         int n=3;
