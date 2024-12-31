@@ -105,6 +105,12 @@ public class StreamAPI {
 		 String joined = things.stream().map(Object::toString).collect(Collectors.joining(", "));
 		
 		String joined = emp.stream().map(Person::getName).collect(Collectors.joining(", "));
+		
+         System.out.println(">>>>>>>>>>>>>>Find most repatative element >>>>>>>>>>>>>>>>>>>.");
+		List<Integer> arrList = new ArrayList<>(Arrays.asList(3, 7, 5, 1, 3, 6, 7, 7));
+		Entry<Integer, Long>result=arrList.stream().collect(Collectors.groupingBy(c->c,Collectors.counting()))
+				.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+	    System.out.print("______"+result.getKey());
        //**************************************************************************************************************
        emp.stream().sorted(Comparator.comparingInt(Employe::getSalary)).collect(Collectors.toList()).forEach(e->System.out.print("-"+e.getSalary()));;
     
