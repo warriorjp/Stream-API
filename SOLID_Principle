@@ -1,0 +1,189 @@
+# SOLID Principles in Java
+
+🚀 SOLID: principles help write modular, flexible, and testable code. They are:
+
+- Single Responsibility Principle (SRP)
+- Open/Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1. Single Responsibility Principle (SRP)
+-> A class should have only one reason to change.
+------------------------------------------------------------------------------------
+❌ Bad Example: One class handles both order processing and invoice generation.
+
+class OrderService {
+    void processOrder() { /* Order processing logic */ }
+    void generateInvoice() { /* Invoice logic */ } // ❌ Not order's responsibility
+}
+
+------------------------------------------------------------------------------------
+👌 Good Example: Separate classes for order processing and invoicing.
+
+class OrderService {
+    void processOrder() { /* Order processing logic */ }
+}
+class InvoiceService {
+    void generateInvoice() { /* Invoice logic */ }
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2. Open/Closed Principle (OCP)
+-> Open for extension, closed for modification.
+------------------------------------------------------------------------------------
+❌ Bad Example: Modifying a class every time a new payment method is added.
+class PaymentProcessor {
+    void pay(String type) {
+        if (type.equals("CreditCard")) { /* Credit card logic */ }
+        else if (type.equals("PayPal")) { /* PayPal logic */ }
+    }
+}
+
+------------------------------------------------------------------------------------
+👌 Good Example: Use abstractions so new payment types can be added without modifying existing code.
+
+interface PaymentMethod {
+    void pay();
+}
+
+class CreditCard implements PaymentMethod {
+    public void pay() { /* Credit card logic */ }
+}
+
+class PayPal implements PaymentMethod {
+    public void pay() { /* PayPal logic */ }
+}
+
+class PaymentProcessor {
+    void pay(PaymentMethod method) {
+        method.pay();
+    }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+3. Liskov Substitution Principle (LSP)
+-> Subclasses should be replaceable for their base class without breaking functionality.
+
+------------------------------------------------------------------------------------
+❌ Bad Example: `Penguin` inherits a `fly()` method it cannot use.
+
+class Bird {
+    void fly() { /* All birds fly? */ } // ❌ Not true for all birds!
+}
+
+class Penguin extends Bird {
+    void fly() { /* Cannot fly! */ } // ❌ Breaks LSP
+}
+
+------------------------------------------------------------------------------------
+👌 Good Example:** Separate behaviors using interfaces.
+
+interface Flyable {
+    void fly();
+}
+
+class Sparrow implements Flyable {
+    public void fly() { /* Sparrow flies */ }
+}
+
+class Penguin {
+    // Penguins don't fly, so no fly() method here
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+4. Interface Segregation Principle (ISP)
+-> Don't force clients to depend on methods they don't use."*
+------------------------------------------------------------------------------------
+❌ Bad Example: A `Robot` class is forced to implement `eat()`, which is irrelevant.
+
+interface LivingBeing {
+    void eat();
+    void move();
+}
+
+class Robot implements LivingBeing {
+    public void eat() { /* Robots don’t eat! */ } // ❌ Unnecessary method
+    public void move() { /* Robot movement */ }
+}
+
+------------------------------------------------------------------------------------
+👌 Good Example:** Create **separate** interfaces.
+interface Eatable {
+    void eat();
+}
+
+interface Movable {
+    void move();
+}
+
+class Robot implements Movable {
+    public void move() { /* Robot movement */ }
+}
+
+class Human implements Eatable, Movable {
+    public void eat() { /* Humans eat */ }
+    public void move() { /* Humans move */ }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+5. Dependency Inversion Principle (DIP)
+->Depend on abstractions, not concrete implementations.
+
+------------------------------------------------------------------------------------
+❌ Bad Example:** `DataManager` is tightly coupled to `MySQLDatabase`.
+class MySQLDatabase {
+    void connect() { /* MySQL connection */ }
+}
+
+class DataManager {
+    MySQLDatabase db = new MySQLDatabase(); // ❌ Tightly coupled
+}
+
+------------------------------------------------------------------------------------
+👌 Good Example:** Use an interface to decouple the dependency.
+
+interface Database {
+    void connect();
+}
+
+class MySQLDatabase implements Database {
+    public void connect() { /* MySQL connection */ }
+}
+
+class PostgreSQLDatabase implements Database {
+    public void connect() { /* PostgreSQL connection */ }
+}
+
+class DataManager {
+    Database db;
+    
+    DataManager(Database db) {
+        this.db = db;
+    }
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+### 🚀 Summary of SOLID Principles:
+
+| **Principle** | **Key Idea**                       | **Example Fix**                              |
+| ------------- | ---------------------------------- | -------------------------------------------- |
+| **SRP**       | One class = One responsibility     | Separate `OrderService` and `InvoiceService` |
+| **OCP**       | Extend, don’t modify               | Use `PaymentMethod` interface                |
+| **LSP**       | Subclasses should work as expected | Use `Flyable` interface for birds            |
+| **ISP**       | No forced dependencies             | Separate `Eatable` & `Movable`               |
+| **DIP**       | Depend on abstractions             | Use `Database` interface                     |
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+**📌 Why Follow SOLID?** ✔ **Better maintainability**\
+✔ **Scalability & flexibility**\
+✔ **Less code duplication**\
+✔ **Easier debugging & testing**
+
+🚀 Start applying **SOLID principles** in your Java projects today for **clean, efficient, and maintainable code!**
