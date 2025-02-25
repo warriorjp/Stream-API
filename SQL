@@ -7,18 +7,18 @@ TCL (Transaction Control Language) → COMMIT, ROLLBACK, SAVEPOINT
 DCL (Data Control Language) → GRANT, REVOKE
 
 _________________________________________________________________________________
-Command	Removes Data?	     | Can be Rolled Back?	 | Affects Structure?
-___________________________|_______________________|_____________________________
-DELETE Yes (selected rows) | 	Yes (COMMIT/ROLLBACK)|  ❌ No
-TRUNCATE	Yes (all rows)	 | ❌ No	               |  ❌ No
-DROP	Yes (entire table)	 | ❌ No	               |  ✅ Yes (removes structure)
+Command	Removes Data?	     | Can be Rolled Back?	    | Affects Structure?
+___________________________|_________________________|_____________________________
+DELETE Yes (selected rows) | 	Yes (COMMIT/ROLLBACK)  |  ❌ No
+TRUNCATE	Yes (all rows)	   | ❌ No	                  |  ❌ No
+DROP	Yes (entire table)	   | ❌ No	                  |  ✅ Yes (removes structure)
 _________________________________________________________________________________
 
 _________________________________________________________________________________
-Constraint	| Uniqueness	| NULL Allowed?	    | Usage
-____________|_____________|___________________|____________________________________
-PRIMARY KEY	| ✅ Unique	  | ❌ No	            | One per table
-UNIQUE KEY	| ✅ Unique	  | ✅ Yes (one NULL) | Multiple per table
+Constraint	 | Uniqueness	  | NULL Allowed?	      | Usage
+____________|______________|_____________________|____________________________________
+PRIMARY KEY	| ✅ Unique	   | ❌ No	              | One per table
+UNIQUE KEY	 | ✅ Unique	   | ✅ Yes (one NULL)   | Multiple per table
 _________________________________________________________________________________
 ## JOIN
 -> INNER JOIN
