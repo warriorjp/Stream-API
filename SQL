@@ -9,8 +9,8 @@ DCL (Data Control Language) → GRANT, REVOKE
 _________________________________________________________________________________
 Command	Removes Data?	     | Can be Rolled Back?	    | Affects Structure?
 ___________________________|_________________________|_____________________________
-DELETE Yes (selected rows) | 	Yes (COMMIT/ROLLBACK)  |  ❌ No
-TRUNCATE	Yes (all rows)	   | ❌ No	                  |  ❌ No
+DELETE Yes (selected rows) | Yes (COMMIT/ROLLBACK)   |   ❌ No
+TRUNCATE	Yes (all rows)	   | ❌ No	                  |   ❌ No
 DROP	Yes (entire table)	   | ❌ No	                  |  ✅ Yes (removes structure)
 _________________________________________________________________________________
 
