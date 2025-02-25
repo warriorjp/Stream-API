@@ -6,17 +6,19 @@ DQL (Data Query Language) → SELECT
 TCL (Transaction Control Language) → COMMIT, ROLLBACK, SAVEPOINT
 DCL (Data Control Language) → GRANT, REVOKE
 
-_________________________________________________________________________________
-Command	Removes Data?	     | Can be Rolled Back?	    | Affects Structure?
-___________________________|_________________________|_____________________________
-DELETE Yes (selected rows) | Yes (COMMIT/ROLLBACK)   |   ❌ No
-TRUNCATE	Yes (all rows)	   | ❌ No	                  |   ❌ No
-DROP	Yes (entire table)	   | ❌ No	                  |  ✅ Yes (removes structure)
-_________________________________________________________________________________
+
+-----------------------------------------------------------------------------------------
+| Command   | Removes Data?          | Can be Rolled Back?   | Affects Structure?  |
+-----------------------------------------------------------------------------------------
+| DELETE    | Yes (selected rows)    | Yes (COMMIT/ROLLBACK) | ❌ No               |
+| TRUNCATE  | Yes (all rows)         | ❌ No                 | ❌ No               |
+| DROP      | Yes (entire table)     | ❌ No                 | ✅ Yes (removes structure) |
+-----------------------------------------------------------------------------------------
+
 
 _________________________________________________________________________________
 Constraint	 | Uniqueness	  | NULL Allowed?	      | Usage
-____________|______________|_____________________|____________________________________
+____________|______________|_____________________|_______________________________
 PRIMARY KEY	| ✅ Unique	   | ❌ No	              | One per table
 UNIQUE KEY	 | ✅ Unique	   | ✅ Yes (one NULL)   | Multiple per table
 _________________________________________________________________________________
