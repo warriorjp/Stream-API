@@ -1,17 +1,65 @@
+-> SQL commands are categorized into five types:
 
-//To find duplicate records from table
-select count(name) from employee group by name having count(name)>1;
+DDL (Data Definition Language) → CREATE, ALTER, DROP, TRUNCATE
+DML (Data Manipulation Language) → INSERT, UPDATE, DELETE
+DQL (Data Query Language) → SELECT
+TCL (Transaction Control Language) → COMMIT, ROLLBACK, SAVEPOINT
+DCL (Data Control Language) → GRANT, REVOKE
 
-//find N th highest salary
-SELECT ename,sal from Employee e1 where 
-N-1 = (SELECT COUNT(DISTINCT sal)from Employee e2 where e2.sal > e1.sal) 
+_________________________________________________________________________________
+Command	Removes Data?	     | Can be Rolled Back?	 | Affects Structure?
+___________________________|_______________________|_____________________________
+DELETE Yes (selected rows) | 	Yes (COMMIT/ROLLBACK)|  ❌ No
+TRUNCATE	Yes (all rows)	 | ❌ No	               |  ❌ No
+DROP	Yes (entire table)	 | ❌ No	               |  ✅ Yes (removes structure)
+_________________________________________________________________________________
 
-//JOIN
+_________________________________________________________________________________
+Constraint	| Uniqueness	| NULL Allowed?	    | Usage
+____________|_____________|___________________|____________________________________
+PRIMARY KEY	| ✅ Unique	  | ❌ No	            | One per table
+UNIQUE KEY	| ✅ Unique	  | ✅ Yes (one NULL) | Multiple per table
+_________________________________________________________________________________
+## JOIN
 -> INNER JOIN
 -> LEFT JOIN
 -> RIGHT JOIN
 -> FULL OUTER JOIN
 Ex:
-SELECT A.OrderID, B.CustomerName, A.OrderDate
-FROM Orders A
-INNER JOIN Customers B ON A.CustomerID=B.CustomerID;
+SELECT C.OrderID, C.CustomerName, O.OrderDate
+FROM Orders O INNER JOIN Customers C ON O.CustomerID=C.CustomerID;
+_________________________________________________________________________________
+
+ -> DELETE FROM employees WHERE id = 5;  -- Deletes specific row
+ -> TRUNCATE TABLE employees;  -- Deletes all rows
+ -> DROP TABLE employees;  -- Deletes table structure
+_________________________________________________________________________________
+-> Using WHERE (Before GROUP BY)
+SELECT * FROM employees WHERE salary > 50000;
+
+-> Using group by
+SELECT department, AVG(salary) FROM employees GROUP BY department;
+
+-> Using HAVING (After GROUP BY)
+SELECT department, AVG(salary) FROM employees GROUP BY department HAVING AVG(salary) > 60000;
+_________________________________________________________________________________
+-> Get employees earning more than the average salary
+SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+_________________________________________________________________________________
+
+-> Find the second highest salary.
+SELECT MAX(salary) FROM employees 
+WHERE salary < (SELECT MAX(salary) FROM employees);
+
+-> Find Duplicate Records from a Table
+SELECT name, COUNT(name) 
+FROM employee 
+GROUP BY name 
+HAVING COUNT(name) > 1;
+
+-> Find 3th Highest Salary
+SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 3;
+
+
+
+
