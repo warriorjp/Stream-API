@@ -16,12 +16,13 @@ DCL (Data Control Language) → GRANT, REVOKE
 -----------------------------------------------------------------------------------------
 
 
-_________________________________________________________________________________
-Constraint	 | Uniqueness	  | NULL Allowed?	      | Usage
-____________|______________|_____________________|_______________________________
-PRIMARY KEY	| ✅ Unique	   | ❌ No	              | One per table
-UNIQUE KEY	 | ✅ Unique	   | ✅ Yes (one NULL)   | Multiple per table
-_________________________________________________________________________________
+-------------------------------------------------------------------
+| Constraint   | Uniqueness  | NULL Allowed?        | Usage            |
+-------------------------------------------------------------------
+| PRIMARY KEY  | ✅ Unique   | ❌ No                | One per table    |
+| UNIQUE KEY   | ✅ Unique   | ✅ Yes (one NULL)    | Multiple per table |
+-------------------------------------------------------------------
+
 ## JOIN
 -> INNER JOIN
 -> LEFT JOIN
