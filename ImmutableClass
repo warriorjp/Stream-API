@@ -1,0 +1,39 @@
+To make a class immutable in Java, follow these principles:
+
+Declare the class as final → This prevents subclassing, which can introduce mutability.
+Make all fields private and final → Prevents direct modification after object creation.
+Do not provide setters → No methods should modify the object's fields after initialization.
+Initialize fields via a constructor → Ensure values are set only once during object creation.
+Return deep copies of mutable objects → If the class has fields that reference mutable objects, return copies instead of direct references.
+
+__________________________________________________________________________________________________________________________________________
+
+
+import java.util.Collections;
+import java.util.List;
+
+public final class ImmutablePerson {
+    private final String name;
+    private final int age;
+    private final List<String> hobbies;  // Mutable object
+
+    public ImmutablePerson(String name, int age, List<String> hobbies) {
+        this.name = name;
+        this.age = age;
+        // Defensive copy to prevent external modification
+        this.hobbies = hobbies != null ? List.copyOf(hobbies) : Collections.emptyList();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public List<String> getHobbies() {
+        return hobbies; // List.copyOf() returns an unmodifiable list
+    }
+}
+
