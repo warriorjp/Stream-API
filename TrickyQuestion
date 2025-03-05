@@ -26,3 +26,42 @@ public void testMethod(Integer inte) {
         System.out.println("String method called");
     }
 ____________________________________________________________________________________________________________________________________________
+class MyThread extends Thread {
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " is running");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+
+        t1.start(); // Creates a new thread
+        t2.start(); // Creates another new thread
+
+        t1.run(); // Runs like a normal method in the main thread
+        t2.run();
+    }
+}
+
+OUTPUT :
+Thread-0 is running
+Thread-1 is running
+main is running
+main is running
+
+Feature	start()	run() : 
+->Start Create a new thread and execute run() in that new thread.	
+->Runs run() in the current thread (does not create a new thread).
+->Use start() when you want true parallel execution using multiple threads.
+->Calling run() directly executes it like a normal method and does not create a new thread.
+
+->The run() method contains the logic to execute when a thread starts.
+->The Thread class internally calls run() when start() is invoked.
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
