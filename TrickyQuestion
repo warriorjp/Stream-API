@@ -1,0 +1,28 @@
+public class TestClass {
+    public void testMethod(Object obj) {
+        System.out.println("Object method called");
+    }
+
+    public void testMethod(String str) {
+        System.out.println("String method called");
+    }
+
+    public static void main(String[] args) {
+        TestClass obj = new TestClass();
+        obj.testMethod(null);
+    }
+}
+
+When calling testMethod(null), both testMethod(Object) and testMethod(String) are potential candidates.
+Since String is a subclass of Object, Java will prefer the most specific method. So, the String version should be selected.
+
+However, if both methods had similarly specific parameters (like Integer and String), Java would throw a compilation error due to ambiguity.
+//ambiguty issue
+public void testMethod(Integer inte) {
+        System.out.println("Integer method called");
+    }
+
+    public void testMethod(String str) {
+        System.out.println("String method called");
+    }
+____________________________________________________________________________________________________________________________________________
