@@ -1,0 +1,42 @@
+When we start a Java application using java ClassName, the JVM follows a structured process that involves class loading, 
+linking, and initialization before executing the main method.
+
+Step 1: Class Loading
+The JVM needs to load the .class file (bytecode) into memory.
+The ClassLoader is responsible for dynamically finding and loading the required classes when needed.
+
+* Java has three main types of ClassLoaders:
+- Bootstrap ClassLoader – Loads core Java classes from rt.jar (Java standard library classes like java.lang.*).
+- Extension ClassLoader – Loads classes from the ext directory (java.ext.dirs).
+- Application (System) ClassLoader – Loads application classes from the classpath.
+
+Step 2: Linking
+Once the class is loaded, it goes through three linking phases:
+- Verification – Ensures bytecode validity.
+- Preparation – Allocates memory for static variables.
+- Resolution – Converts symbolic references to actual memory references.
+
+Step 3: Initialization
+- The static variables are assigned values, and static blocks are executed.
+- This is where the main method is identified.
+
+Step 4:
+- JVM Calls main Method
+- The JVM starts executing the main method from the loaded class.
+- Since main is static, it is called without creating an object.
+- The statements inside main run sequentially.
+- If other classes/methods are required, the ClassLoader loads them dynamically.
+
+Example :
+
+public class Test {
+    static {
+        System.out.println("Class Loaded!");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main method executed!");
+    }
+}
+
+
