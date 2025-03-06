@@ -111,5 +111,15 @@ public class StreamAPI {
         HashSet<String> hashSet = new HashSet<>();
         Arrays.stream(dump.replaceAll(" ", "").toLowerCase().split(""))
                 .filter(x -> !hashSet.add(x)).forEach(System.out::println);
+
+        // Use Streams to filter common elements
+        Integer[] array1 = {1, 2, 3, 4, 5, 6};
+        Integer[] array2 = {4, 5, 6, 7, 8, 9};
+
+        List<Integer> list = Arrays.asList(array2);
+        
+        List<Integer> commonElements = Arrays.stream(array1)
+                .filter(list::contains) // Check if element exists in list
+                .collect(Collectors.toList());
     }
 }
