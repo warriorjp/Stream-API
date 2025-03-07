@@ -63,6 +63,13 @@ HAVING COUNT(name) > 1;
 -> Find 3th Highest Salary
 SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 3;
 
+-> Find max salary by department
+SELECT department, MAX(salary) AS max_salary
+FROM employees
+GROUP BY department;
+
+
+
 
 
 
