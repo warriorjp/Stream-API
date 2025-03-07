@@ -40,3 +40,26 @@ public class Test {
 }
 
 
+
+
+
+--------------------JRE,JVM,JDK------------------------------------------------------------------------------
+JVM (Java Virtual Machine)
+
+JVM is an abstract machine that runs Java bytecode.
+-It provides platform independence by converting bytecode into machine-specific code at runtime.
+-Includes features like Just-In-Time (JIT) compilation, memory management (GC), and security.
+-It is a part of both JDK and JRE.
+-JRE (Java Runtime Environment)
+
+JRE is a package containing the JVM and essential libraries required to run Java applications.
+-It does not include development tools like a compiler or debugger.
+-Used by end users who want to run Java applications but don’t need to develop them.
+-JDK (Java Development Kit)
+
+JDK includes the JRE, JVM, and development tools like javac (compiler), jdb (debugger), and more.
+-Required for writing, compiling, and running Java programs.
+-Different JDK versions exist (e.g., OpenJDK, Oracle JDK).
+
+
+
