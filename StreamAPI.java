@@ -24,6 +24,12 @@ public class StreamAPI {
         Map<String, Long> map = Arrays.stream(ch.split(""))
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
+        //Print non duplicate element
+        String s="Better";
+		HashSet set=new HashSet();
+		Arrays.stream(s.split("")).filter(e->set.add(e))
+		.forEach(System.out::print);
+
         // Find the first non-repeating character in a string
         String s = "AAHJAKTMJ";
         Map<String, Long> counts = Arrays.stream(s.split(""))
