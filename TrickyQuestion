@@ -1,3 +1,6 @@
+When calling testMethod(null), both testMethod(Object) and testMethod(String) are potential candidates.
+Since String is a subclass of Object, Java will prefer the most specific method. So, the String version should be selected.
+
 public class TestClass {
     public void testMethod(Object obj) {
         System.out.println("Object method called");
@@ -13,8 +16,6 @@ public class TestClass {
     }
 }
 
-When calling testMethod(null), both testMethod(Object) and testMethod(String) are potential candidates.
-Since String is a subclass of Object, Java will prefer the most specific method. So, the String version should be selected.
 
 However, if both methods had similarly specific parameters (like Integer and String), Java would throw a compilation error due to ambiguity.
 //ambiguty issue
@@ -26,6 +27,15 @@ public void testMethod(Integer inte) {
         System.out.println("String method called");
     }
 ____________________________________________________________________________________________________________________________________________
+Feature	start()	run() : 
+->Start Create a new thread and execute run() in that new thread.	
+->Runs run() in the current thread (does not create a new thread).
+->Use start() when you want true parallel execution using multiple threads.
+->Calling run() directly executes it like a normal method and does not create a new thread.
+
+->The run() method contains the logic to execute when a thread starts.
+->The Thread class internally calls run() when start() is invoked.
+
 class MyThread extends Thread {
     public void run() {
         System.out.println(Thread.currentThread().getName() + " is running");
@@ -51,17 +61,86 @@ Thread-1 is running
 main is running
 main is running
 
-Feature	start()	run() : 
-->Start Create a new thread and execute run() in that new thread.	
-->Runs run() in the current thread (does not create a new thread).
-->Use start() when you want true parallel execution using multiple threads.
-->Calling run() directly executes it like a normal method and does not create a new thread.
 
-->The run() method contains the logic to execute when a thread starts.
-->The Thread class internally calls run() when start() is invoked.
 ____________________________________________________________________________________________________________________________________________
+In Java, if two interfaces have the same method signature but different return types, and a class tries to implement both interfaces,
+it will cause a compilation error due to ambiguity in the return type.
+- Java doesn't allow method overloading based only on return type.
+
+interface A {
+    int show();
+}
+
+interface B {
+    String show();
+}
+
+class C implements A, B {  // Compilation Error
+    @Override
+    public int show() {   // Ambiguity! Cannot satisfy both return types
+        return 10;
+    }
+}
+
+Result :
+C is not abstract and does not override abstract method show() in B
+
 ____________________________________________________________________________________________________________________________________________
+In Java, a non-static variable cannot be accessed directly inside a static method because static methods belong to the class itself, 
+while non-static variables belong to an instance of the class.
+
+class Example {
+    int instanceVar = 10; // Non-static variable
+
+    static void staticMethod() {
+        System.out.println(instanceVar); // ❌ Error: Cannot access non-static variable from a static method
+    }
+
+    public static void main(String[] args) {
+        staticMethod();
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ To access a non-static variable, create an instance of the class:
+
+class Example {
+    int instanceVar = 10;
+
+    static void staticMethod() {
+        Example obj = new Example();  // Create an instance
+        System.out.println(obj.instanceVar);  // Access via instance
+    }
+
+    public static void main(String[] args) {
+        staticMethod(); // This will work now
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
+- Yes, we can make an inner class static, which is called a static nested class in Java.
+- We can't make outer class static
+
+class Outer {
+    static int staticVar = 100;
+    int instanceVar = 200;
+
+    static class StaticInner { // ✅ Static nested class
+        void display() {
+            System.out.println("Static variable: " + staticVar); // ✅ Allowed
+            // System.out.println("Instance variable: " + instanceVar); // ❌ Not allowed (Needs Outer class instance)
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // No need to create Outer class object
+        Outer.StaticInner innerObj = new Outer.StaticInner();
+        innerObj.display();
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
