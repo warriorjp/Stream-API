@@ -142,5 +142,47 @@ public class Main {
 }
 
 ____________________________________________________________________________________________________________________________________________
+@FunctionalInterface annotation ensures that only one abstract method exists.
+The lambda expression message -> System.out.println("Message: " + message) provides an implementation for showMessage.
+
+@FunctionalInterface
+interface MyFunctionalInterface {
+    void showMessage(String message);
+}
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Lambda expression implementing MyFunctionalInterface
+        MyFunctionalInterface myFunc = message -> System.out.println("Message: " + message);
+        
+        // Calling the method
+        myFunc.showMessage("Hello from Lambda!");
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
+Java's Built-in Functional Interfaces (Consumer, Function, Predicate, Supplier)
+
+import java.util.function.*;
+
+public class FunctionalInterfaceExample {
+    public static void main(String[] args) {
+        // Consumer (T -> void)
+        Consumer<String> consumer = message -> System.out.println("Consumed: " + message);
+        consumer.accept("Hello Consumer");
+
+        // Function (T -> R)
+        Function<Integer, String> function = num -> "Number is " + num;
+        System.out.println(function.apply(10));
+
+        // Predicate (T -> boolean)
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+        System.out.println("Is 4 even? " + isEven.test(4));
+
+        // Supplier (() -> T)
+        Supplier<Double> randomValue = () -> Math.random();
+        System.out.println("Random Value: " + randomValue.get());
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
