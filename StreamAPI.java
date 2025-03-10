@@ -7,7 +7,7 @@ public class StreamAPI {
     public static void main(String[] args) {
 
         // Remove Duplicates from the List
-        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(12, 44, 76, 11, 8, 9, 9));
+        List<Integer> arr = Arrays.asList(12, 44, 76, 11, 8, 9, 9);
         List<Integer> temp = arr.stream().distinct().collect(Collectors.toList());
 
         // Find the first element in the list
