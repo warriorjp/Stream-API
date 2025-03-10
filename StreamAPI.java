@@ -13,6 +13,12 @@ public class StreamAPI {
         // Find the first element in the list
         arr.stream().findFirst().ifPresent(System.out::println);
 
+	//Sort Array     
+	int[] numbers = {5, 2, 8, 1, 3};
+        numbers = Arrays.stream(numbers)
+                        .sorted() // Sorts in ascending order
+                        .toArray();
+
         // Find duplicate elements in the list
         List<Integer> myList = Arrays.asList(10, 15, 8, 49, 15, 32, 8);
         Set<Integer> set1 = new HashSet<>();
