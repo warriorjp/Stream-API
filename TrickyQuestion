@@ -186,3 +186,62 @@ public class FunctionalInterfaceExample {
 }
 
 ____________________________________________________________________________________________________________________________________________
+Rules for Exception Handling in Method Overriding:
+** If a parent class method declares an exception using throws, the behavior of the child class method (overridden method) 
+depends on the following rules:
+- Same Exception: The child class method can declare the same exception as the parent class method.
+- Subclass Exception: The child class method can declare a subclass of the exception declared in the parent class.
+- No Exception: The child class method can choose not to declare any exception, even if the parent method declares one.
+- Super Exception Not Allowed: The child class method cannot declare a broader (superclass) exception than the parent method.
+
+class Parent {
+    void show() throws Exception {
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void show() throws Exception { // Same exception is allowed
+        System.out.println("Child method");
+    }
+
+class Child extends Parent {
+    @Override
+    void show() throws ArithematicalException { // Child exception is allowed
+        System.out.println("Child method");
+    }
+}
+
+** If the parent class method does not declare any exception, the overridden method in the child class cannot
+declare a checked exception. However, it can declare an unchecked (runtime) exception. Or no exception also allowed.
+
+class Parent {
+    void show() {  // No exception declared
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void show() throws IOException { // ❌ Compilation Error: Cannot throw a checked exception
+        System.out.println("Child method");
+    }
+
+ @Override
+    void show() throws ArithmeticException { // ✅ Allowed (Unchecked Exception)
+        System.out.println("Child method");
+    }
+}
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________
+
+
+
+
