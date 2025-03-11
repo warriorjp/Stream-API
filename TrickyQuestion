@@ -234,6 +234,37 @@ class Child extends Parent {
     }
 }
 ____________________________________________________________________________________________________________________________________________
+## Constructor chaining is a technique in Java where one constructor calls another constructor in the same class or a superclass.
+This helps in code reuse and reducing redundancy.
+
+class Example {
+    int x;
+    String name;
+
+    // Default Constructor
+    Example() {
+        this(10);  // Calls the single parameter constructor
+        System.out.println("Default Constructor");
+    }
+
+    // Single Parameter Constructor
+    Example(int x) {
+        this(x, "John"); // Calls the two-parameter constructor
+        System.out.println("Single Parameter Constructor: x = " + x);
+    }
+
+    // Two Parameter Constructor
+    Example(int x, String name) {
+        this.x = x;
+        this.name = name;
+        System.out.println("Two Parameter Constructor: x = " + x + ", name = " + name);
+    }
+
+    public static void main(String[] args) {
+        Example obj = new Example();  
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
