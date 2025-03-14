@@ -167,21 +167,35 @@ import java.util.function.*;
 
 public class FunctionalInterfaceExample {
     public static void main(String[] args) {
-        // Consumer (T -> void)
+------------------------------------------------------------------------------------------------------
+ -> Consumer 
+  - Represents an operation that accepts an input but does not return a result.
+  - Used for operations like printing, modifying objects, or saving data.
+
         Consumer<String> consumer = message -> System.out.println("Consumed: " + message);
         consumer.accept("Hello Consumer");
+------------------------------------------------------------------------------------------------------
+-> Function 
+  - Represents a function that takes one input and returns a result.
+  - Commonly used for data transformation (e.g., converting String to Integer).
 
-        // Function (T -> R)
         Function<Integer, String> function = num -> "Number is " + num;
         System.out.println(function.apply(10));
+------------------------------------------------------------------------------------------------------
+-> Predicate 
+  - Represents a function that takes an input and returns a boolean (true/false).
+  - Used for filtering, validation, and conditions.
 
-        // Predicate (T -> boolean)
         Predicate<Integer> isEven = num -> num % 2 == 0;
         System.out.println("Is 4 even? " + isEven.test(4));
+------------------------------------------------------------------------------------------------------
+-> Supplier 
+  - Represents a function that does not take any input but returns a value.
+  - Used for lazy initialization, getting system properties, or generating random values.
 
-        // Supplier (() -> T)
         Supplier<Double> randomValue = () -> Math.random();
         System.out.println("Random Value: " + randomValue.get());
+------------------------------------------------------------------------------------------------------
     }
 }
 
