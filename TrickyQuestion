@@ -280,6 +280,25 @@ class Example {
 }
 
 ____________________________________________________________________________________________________________________________________________
+-> If an exception occurs in both the try and finally blocks, the finally block's exception overrides the original one from the try block.
+
+public class FinallyExceptionExample {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Inside try block");
+            throw new NullPointerException("Try block exception");
+        } finally {
+            System.out.println("Finally block executed.");
+            throw new ArithmeticException("Finally block exception");
+        }
+    }
+}
+
+OUTPUT :
+Inside try block
+Finally block executed.
+Finally block exception
+
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
