@@ -300,6 +300,24 @@ Finally block executed.
 Finally block exception
 
 ____________________________________________________________________________________________________________________________________________
+-> try-with-resources :
+Introduced in Java 7, try-with-resources is a feature that allows automatic resource management (ARM). 
+It ensures that resources like files, database connections, sockets, etc., are closed automatically at the end of the try block.
+import java.io.*;
+
+import java.io.*;
+
+public class TryWithResourcesExample {
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+            System.out.println(br.readLine());  // Read first line
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+
+
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
