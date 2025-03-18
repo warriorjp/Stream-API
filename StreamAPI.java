@@ -30,6 +30,14 @@ public class StreamAPI {
         Map<String, Long> map = Arrays.stream(ch.split(""))
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
+	 //divide list into even and odd
+	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Map<Boolean, List<Integer>> partitioned = numbers.stream()
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+        List<Integer> evenNumbers = partitioned.get(true);
+        List<Integer> oddNumbers = partitioned.get(false);
+
         //Print non duplicate element
         String s="Better";
 		HashSet set=new HashSet();
