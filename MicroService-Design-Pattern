@@ -1,13 +1,13 @@
-- API Gateway :
+🔹 API Gateway :
 An API Gateway is an essential component in a microservices architecture, acting as single entry point for all client requests.
 It provides functionalities like routing, authentication, load balancing, rate limiting, and monitoring while simplifying 
 communication between clients and backend services.
 
-- Service Registry :
+🔹 Service Registry :
 The Service Registry is a crucial pattern in microservices architecture that helps services discover and 
 communicate with each other dynamically. It maintains a directory of available microservices and their locations (IP addresses, ports, and metadata).
 
-- Circuit Breaker 
+🔹 Circuit Breaker 
 The Circuit Breaker pattern is used in microservices to prevent cascading failures when a service is slow, failing, or unavailable. 
 It helps improve system resilience by stopping requests to failing services and allowing them to recover before retrying.
 
@@ -17,7 +17,7 @@ Why Use a Circuit Breaker?
 ✅ Enhances system resilience – Allows degraded services to recover.
 ✅ Reduces unnecessary load – Blocks calls to unhealthy services.
 
-- Database per Service 
+🔹 Database per Service 
 In a microservices architecture, each service should own its own database. This pattern is called Database per Service, 
 ensuring data autonomy, scalability, and independence for each microservice.
 
@@ -28,6 +28,6 @@ Why Use Database per Service?
 ✅ Security & Compliance – Data access is restricted to the owning service, reducing risks.
 ✅ Failure Isolation – If one service’s database fails, others remain unaffected.
 
-- Saga Pattern 
+🔹 Saga Pattern 
 The Saga Pattern is a distributed transaction management approach in microservices architecture.
 It ensures data consistency across multiple services without using two-phase commits (2PC).
