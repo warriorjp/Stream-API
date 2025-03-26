@@ -19,6 +19,14 @@ public class StreamAPI {
                         .sorted() // Sorts in ascending order
                         .toArray();
 
+        // Want Keep 0s left, and 1 right
+	List<Integer> list = List.of(1, 0, 1, 0, 1, 0, 0, 1, 0, 1);
+        List<Integer> sortedList = list.stream()
+                                       .sorted()
+                                       .collect(Collectors.toList());
+
+        System.out.println(sortedList);
+
         // Find duplicate elements in the list
         List<Integer> myList = Arrays.asList(10, 15, 8, 49, 15, 32, 8);
         Set<Integer> set1 = new HashSet<>();
