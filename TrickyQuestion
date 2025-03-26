@@ -348,6 +348,23 @@ public final class DeepPerson {
 
 
 ____________________________________________________________________________________________________________________________________________
+In Java, streams are consumed only once. It cannot be reused once a stream is processed (e.g., using terminal operations like forEach, collect,
+count, etc.). If you try to operate on it again, it will throw an IllegalStateException.
+
+public class StreamReuseExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(5, 3, 9, 1, 4);
+
+        Stream<Integer> stream = numbers.stream().sorted();
+
+        // First usage: Works fine
+        stream.forEach(System.out::println);
+
+        // Second usage: Throws IllegalStateException
+        stream.forEach(System.out::println);
+    }
+}
+
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________
