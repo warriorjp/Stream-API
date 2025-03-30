@@ -62,10 +62,15 @@ public class StreamAPI {
             }
         });
 
-        // Find the nth highest number in the list
-        int n = 3;
-        int highest = arr.stream().sorted(Collections.reverseOrder())
-                .collect(Collectors.toList()).get(n - 1);
+        // Find the 2nd highest number in the array
+	int arr[]={22,55,66,11,77,33};
+	int n=3;
+        Arrays.stream(arr)
+            .boxed()  // Convert int to Integer
+            .sorted(Collections.reverseOrder())  // Sort in descending order
+            .skip(n-1)  // Skip the element
+            .findFirst()  // Get the next highest element
+            .orElse(null);  // Handle empty cases
 
         // Find words starting with 't' in a sentence
         String n1 = "hi guys welcome to The team";
