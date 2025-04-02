@@ -1,0 +1,47 @@
+Java 21 Feature :
+--------------------------------------------------------------------------------------
+-> Enhances switch expressions with type patterns and guarded patterns.
+Example:
+static void test(Object obj) {
+    switch (obj) {
+        case Integer i -> System.out.println("Integer: " + i);
+        case String s  -> System.out.println("String: " + s);
+        case null      -> System.out.println("Null");
+        default        -> System.out.println("Something else");
+    }
+}
+--------------------------------------------------------------------------------------
+-> Simplifies the syntax for small programs, making Java more beginner-friendly.
+Example:
+void main() {
+    System.out.println("Hello, Java 21!");
+}
+--------------------------------------------------------------------------------------
+-> Introduces new interfaces: SequencedCollection, SequencedSet, and SequencedMap.
+Ensures order-sensitive operations for lists, sets, and maps.
+Example:
+SequencedSet<String> set = new LinkedHashSet<>();
+set.add("A");
+set.add("B");
+System.out.println(set.getFirst()); // A
+System.out.println(set.getLast());  
+--------------------------------------------------------------------------------------
+-> Instead of using String concatenation (+) or String.format(), you can use string templates (STR."...") 
+with embedded expressions using \{}.
+The STR."..." template allows embedding expressions inside \{}.
+More readable and efficient than older methods.
+Works with variables, expressions, and even method calls.
+
+Earlier :
+String name = "John";
+String message = "Hello, " + name + "!";
+String name = "John";
+
+Now With Java 21 :
+String message = STR."Hello, \{name}!";
+System.out.println(message); // Hello, John!
+
+
+
+
+
