@@ -1,0 +1,58 @@
+interface Vehicle {
+    // 1. Abstract method
+    void start();
+
+    // 2. Default method
+    default void fuelStatus() {
+        System.out.println("Fuel level is sufficient.");
+    }
+
+    // 3. Static method
+    static void serviceReminder() {
+        System.out.println("Service due in 30 days.");
+        showTips(); // Call private method
+    }
+
+    // 4. Private static method (Java 9+)
+    private static void showTips() {
+        System.out.println("Tip: Check tire pressure regularly.");
+    }
+
+    // 5. Private non-static method
+    private void log(String message) {
+        System.out.println("LOG: " + message);
+    }
+
+    // 6. Default method using private method
+    default void updateSoftware() {
+        log("Starting vehicle software update...");
+        System.out.println("Vehicle software updated.");
+    }
+}
+
+// Implementing class
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car is starting...");
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.start();            // Abstract method
+        myCar.fuelStatus();       // Default method
+        myCar.updateSoftware();   // Default + private
+        Vehicle.serviceReminder(); // Static method
+    }
+}
+
+
+OUTPUT :
+Car is starting...
+Fuel level is sufficient.
+LOG: Starting vehicle software update...
+Vehicle software updated.
+Service due in 30 days.
+Tip: Check tire pressure regularly.
