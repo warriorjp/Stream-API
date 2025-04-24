@@ -30,6 +30,8 @@ public class Main
 	}
 }
 
+-------------
+
 ------------------- Encapsulation ------------------
 Encapsulation is the process of hiding the internal details of a class and exposing only what is necessary.
 
@@ -67,3 +69,61 @@ public class Main
 	    System.out.println("Roll No: " + obj.getRollNo());
 	}
 }
+
+------------------- Polymorphism --------------------
+
+When a single method or function can work in different forms/ways depending on the type of objects they are acting upon.
+
+1. Compile-time polymorphism / Method Overloading: A method having the same name but differs in the number of parameters or the type of parameters, in the same class.
+
+class Calculator {
+    // Method with 2 int parameters
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method with 3 int parameters
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    	Calculator calc = new Calculator();
+		System.out.println(calc.add(10, 20));       // Output: 30
+		System.out.println(calc.add(10, 20, 30));   // Output: 60
+	}
+}
+
+2. Runtime Polymorphism / Method Overriding: Same method name, same parameters, but defined in parent and child class. Java decides at runtime which method to call, based on the object.
+
+class Animal {
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	    	Animal a1 = new Dog();
+		Animal a2 = new Cat();
+
+		a1.sound();   // Output: Dog barks
+		a2.sound();   // Output: Cat meows
+	}
+}
+
