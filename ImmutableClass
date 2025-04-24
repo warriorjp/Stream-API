@@ -24,15 +24,15 @@ public final class ImmutablePerson {
         this.hobbies = hobbies != null ? List.copyOf(hobbies) : Collections.emptyList();
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
-    public int getAge() {
+    private int getAge() {
         return age;
     }
 
-    public List<String> getHobbies() {
+    private List<String> getHobbies() {
         return hobbies; // List.copyOf() returns an unmodifiable list
     }
 }
