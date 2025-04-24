@@ -1,0 +1,69 @@
+------------------- Abstraction --------------------
+
+Abstraction means hiding complex implementation and showing only the essential features to the user.
+
+Example : 
+
+abstract class Animal {
+    abstract void makeSound();
+    
+    public void display() {
+        System.out.println("Animal Class");
+    }
+}
+
+class Dog extends Animal {
+    public void makeSound() {
+        System.out.println("Barks...");
+    }
+    
+    public void display() {
+        System.out.println("Dog class");
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    Animal obj = new Dog();
+	    obj.makeSound(); // Barks...
+	    obj.display(); // Dog Class
+	}
+}
+
+------------------- Encapsulation ------------------
+Encapsulation is the process of hiding the internal details of a class and exposing only what is necessary.
+
+Example : 
+
+class Student {
+    private String name;
+    private int rollNo;
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String newName) {
+        name = newName;
+    }
+    
+    public int getRollNo() {
+        return rollNo;
+    }
+    
+    public void setRollNo(int newRollNo) {
+        rollNo = newRollNo;
+    }
+}
+ 
+public class Main
+{
+	public static void main(String[] args) {
+	    Student obj = new Student();
+	    obj.setName("ABC");
+	    obj.setRollNo(12);
+	    
+	    System.out.println("Name: " + obj.getName());
+	    System.out.println("Roll No: " + obj.getRollNo());
+	}
+}
