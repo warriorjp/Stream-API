@@ -23,11 +23,6 @@ interface Vehicle {
         System.out.println("LOG: " + message);
     }
 
-    // 6. Default method using private method
-    default void updateSoftware() {
-        log("Starting vehicle software update...");
-        System.out.println("Vehicle software updated.");
-    }
 }
 
 // Implementing class
@@ -43,7 +38,6 @@ public class Main {
         Car myCar = new Car();
         myCar.start();            // Abstract method
         myCar.fuelStatus();       // Default method
-        myCar.updateSoftware();   // Default + private
         Vehicle.serviceReminder(); // Static method
     }
 }
