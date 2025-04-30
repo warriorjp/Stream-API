@@ -18,7 +18,10 @@ public class StreamAPI {
         numbers = Arrays.stream(numbers)
                         .sorted() // Sorts in ascending order
                         .toArray();
-
+	    
+         // Increase salary by 10%
+          employees.stream()
+         .forEach(e -> e.setSalary(e.getSalary() * 1.10));
         // Want Keep 0s left, and 1 right
 	List<Integer> list = List.of(1, 0, 1, 0, 1, 0, 0, 1, 0, 1);
         List<Integer> sortedList = list.stream()
