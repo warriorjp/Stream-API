@@ -22,6 +22,7 @@ public class StreamAPI {
          // Increase salary by 10%
           employees.stream()
          .forEach(e -> e.setSalary(e.getSalary() * 1.10));
+	    
         // Want Keep 0s left, and 1 right
 	List<Integer> list = List.of(1, 0, 1, 0, 1, 0, 0, 1, 0, 1);
         List<Integer> sortedList = list.stream()
@@ -41,7 +42,7 @@ public class StreamAPI {
         Map<String, Long> map = Arrays.stream(ch.split(""))
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-	 //divide list into even and odd
+	 //Divide the list into even and odd
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         Map<Boolean, List<Integer>> partitioned = numbers.stream()
                 .collect(Collectors.partitioningBy(n -> n % 2 == 0));
@@ -49,21 +50,25 @@ public class StreamAPI {
         List<Integer> evenNumbers = partitioned.get(true);
         List<Integer> oddNumbers = partitioned.get(false);
 
-        //Print non duplicate element
-        String s="Better";
+        //Print non-duplicate element
+        String s "Better";
 		HashSet set=new HashSet();
 		Arrays.stream(s.split("")).filter(e->set.add(e))
 		.forEach(System.out::print);
 
         // Find the first non-repeating character in a string
         String s = "AAHJAKTMJ";
-        Map<String, Long> counts = Arrays.stream(s.split(""))
-                .collect(Collectors.groupingBy(i -> i, Collectors.counting()));
-        counts.forEach((element, count) -> {
-            if (count == 1) {
-                System.out.println("Non Repeating Character From String: " + element);
-            }
-        });
+        LinkedHashMap<String, Long> map = Arrays.stream(s.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()));
+	  
+	 String key = map.entrySet()
+                            .stream()
+                            .filter(entry -> entry.getValue() == 1)
+                            .map(Map.Entry::getKey)
+                            .findFirst()
+                            .orElse(null);
+	 System.out.print("Result" +key);
+        
 
         // Find the 2nd highest number in the array
 	int arr[]={22,55,66,11,77,33};
