@@ -366,8 +366,41 @@ public class StreamReuseExample {
 }
 
 ____________________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________________
+# Thread.Run() And Runneable.Run()
+
+>> Runs in a new thread when start() is called on Thread object
+
+        class MyThread extends Thread {
+            public void run() {
+                System.out.println("Thread is running in: " + Thread.currentThread().getName());
+            }
+        }
+        
+        public class Main {
+            public static void main(String[] args) {
+                MyThread t1 = new MyThread();
+                t1.start(); // ✅ starts a new thread and calls run()
+            }
+        }
+
+>> Runs in a new thread only if passed to a Thread object to the thread class and start() is called.
+
+        class MyRunnable implements Runnable {
+            public void run() {
+                System.out.println("Runnable is running in: " + Thread.currentThread().getName());
+            }
+        }
+        
+        public class Main {
+            public static void main(String[] args) {
+                MyRunnable task = new MyRunnable();
+        
+                Thread t1 = new Thread(task);
+                t1.start(); // ✅ starts a new thread and calls run()
+            }
+        }
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
 
 
 
