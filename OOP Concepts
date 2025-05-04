@@ -78,21 +78,21 @@ When a single method or function can work in different forms/ways depending on t
 
 class Calculator {
     // Method with 2 int parameters
-    public int add(int a, int b) {
+    public int calculate(int a, int b) {
         return a + b;
     }
 
     // Method with 3 int parameters
-    public int add(int a, int b, int c) {
-        return a + b + c;
+    public int calculate(int a, int b) {
+        return a - c;
     }
 }
 public class Main
 {
 	public static void main(String[] args) {
 	    	Calculator calc = new Calculator();
-		System.out.println(calc.add(10, 20));       // Output: 30
-		System.out.println(calc.add(10, 20, 30));   // Output: 60
+		System.out.println(calc.calculate(10, 20));       // Output: 30
+		System.out.println(calc.calculate(20, 10,));   // Output: 10
 	}
 }
 
