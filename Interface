@@ -50,3 +50,9 @@ LOG: Starting vehicle software update...
 Vehicle software updated.
 Service due in 30 days.
 Tip: Check tire pressure regularly.
+
+!!! Correction in output:
+Car is starting...
+Fuel level is sufficient.
+Service due in 30 days.
+Tip: Check tire pressure regularly.
