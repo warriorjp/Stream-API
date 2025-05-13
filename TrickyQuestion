@@ -400,7 +400,41 @@ ________________________________________________________________________________
             }
         }
 ________________________________________________________________________________________________________________________________________
+Multiple inheritance is not allowed, but we can achieve a similar thing using the default method.
+
+interface A {
+    default void show() {
+        System.out.println("A");
+    }
+}
+
+interface B {
+    default void show() {
+        System.out.println("B");
+    }
+}
+
+class C implements A, B {
+    // Must override the conflicting method
+    public void show() {
+        System.out.println("C: Resolving conflict between A and B");
+        A.super.show();  // Optionally call specific interface's method
+        B.super.show();
+    
+}
+
+public class Main {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.show();
+    }
+}
+OUTPUT :
+C: Resolving conflict between A and B
+A
+B
 ________________________________________________________________________________________________________________________________________
+
 
 
 
