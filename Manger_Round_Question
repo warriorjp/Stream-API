@@ -5,7 +5,18 @@ Here are common **Manager Round Interview Questions**, typically focused on eval
 ### **Behavioral & Leadership**
 1. **Tell me about yourself and your journey so far.**
 2. **How do you handle conflicts within your team?**
+  ans - I believe conflicts are natural when different people work together, but it’s how we handle them that matters. Whenever there’s a conflict in the team, 
+        I prefer to stay calm and first try to understand both sides. I listen to everyone involved without taking sides, just to get the full picture. 
+        Then I try to bring the people together to talk it out and find a common ground. I believe open and honest communication solves most issues. Also, 
+        I always remind the team that we’re all working toward the same goal, so it’s better to support each other rather than let small things grow into bigger problems."
+
 3. **Describe a time you had to manage a difficult stakeholder or team member.**
+  ans - There was a time when I was working on a microservice that had a tight deadline, and one of the senior stakeholders kept pushing for new features even though we were in the 
+        testing phase. At first, I was a bit frustrated because it felt like last-minute pressure. But instead of reacting, I asked him for 15 minutes to understand why these changes 
+        were urgent. Turns out, he was under pressure from a client demo, which I wasn’t aware of. Once I knew the reason, I spoke with my team, and we found a middle ground — we delivered 
+        the critical changes that affected the demo, and postponed the non-critical ones with proper timelines. It was a good lesson for me — sometimes what looks like being 'difficult' 
+        is actually just someone trying to manage their own pressure. I’ve learned not to take things personally and to try to understand the bigger picture before reacting.
+
 4. **How do you prioritize tasks when there are multiple deadlines?**
 5. **Tell me about a challenging project and how you managed it.**
 6. **Have you ever made a mistake as a leader? How did you handle it?**
