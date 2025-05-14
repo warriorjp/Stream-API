@@ -18,7 +18,21 @@ Here are common **Manager Round Interview Questions**, typically focused on eval
         is actually just someone trying to manage their own pressure. I’ve learned not to take things personally and to try to understand the bigger picture before reacting.
 
 4. **How do you prioritize tasks when there are multiple deadlines?**
+  ans - When I have multiple deadlines, the first thing I do is list down all the tasks and understand the urgency and impact of each one. I talk to my manager or the stakeholders if 
+        something is unclear — sometimes what seems urgent isn’t actually a blocker, and sometimes small tasks are linked to bigger ones. I try to break things into smaller parts and see 
+        if any of them can be done in parallel or delegated. I usually follow a mix of priority and effort — for example, if a high-priority task is going to take time, I start early.
+        Also, I stay in regular touch with the team or other dependent teams to avoid last-minute surprises. And if I ever feel that it’s too tight to meet all deadlines, 
+        I raise it early instead of waiting till the end.
+
 5. **Tell me about a challenging project and how you managed it.**
+  ans - One of the challenging projects I worked on was the Starbucks Outlet Service & Asset Management system. We had to manage data for multiple outlets across different cities, 
+        track their equipment, schedule maintenance, and log transactions.
+        The main challenge was during the migration of the frontend from Angular to ReactJS. There was pressure to deliver fast without disturbing the existing functionality. 
+        Also, we had to coordinate with backend teams while rewriting the UI layer. To manage this, we broke the work into small modules, prioritized the critical screens first,   
+        and kept Angular and React both working side-by-side temporarily. I also created reusable components in React to save time. We tested each module thoroughly before moving to the next.
+        Thanks to good planning and teamwork, we completed the migration smoothly with no major issues in production. It helped improve the app's performance and made it easier to 
+        maintainin the long term.
+
 6. **Have you ever made a mistake as a leader? How did you handle it?**
 7. **How do you ensure effective communication within your team?**
 8. **How do you deal with disagreements between departments?**
