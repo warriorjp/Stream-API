@@ -1,0 +1,38 @@
+1. Developer Pushes Code
+        ↓
+2. Jenkins CI/CD Triggered
+        ↓
+3. Build, Test, Package Spring Boot App
+        ↓
+4. Build Docker Image
+        ↓
+5. Push to Azure Container Registry (ACR)
+        ↓
+6. Deploy to Azure Kubernetes Service (AKS)
+        ↓
+7. Expose App via LoadBalancer
+        ↓
+8. Users Access the Application
+
+
+🚀 1. Docker – Containerization
+Docker allows you to package your Spring Boot application along with all its dependencies into a single container image.
+This ensures that the app runs the same way on all environments (dev, test, prod).
+
+Example :
+
+FROM openjdk:17
+COPY target/my-springboot-app.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+------------------------------------------------------------------------------------------------------
+☸️ 2. Kubernetes (K8s) – Orchestration
+Kubernetes helps you deploy, scale, and manage your containerized Spring Boot app.
+You can define how many replicas to run, handle rolling updates, auto-restart failed pods, etc.
+
+------------------------------------------------------------------------------------------------------
+☁️ 3. Azure – Cloud Platform
+Azure provides managed services to run your Kubernetes clusters and store Docker images:
+Azure Kubernetes Service (AKS): Fully managed Kubernetes.
+Azure Container Registry (ACR): Store your Docker images securely.
+Azure DevOps / GitHub Actions: Automate your build and deployment pipelines.
