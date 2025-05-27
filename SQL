@@ -67,6 +67,13 @@ SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 3;
 SELECT department, MAX(salary) AS max_salary
 FROM employees
 GROUP BY department;
+_________________________________________________________________________________
+
+Difference between Alter and Update
+Alter - Alter is used to update the structure of the table, like column name, column type, column data type, and column size.
+         Also, if we want to change the table name, then we use Alter.
+         We want to remove the entire column we can use Alter.
+Update - Update is used to update the table data. So if we want to perform any update operation on table data then we use Update.
 
 
 
