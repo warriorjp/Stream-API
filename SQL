@@ -87,24 +87,46 @@ Truncate (DDL) - It is also used to delete the table's data, but it deletes all 
              ROLLBACK employee;  // Is not possible in TRUNCATE
 _______________________________________________________________________________________
 
--> Write a SQL query to display the employee name who is taking maximum salary.
- SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
+NOTE : 1. When using GROUP BY with a column, any column included in the SELECT statement must either be:
+          a. Included in the GROUP BY clause, or
+          b. Used with an aggregate function such as MIN(), MAX(), COUNT(), SUM(), etc.
+
+          Example:
+            SELECT Department, COUNT(*) 
+            FROM Employees 
+            GROUP BY Department;
+       2. When a subquery (inner query) returns multiple values, use the IN operator instead of =.
+          a. The = operator compares a single value.
+          b. The IN operator checks if a value exists within a list of values returned by the subquery.
+
+          Example:
+          -- Correct usage with multiple values
+            SELECT Name 
+            FROM Employees 
+            WHERE DepartmentID IN (SELECT DepartmentID FROM Departments WHERE Location = 'NY');
+
+
+-> Write a SQL query to display the employee's name who is taking the maximum salary.
+  SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
 
 -> Write a query to display all the department names along with the no. of employees working in that department.
- SELECT dept, count(*) FROM employee GROUP BY dept;
+  SELECT dept, count(*) FROM employee GROUP BY dept;
       Or
- SELECT dept, count(dept) FROM employee GROUP BY dept;
+  SELECT dept, count(dept) FROM employee GROUP BY dept;
 
 Output - 
       HR   | 2
       MRKT | 1
       IT   | 3
 -> Write a query to display all the department names where the number of employees is less than 2.
- SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
+  SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
 
 Output -  MRKT
 
 -> Write a query to display the name of the employee in which department no. of employees are less than 2.
-SELECT emp_name from employee where dept IN (SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2);
+  SELECT emp_name from employee where dept IN (SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2);
+
+-> Write a query to display highest salary dept wise and name of the employee who is taking that highest salary.
+  SELECT emp_name from employee where dept IN (SELECT MAX(salary) FROM employee GROUP BY dept);
 
 
