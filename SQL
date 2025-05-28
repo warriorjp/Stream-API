@@ -69,14 +69,19 @@ FROM employees
 GROUP BY department;
 _________________________________________________________________________________
 
-Difference between Alter and Update
+-> Difference between Alter and Update
 Alter - Alter is used to update the structure of the table, like column name, column type, column data type, and column size.
          Also, if we want to change the table name, then we use Alter.
          We want to remove the entire column we can use Alter.
 Update - Update is used to update the table data. So if we want to perform any update operation on table data then we use Update.
 
-
-
+->Difference between Delete, Drop and Truncate
+Delete (DML) - It is use to delete the data row wise, it will delete the data or row one by one.
+              DELETE from employee;
+Drop (DDL) - It is use the remove the entire table with the table structure.
+             DROP table employee;
+Truncate (DDL) - It is also used to delete the table's data, but it deletes all rows in one go.
+             TRUNCATE table employee;
 
 
 
