@@ -88,7 +88,23 @@ Truncate (DDL) - It is also used to delete the table's data, but it deletes all 
 _______________________________________________________________________________________
 
 -> Write a SQL query to display the employee name who is taking maximum salary.
- SELECT emp_name from employee where salary = (SELECT max(salary) from employee);
+ SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
 
+-> Write a query to display all the department names along with the no. of employees working in that department.
+ SELECT dept, count(*) FROM employee GROUP BY dept;
+      Or
+ SELECT dept, count(dept) FROM employee GROUP BY dept;
+
+Output - 
+      HR   | 2
+      MRKT | 1
+      IT   | 3
+-> Write a query to display all the department names where the number of employees is less than 2.
+ SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
+
+Output -  MRKT
+
+-> Write a query to display the name of the employee in which department no. of employees are less than 2.
+SELECT emp_name from employee where dept IN (SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2);
 
 
