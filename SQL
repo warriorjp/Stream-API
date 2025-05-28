@@ -133,6 +133,7 @@ ________________________________________________________________________________
 
 ## JOINS = Cross Product + Select Statement(Condition)
 Natural Join
+Self join
 
   Emp                           dept
 eno | ename | address      dno | dname | eno
@@ -150,4 +151,7 @@ Natural Join -
    SELECT ename FROM emp, dept WHERE emp.eno = dept.eno;
                           OR
    SELECT ename FROM emp NATURAL JOIN dept;
+
+Self Join - 
+   When a table is joined with itself
 
