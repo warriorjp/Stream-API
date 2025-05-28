@@ -75,7 +75,7 @@ Alter - Alter is used to update the structure of the table, like column name, co
          We want to remove the entire column we can use Alter.
 Update - Update is used to update the table data. So if we want to perform any update operation on table data then we use Update.
 
-->Difference between Delete, Drop and Truncate
+-> Difference between Delete, Drop and Truncate
 Delete (DML) - It is use to delete the data row wise, it will delete the data or row one by one.
               DELETE from employee;
               DELETE from employee where id=1;
