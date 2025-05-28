@@ -85,6 +85,10 @@ Drop (DDL) - It is use the remove the entire table with the table structure.
 Truncate (DDL) - It is also used to delete the table's data, but it deletes all rows in one go.
              TRUNCATE TABLE employee;
              ROLLBACK employee;  // Is not possible in TRUNCATE
+_______________________________________________________________________________________
+
+-> Write a SQL query to display the employee name who is taking maximum salary.
+ SELECT emp_name from employee where salary = (SELECT max(salary) from employee);
 
 
 
