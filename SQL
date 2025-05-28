@@ -129,4 +129,25 @@ Output -  MRKT
 -> Write a query to display highest salary dept wise and name of the employee who is taking that highest salary.
   SELECT emp_name from employee where dept IN (SELECT MAX(salary) FROM employee GROUP BY dept);
 
+___________________________________________________________________________________________________
+
+## JOINS = Cross Product + Select Statement(Condition)
+Natural Join
+
+  Emp                           dept
+eno | ename | address      dno | dname | eno
+1   | Ram   | Pune         D1  | HR    | 1
+2   | Shyam | Mumbai       D2  | IT    | 2
+3   | John  | Delhi        D3  | MRKT  | 4
+4   | Mark  | HYD
+
+Natural Join - 
+   We use a natural join -
+  1. When we have a common attribute in two tables, whose names should be the same.
+  2. When we keep that common attribute equal.
+
+-> Find the name of an employee who is working in a department
+   SELECT ename FROM emp, dept WHERE emp.eno = dept.eno;
+                          OR
+   SELECT ename FROM emp NATURAL JOIN dept;
 
