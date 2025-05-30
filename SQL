@@ -134,6 +134,11 @@ ________________________________________________________________________________
 ## JOINS = Cross Product + Select Statement(Condition)
 Natural Join
 Self join
+INNER Join
+LEFT Join
+RIGHT Join
+FULL OUTER Join
+
 
   Emp                           dept
 eno | ename | address      dno | dname | eno
