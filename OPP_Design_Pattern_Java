@@ -1,0 +1,134 @@
+✅ 1. Singleton Pattern
+Ensure a class has only one instance, and provide a global point of access to it.
+
+🔹 When to use:
+Logging
+Configuration manager
+Database connections
+
+Java Example:
+
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}  // Private constructor
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();  // Lazy initialization
+        }
+        return instance;
+    }
+
+    public void printMessage() {
+        System.out.println("I am a Singleton!");
+    }
+}
+-------------------------------------------------------------------------------------------------------------
+✅ 2. Factory Method Pattern
+Define an interface for creating an object, but let subclasses decide which class to instantiate.
+
+🔹 When to use:
+When the creation process is complex.
+When client code should not know class names.
+
+Java Example:
+
+interface Payment {
+    void pay(double amount);
+}
+
+class CreditCardPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid ₹" + amount + " using Credit Card");
+    }
+}
+
+class UpiPayment implements Payment {
+    public void pay(double amount) {
+        System.out.println("Paid ₹" + amount + " using UPI");
+    }
+}
+
+class PaymentFactory {
+    public static Payment getPayment(String type) {
+        if ("card".equalsIgnoreCase(type)) return new CreditCardPayment();
+        if ("upi".equalsIgnoreCase(type)) return new UpiPayment();
+        throw new IllegalArgumentException("Invalid payment type");
+    }
+}
+
+ShapeFactory factory = new ShapeFactory();
+Shape shape = factory.getShape("circle");
+shape.draw();
+-------------------------------------------------------------------------------------------------------------
+
+✅ 3. Abstract Factory Pattern
+Purpose: Provide an interface for creating families of related or dependent objects without specifying their concrete classes
+
+interface Button {
+    void click();
+}
+
+class MacButton implements Button {
+    public void click() { System.out.println("Mac Button Clicked"); }
+}
+
+class WindowsButton implements Button {
+    public void click() { System.out.println("Windows Button Clicked"); }
+}
+
+interface GUIFactory {
+    Button createButton();
+}
+
+class MacFactory implements GUIFactory {
+    public Button createButton() { return new MacButton(); }
+}
+
+class WindowsFactory implements GUIFactory {
+    public Button createButton() { return new WindowsButton(); }
+}
+
+-------------------------------------------------------------------------------------------------------------
+✅ 4. Prototype Pattern
+Purpose: Create new objects by copying an existing object (clone).
+
+Example: 
+
+class Document implements Cloneable {
+    private String content;
+
+    public Document(String content) {
+        this.content = content;
+    }
+
+    public void show() {
+        System.out.println("Content: " + content);
+    }
+
+    public Document clone() {
+        try {
+            return (Document) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+
+
