@@ -1,14 +1,14 @@
 🔹 API Gateway :
-An API Gateway is an essential component in a microservices architecture, acting as single entry point for all client requests.
+✅ An API Gateway is an essential component in a microservices architecture, acting as single entry point for all client requests.
 It provides functionalities like routing, authentication, load balancing, rate limiting, and monitoring while simplifying 
 communication between clients and backend services.
 
 🔹 Service Registry :
-The Service Registry is a crucial pattern in microservices architecture that helps services discover and 
+✅ The Service Registry is a crucial pattern in microservices architecture that helps services discover and 
 communicate with each other dynamically. It maintains a directory of available microservices and their locations (IP addresses, ports, and metadata).
 
 🔹 Circuit Breaker 
-The Circuit Breaker pattern is used in microservices to prevent cascading failures when a service is slow, failing, or unavailable. 
+✅ The Circuit Breaker pattern is used in microservices to prevent cascading failures when a service is slow, failing, or unavailable. 
 It helps improve system resilience by stopping requests to failing services and allowing them to recover before retrying.
 
 Why Use a Circuit Breaker?
@@ -21,13 +21,26 @@ Why Use a Circuit Breaker?
 In a microservices architecture, each service should own its own database. This pattern is called Database per Service, 
 ensuring data autonomy, scalability, and independence for each microservice.
 
-Why Use Database per Service?
+Why Use a Database per Service?
 ✅ Data Isolation – Services don’t share databases, preventing tight coupling.
 ✅ Scalability – Each service can scale independently based on its workload.
 ✅ Technology Flexibility – Different databases can be used for different services (e.g., MySQL for orders, MongoDB for users).
 ✅ Security & Compliance – Data access is restricted to the owning service, reducing risks.
 ✅ Failure Isolation – If one service’s database fails, others remain unaffected.
 
+🔹 CQRS :
+✅ The CQRS (Command Query Responsibility Segregation) design pattern is used in microservices and complex systems to separate 
+The read and write operations are performed on different models. This separation improves scalability, performance, and maintainability. 
+especially in systems with high read/write loads or complex business logic.
+-------------------------------------------------------------------------------------------------------------------------
+Benefit	                 |      Explanation
+-------------------------------------------------------------------------------------------------------------------------
+Scalability:             |  You can scale the read and write parts independently.
+Performance	             |  Queries can be optimised for reads (caching, denormalisation) and writes for business logic and validation.
+Separation of Concerns:  | Business logic and data access are clearly separated.
+Flexibility              | enables the use of different storage models (e.g., SQL for writes, NoSQL for reads).
+--------------------------------------------------------------------------------------------------------------------------
+
 🔹 Saga Pattern 
-The Saga Pattern is a distributed transaction management approach in microservices architecture.
+✅ The Saga Pattern is a distributed transaction management approach in microservices architecture.
 It ensures data consistency across multiple services without using two-phase commits (2PC).
