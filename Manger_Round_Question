@@ -33,10 +33,6 @@ Here are common **Manager Round Interview Questions**, typically focused on eval
         Thanks to good planning and teamwork, we completed the migration smoothly with no major issues in production. It helped improve the app's performance and made it easier to 
         maintainin the long term.
 
-6. **Have you ever made a mistake as a leader? How did you handle it?**
-7. **How do you ensure effective communication within your team?**
-8. **How do you deal with disagreements between departments?**
-
 9. **Why do you want to join our company?**
 - "I’ve been following your company for a while now, and what really stands out to me is the kind of work you're doing in [specific domain or
   technology, e.g., 'cloud-native solutions' or 'data-driven decision-making']. It aligns very well with the kind of projects I’ve been 
@@ -47,8 +43,32 @@ Here are common **Manager Round Interview Questions**, typically focused on eval
   I’m not just looking to switch jobs — I’m looking to be part of a company where the work is impactful and where I can see a future. 
   And from everything I’ve read and heard, your company fits that picture."
 
+10. What are your strengths?
+- "One of my key strengths is that I’m a quick learner — something that’s been true since my school days. I genuinely enjoy exploring new things,
+  and this curiosity has helped me stay updated with the latest industry trends and continuously improve my skills.
+  Additionally, I’m reliable, consistent, and disciplined in my work. I take full ownership of my tasks, deliver on time, and pay close
+  attention to detail — especially when writing production-ready code or dealing with edge cases. This combination of adaptability and 
+  responsibility has helped me contribute effectively in fast-paced and technically challenging environments."
+
+11. What are your weaknesses?
+- "One area I’ve been actively working on is being too detail-oriented, especially when it comes to reviewing code or testing. I sometimes 
+  spend more time than necessary trying to perfect small things that don’t significantly impact the outcome.
+  While this helps in maintaining quality, I’ve realized that in fast-paced environments, it's important to balance perfection with practicality.
+  So now, I consciously prioritize tasks, set time limits, and try to focus more on delivering value rather than getting caught up in the tiniest
+  optimizations."
+
+  For instance, I was once working on a Store Details Page for a client-facing portal. The main requirement was to display key store information 
+  like name, address, working hours, and contact details. While the core functionality was working fine early on, I spent extra time refining 
+  the alignment of elements, choosing just the right font sizes, and adjusting spacing so everything looked perfectly balanced across screen 
+  sizes — even on edge-case resolutions that weren’t part of the original requirements.
+  Looking back, although the UI turned out really clean and polished, I realized I had over-invested time in visual perfection instead of 
+  focusing first on delivering the MVP quickly. Since then, I’ve learned to set limits, follow a more iterative approach, and come back to the 
+  finer details after the essentials are in place. It’s helped me manage project timelines better while still delivering quality work."
 
 10. **What are your career goals over the next 3–5 years?**
 11. **What are your expectations from your team and leadership?**
 12. **How do you align your work with company values?**
+6. **Have you ever made a mistake as a leader? How did you handle it?**
+7. **How do you ensure effective communication within your team?**
+8. **How do you deal with disagreements between departments?**
 
