@@ -117,6 +117,27 @@ class Document implements Cloneable {
 }
 
 -------------------------------------------------------------------------------------------------------------
+✅ Builder Design Pattern
+Builder design pattern helps to set the value rather than creating long constructor
+
+public class Computer {
+    // Required parameters
+    private String CPU;
+    private String RAM;
+
+    // Optional parameters
+    private String storage;
+    private String graphicsCard;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Computer gamingPC = new Computer.Builder("Intel i9", "32GB")
+            .setStorage("1TB SSD")
+            .setGraphicsCard("NVIDIA RTX 4080")
+            .build()
+}
+}
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------
