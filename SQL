@@ -29,7 +29,7 @@ DCL (Data Control Language) → GRANT, REVOKE
 -> RIGHT JOIN
 -> FULL OUTER JOIN
 Ex:
-SELECT C.OrderID, C.CustomerName, O.OrderDate
+🟢 SELECT C.OrderID, C.CustomerName, O.OrderDate
 FROM Orders O INNER JOIN Customers C ON O.CustomerID=C.CustomerID;
 _________________________________________________________________________________
 
@@ -38,33 +38,33 @@ ________________________________________________________________________________
  -> DROP TABLE employees;  -- Deletes table structure
 _________________________________________________________________________________
 -> Using WHERE (Before GROUP BY)
-SELECT * FROM employees WHERE salary > 50000;
+🟢 SELECT * FROM employees WHERE salary > 50000;
 
 -> Using group by
-SELECT department, AVG(salary) FROM employees GROUP BY department;
+🟢 SELECT department, AVG(salary) FROM employees GROUP BY department;
 
 -> Using HAVING (After GROUP BY)
-SELECT department, AVG(salary) FROM employees GROUP BY department HAVING AVG(salary) > 60000;
+🟢 SELECT department, AVG(salary) FROM employees GROUP BY department HAVING AVG(salary) > 60000;
 _________________________________________________________________________________
 -> Get employees earning more than the average salary
 SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
 _________________________________________________________________________________
 
 -> Find the second highest salary.
-SELECT MAX(salary) FROM employees 
+🟢 SELECT MAX(salary) FROM employees 
 WHERE salary < (SELECT MAX(salary) FROM employees);
 
 -> Find Duplicate Records from a Table
-SELECT name, COUNT(name) 
+🟢 SELECT name, COUNT(name) 
 FROM employee 
 GROUP BY name 
 HAVING COUNT(name) > 1;
 
 -> Find 3th Highest Salary
-SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 3;
+🟢 SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 3;
 
 -> Find max salary by department
-SELECT department, MAX(salary) AS max_salary
+🟢 SELECT department, MAX(salary) AS max_salary
 FROM employees
 GROUP BY department;
 _________________________________________________________________________________
@@ -92,7 +92,7 @@ NOTE : 1. When using GROUP BY with a column, any column included in the SELECT s
           b. Used with an aggregate function such as MIN(), MAX(), COUNT(), SUM(), etc.
 
           Example:
-            SELECT Department, COUNT(*) 
+          🟢  SELECT Department, COUNT(*) 
             FROM Employees 
             GROUP BY Department;
        2. When a subquery (inner query) returns multiple values, use the IN operator instead of =.
@@ -101,34 +101,34 @@ NOTE : 1. When using GROUP BY with a column, any column included in the SELECT s
 
           Example:
           -- Correct usage with multiple values
-            SELECT Name 
+         🟢  SELECT Name 
             FROM Employees 
             WHERE DepartmentID IN (SELECT DepartmentID FROM Departments WHERE Location = 'NY');
 
 
 -> Write a SQL query to display the employee's name who is taking the maximum salary.
-  SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
+  🟢 SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
 
 -> Write a query to display all the department names along with the no. of employees working in that department.
-  SELECT dept, count(*) FROM employee GROUP BY dept;
+ 🟢 SELECT dept, count(*) FROM employee GROUP BY dept;
       Or
-  SELECT dept, count(dept) FROM employee GROUP BY dept;
+ 🟢 SELECT dept, count(dept) FROM employee GROUP BY dept;
 
 Output - 
       HR   | 2
       MRKT | 1
       IT   | 3
 -> Write a query to display all the department names where the number of employees is less than 2.
-  SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
+🟢  SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
 
 Output -  MRKT
 
--> Write a query to display the name of the employee in which department no. of employees are less than 2.
-  SELECT emp_name from employee where dept IN (SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2);
+-> Write a query to display the name of the employee in which department no. of employees is less than 2.
+ 🟢 SELECT emp_name from employee where dept IN (SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2);
 
--> Write a query to display highest salary dept wise and name of the employee who is taking that highest salary.
-  SELECT emp_name from employee where dept IN (SELECT MAX(salary) FROM employee GROUP BY dept);
-
+-> Write a query to display the highest salary department-wise and the name of the employee who is receiving that highest salary.
+ 🟢 SELECT e.emp_name, e.dept, e.salary FROM employee e WHERE e.salary = 
+  (SELECT MAX(salary) FROM employee WHERE dept = e.dept);
 ___________________________________________________________________________________________________
 
 ## JOINS = Cross Product + Select Statement(Condition)
@@ -153,9 +153,9 @@ Natural Join -
   2. When we keep that common attribute equal.
 
 -> Find the name of an employee who is working in a department
-   SELECT ename FROM emp, dept WHERE emp.eno = dept.eno;
+ 🟢  SELECT ename FROM emp, dept WHERE emp.eno = dept.eno;
                           OR
-   SELECT ename FROM emp NATURAL JOIN dept;
+ 🟢  SELECT ename FROM emp NATURAL JOIN dept;
 
 Self Join - 
    When a table is joined with itself
