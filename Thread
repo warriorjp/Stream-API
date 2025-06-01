@@ -1,0 +1,91 @@
+✅ Thread : 
+A thread is a unit of execution within a program. Java allows your application to run multiple tasks concurrently 
+— for example, downloading a file while updating the UI.
+🔹 By Thread class:
+
+public class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start(); // Starts a new thread
+    }
+}
+
+🔹 By Runneable Interface :
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        Runnable task = () -> {
+            System.out.println("Running in a thread");
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+}
+
+USE : Simple, One-Off Tasks: If you only need to create a few threads for very simple, one-time tasks, directly using Thread might be easier.
+-----------------------------------------------------------------------------------------------------------------------------
+ ✅ Executoar Service :
+  ExecutorService is an interface in Java that provides a higher-level replacement for using raw threads. It manages a pool of 
+  threads to handle asynchronous tasks more efficiently, without the need to manually create or manage individual threads.
+
+ Benefits of ExecutorService:
+  -> Thread Pooling: It reuses threads from a pool, making it more efficient when you have many tasks to run, as creating new threads can 
+  be resource-intensive.
+  -> Task Scheduling: You can schedule tasks to be executed after a delay or periodically with methods like schedule() and scheduleAtFixedRate().
+  -> Better Resource Management: Executors manage the lifecycle of threads, so you don’t need to manage their creation, execution manually. 
+  and termination.
+  -> Graceful Shutdown: ExecutorService provides methods like shutdown() and shutdownNow() to ensure that threads are properly terminated.
+
+Example :
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorExample {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2); // pool of 2 threads
+
+        Runnable task1 = () -> System.out.println("Task 1 running");
+        Runnable task2 = () -> System.out.println("Task 2 running");
+
+        executor.submit(task1);
+        executor.submit(task2);
+
+        executor.shutdown(); // Important to release resources
+    }
+}
+ USE : ExecutorService is the go-to solution when you need to manage multiple concurrent tasks in a more structured 
+       and efficient manner. Here’s why:
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+✅ Virtual Threads in Java (Introduced in Java 19 as Preview, Stable in Java 21) :
+-> A virtual thread is a lightweight, thread managed by the Java Virtual Machine (JVM), not the operating system.
+
+Example :
+
+Thread thread = Thread.ofVirtual().start(() -> {
+    System.out.println("Running in a virtual thread: " + Thread.currentThread());
+});
+
+Exammple : Using Executor service 
+
+ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+executor.submit(() -> {
+    System.out.println("Task in virtual thread: " + Thread.currentThread());
+});
+
+executor.shutdown();
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+
+
