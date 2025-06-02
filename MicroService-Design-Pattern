@@ -44,3 +44,18 @@ Flexibility              | enables the use of different storage models (e.g., SQ
 🔹 Saga Pattern 
 ✅ The Saga Pattern is a distributed transaction management approach in microservices architecture.
 It ensures data consistency across multiple services without using two-phase commits (2PC).
+Two ways we can achieve this :
+
+What is Orchestration?
+Orchestration means the automated setup, coordination, and management of complex computer systems, middleware, and services.
+In the context of microservices, orchestration involves a central controller or orchestrator that manages 
+how different services interact with each other. This central entity decides the order of execution and handles all communication, 
+making sure each service does its job in the right sequence.
+
+What is Choreography?
+Choreography, on the other hand, is a decentralised approach where each service works independently and communicates 
+with other services through event-based messages. There is no central controller; instead, each service knows what to 
+do and when to do it based on the messages it receives. This method relies heavily on predefined rules and protocols for interaction.
+
+
+
