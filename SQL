@@ -1,4 +1,4 @@
--> SQL commands are categorized into five types:
+-> SQL commands are categorised into five types:
 
 DDL (Data Definition Language) → CREATE, ALTER, DROP, TRUNCATE
 DML (Data Manipulation Language) → INSERT, UPDATE, DELETE
@@ -22,6 +22,27 @@ DCL (Data Control Language) → GRANT, REVOKE
 | PRIMARY KEY  | ✅ Unique   | ❌ No                | One per table    |
 | UNIQUE KEY   | ✅ Unique   | ✅ Yes (one NULL)    | Multiple per table |
 -------------------------------------------------------------------
+_________________________________________________________________________________
+-> Cursor :
+When working with SQL, most operations are performed on entire sets of data. But what if we need to process each row 
+individually, maybe to perform some custom logic or apply conditions row-by-row? Cursors come into play in such scenarios, 
+providing a way to process each row individually.
+_________________________________________________________________________________
+-> Trigger in SQL :
+  Trigger is a stored procedure that is automatically executed in response to certain events on a table or view.
+
+CREATE TRIGGER trg_AuditInsert
+ON Employee
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO Employee_Audit(emp_id, action_time)
+    SELECT emp_id, GETDATE() FROM inserted;
+END
+
+When a new row is inserted into Employee, the trigger adds a log to Employee_Audit.
+_________________________________________________________________________________
+
 
 ## JOIN
 -> INNER JOIN
@@ -50,7 +71,7 @@ ________________________________________________________________________________
 SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
 _________________________________________________________________________________
 
--> Find the second highest salary.
+-> Find the second-highest salary.
 🟢 SELECT MAX(salary) FROM employees 
 WHERE salary < (SELECT MAX(salary) FROM employees);
 
