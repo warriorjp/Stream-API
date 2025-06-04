@@ -434,7 +434,46 @@ C: Resolving conflict between A and B
 A
 B
 ________________________________________________________________________________________________________________________________________
+An anonymous class in Java is a type of inner class that doesn't have a name and is declared and instantiated all at once.
+It is typically used to provide a quick implementation of an interface or an abstract class, often when you need a short-term 
+object without the need to create a full class separately.
 
+Example 1 :
+interface Greeting {
+    void sayHello();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Greeting greeting = new Greeting() {
+            public void sayHello() {
+                System.out.println("Hello from anonymous class!");
+            }
+        };
+        greeting.sayHello();
+    }
+}
+
+Example 2 :
+abstract class Animal {
+    abstract void sound();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Animal() {
+            void sound() {
+                System.out.println("Bark!");
+            }
+        };
+        dog.sound();
+    }
+}
+
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
 
 
 
