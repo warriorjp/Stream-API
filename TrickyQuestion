@@ -27,8 +27,8 @@ public void testMethod(Integer inte) {
         System.out.println("String method called");
     }
 ____________________________________________________________________________________________________________________________________________
-✅ Feature	start()	run() : 
-->Start Create a new thread and execute run() in that new thread.	
+✅ Feature	start()	 & run() : 
+->Start, create a new thread and execute run() in that new thread.	
 ->Runs run() in the current thread (does not create a new thread).
 ->Use start() when you want true parallel execution using multiple threads.
 ->Calling run() directly executes it like a normal method and does not create a new thread.
@@ -64,7 +64,7 @@ main is running
 
 ____________________________________________________________________________________________________________________________________________
 ✅ In Java, if two interfaces have the same method signature but different return types, and a class tries to implement both interfaces,
-it will cause a compilation error due to ambiguity in the return type.
+It will cause a compilation error due to ambiguity in the return type.
 - Java doesn't allow method overloading based only on return type.
 
 interface A {
@@ -83,10 +83,10 @@ class C implements A, B {  // Compilation Error
 }
 
 Result :
-C is not abstract and does not override abstract method show() in B
+C is not abstract and does not override the abstract method show() in B
 
 ____________________________________________________________________________________________________________________________________________
-✅ In Java, a non-static variable cannot be accessed directly inside a static method because static methods belong to the class itself, 
+✅ In Java, a non-static variable cannot be accessed directly inside a static method because static methods belong to the class itself. 
 while non-static variables belong to an instance of the class.
 
 class Example {
@@ -118,8 +118,8 @@ class Example {
 }
 
 ____________________________________________________________________________________________________________________________________________
-- Yes, we can make an inner class static, which is called a static nested class in Java.
-- We can't make outer class static
+✅ - Yes, we can make an inner class static, which is called a static nested class in Java.
+- We can't make the outer class static
 
 class Outer {
     static int staticVar = 100;
@@ -184,7 +184,7 @@ public class FunctionalInterfaceExample {
 ------------------------------------------------------------------------------------------------------
 -> Supplier 
   - Represents a function that does not take any input but returns a value.
-  - Used for lazy initialization, getting system properties, or generating random values.
+  - Used for lazy initialisation, getting system properties, or generating random values.
 
         Supplier<Double> randomValue = () -> Math.random();
         System.out.println("Random Value: " + randomValue.get());
