@@ -1,4 +1,4 @@
-When calling testMethod(null), both testMethod(Object) and testMethod(String) are potential candidates.
+✅ When calling testMethod(null), both testMethod(Object) and testMethod(String) are potential candidates.
 Since String is a subclass of Object, Java will prefer the most specific method. So, the String version should be selected.
 
 public class TestClass {
@@ -27,7 +27,7 @@ public void testMethod(Integer inte) {
         System.out.println("String method called");
     }
 ____________________________________________________________________________________________________________________________________________
-Feature	start()	run() : 
+✅ Feature	start()	run() : 
 ->Start Create a new thread and execute run() in that new thread.	
 ->Runs run() in the current thread (does not create a new thread).
 ->Use start() when you want true parallel execution using multiple threads.
@@ -63,7 +63,7 @@ main is running
 
 
 ____________________________________________________________________________________________________________________________________________
-In Java, if two interfaces have the same method signature but different return types, and a class tries to implement both interfaces,
+✅ In Java, if two interfaces have the same method signature but different return types, and a class tries to implement both interfaces,
 it will cause a compilation error due to ambiguity in the return type.
 - Java doesn't allow method overloading based only on return type.
 
@@ -86,7 +86,7 @@ Result :
 C is not abstract and does not override abstract method show() in B
 
 ____________________________________________________________________________________________________________________________________________
-In Java, a non-static variable cannot be accessed directly inside a static method because static methods belong to the class itself, 
+✅ In Java, a non-static variable cannot be accessed directly inside a static method because static methods belong to the class itself, 
 while non-static variables belong to an instance of the class.
 
 class Example {
@@ -142,7 +142,7 @@ public class Main {
 }
 
 ____________________________________________________________________________________________________________________________________________
-@FunctionalInterface annotation ensures that only one abstract method exists.
+✅ @FunctionalInterface annotation ensures that only one abstract method exists.
 The lambda expression message -> System.out.println("Message: " + message) provides an implementation for showMessage.
 
 @FunctionalInterface
@@ -200,7 +200,7 @@ public class FunctionalInterfaceExample {
 }
 
 ____________________________________________________________________________________________________________________________________________
-Rules for Exception Handling in Method Overriding:
+✅ Rules for Exception Handling in Method Overriding:
 ** If a parent class method declares an exception using throws, the behavior of the child class method (overridden method) 
 depends on the following rules:
 - Same Exception: The child class method can declare the same exception as the parent class method.
@@ -248,7 +248,7 @@ class Child extends Parent {
     }
 }
 ____________________________________________________________________________________________________________________________________________
-## Constructor chaining is a technique in Java where one constructor calls another constructor in the same class or a superclass.
+✅ ## Constructor chaining is a technique in Java where one constructor calls another constructor in the same class or a superclass.
 This helps in code reuse and reducing redundancy.
 
 class Example {
@@ -300,7 +300,7 @@ Finally block executed.
 Finally block exception
 
 ____________________________________________________________________________________________________________________________________________
--> try-with-resources :
+✅ -> try-with-resources :
 Introduced in Java 7, try-with-resources is a feature that allows automatic resource management (ARM). 
 It ensures that resources like files, database connections, sockets, etc., are closed automatically at the end of the try block.
 - automatically closes resources after execution.
@@ -319,7 +319,7 @@ public class TryWithResourcesExample {
 
 
 ____________________________________________________________________________________________________________________________________________
--> Deep copy we create new object and return 
+✅ -> Deep copy we create new object and return 
 -> Shallow copy we return Copies the reference of the mutable object
 
 public final class DeepPerson {
@@ -348,7 +348,7 @@ public final class DeepPerson {
 
 
 ____________________________________________________________________________________________________________________________________________
-In Java, streams are consumed only once. It cannot be reused once a stream is processed (e.g., using terminal operations like forEach, collect,
+✅ In Java, streams are consumed only once. It cannot be reused once a stream is processed (e.g., using terminal operations like forEach, collect,
 count, etc.). If you try to operate on it again, it will throw an IllegalStateException.
 
 public class StreamReuseExample {
@@ -366,7 +366,7 @@ public class StreamReuseExample {
 }
 
 ____________________________________________________________________________________________________________________________________________
-# Thread.Run() And Runneable.Run()
+✅ # Thread.Run() And Runneable.Run()
 
 >> Runs in a new thread when start() is called on Thread object
 
@@ -400,7 +400,7 @@ ________________________________________________________________________________
             }
         }
 ________________________________________________________________________________________________________________________________________
-Multiple inheritance is not allowed, but we can achieve a similar thing using the default method.
+✅ Multiple inheritance is not allowed, but we can achieve a similar thing using the default method.
 
 interface A {
     default void show() {
@@ -434,7 +434,7 @@ C: Resolving conflict between A and B
 A
 B
 ________________________________________________________________________________________________________________________________________
-An anonymous class in Java is a type of inner class that doesn't have a name and is declared and instantiated all at once.
+✅ An anonymous class in Java is a type of inner class that doesn't have a name and is declared and instantiated all at once.
 It is typically used to provide a quick implementation of an interface or an abstract class, often when you need a short-term 
 object without the need to create a full class separately.
 
