@@ -6,11 +6,7 @@ import java.util.stream.Collectors;
 public class StreamAPI {
     public static void main(String[] args) {
 
-        // Remove Duplicates from the List
-        List<Integer> arr = Arrays.asList(12, 44, 76, 11, 8, 9, 9);
-        List<Integer> temp = arr.stream().distinct().collect(Collectors.toList());
-
-        // Find the first element in the list
+	// Find the first element in the list
         arr.stream().findFirst().ifPresent(System.out::println);
 
 	//Sort Array     
@@ -18,7 +14,16 @@ public class StreamAPI {
         numbers = Arrays.stream(numbers)
                         .sorted() // Sorts in ascending order
                         .toArray();
-	    
+
+        // Remove Duplicates from the List
+        List<Integer> arr = Arrays.asList(12, 44, 76, 11, 8, 9, 9);
+        List<Integer> temp = arr.stream().distinct().collect(Collectors.toList());
+
+	 // Find duplicate elements in the list
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 15, 32, 8);
+        Set<Integer> set1 = new HashSet<>();
+        myList.stream().filter(n -> !set1.add(n)).forEach(System.out::println);
+
          // Increase salary by 10%
           employees.stream()
          .forEach(e -> e.setSalary(e.getSalary() * 1.10));
@@ -30,11 +35,6 @@ public class StreamAPI {
                                        .collect(Collectors.toList());
 
         System.out.println(sortedList);
-
-        // Find duplicate elements in the list
-        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 15, 32, 8);
-        Set<Integer> set1 = new HashSet<>();
-        myList.stream().filter(n -> !set1.add(n)).forEach(System.out::println);
 
         // Count occurrences of each character in a string
         String str = "Better Butter";
@@ -68,6 +68,22 @@ public class StreamAPI {
                             .findFirst()
                             .orElse(null);
 	 System.out.print("Result" +key);
+
+	// Find the most repetitive element in a list
+        List<Integer> arrList = new ArrayList<>(Arrays.asList(3, 7, 5, 1, 3, 6, 7, 7));
+        Map.Entry<Integer, Long> mostRepeated = arrList.stream()
+                .collect(Collectors.groupingBy(c -> c, Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue()).get();
+
+            String result="AEHEDFEIE";
+	    Map<String, Long> result = Arrays.stream(input.split(""))
+            .collect(Collectors.groupingBy(c -> c, Collectors.counting())) // count chars
+            .entrySet()
+            .stream()
+            .max(Map.Entry.comparingByValue()) // find max frequency entry
+            .map(e -> Map.of(e.getKey(), e.getValue())) // convert to Map<String, Long>
+            .orElseGet(Collections::emptyMap); 
+	    result.forEach((k,v)->System.out.print(k +" : "+v));
         
 
         // Find the 2nd highest number in the array
@@ -116,11 +132,6 @@ public class StreamAPI {
         List<String> words = Arrays.asList("Java", "8", "String", "Concatenation");
         String result = String.join(" ", words);
 
-        // Find most repetitive element in a list
-        List<Integer> arrList = new ArrayList<>(Arrays.asList(3, 7, 5, 1, 3, 6, 7, 7));
-        Map.Entry<Integer, Long> mostRepeated = arrList.stream()
-                .collect(Collectors.groupingBy(c -> c, Collectors.counting()))
-                .entrySet().stream().max(Map.Entry.comparingByValue()).get();
 
         // Sort employees by salary (ascending and descending)
         emp.stream().sorted(Comparator.comparingInt(Employe::getSalary)).forEach(e -> System.out.print("-" + e.getSalary()));
