@@ -47,6 +47,9 @@ class Student implements Comparable<Student> {
 		} else {
 			return -1;
 		}
+
+		// OR
+		//return Integer.compare(this.age, s.age);
 	}
 
 }
