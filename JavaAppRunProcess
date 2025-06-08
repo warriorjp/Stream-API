@@ -46,15 +46,18 @@ public class Test {
 --------------------JRE,JVM,JDK------------------------------------------------------------------------------
 ✅ JVM (Java Virtual Machine)
 JVM is the engine that runs Java bytecode.
-It interprets or compiles .class files (Java bytecode) into machine code so your program can run on any platform. JVM is responsible for memory management, garbage collection, security, and thread execution.
+It interprets or compiles .class files (Java bytecode) into machine code so your program can run on any platform. 
+JVM is responsible for memory management, garbage collection, security, and thread execution.
 
 ✅ JRE (Java Runtime Environment)
 JRE provides the runtime environment required to run Java applications.
-It includes the JVM, core libraries, and other supporting files. However, it does not include development tools like compilers or debuggers. It is used by users who only need to run Java programs, not develop them.
+It includes the JVM, core libraries, and other supporting files. However, it does not include development tools like compilers or debuggers. 
+It is used by users who only need to run Java programs, not develop them.
 
 ✅ JDK (Java Development Kit)
 JDK is a software development kit used to develop Java applications.
-It includes the JRE, JVM, and developer tools like the javac compiler, java runner, javadoc, and debugging tools. It is essential for Java developers.
+It includes the JRE, JVM, and developer tools like the javac compiler, java runner, javadoc, and debugging tools. 
+It is essential for Java developers.
 
 \
 
