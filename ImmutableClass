@@ -11,29 +11,31 @@ ________________________________________________________________________________
 
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 public final class ImmutablePerson {
     private final String name;
     private final int age;
-    private final List<String> hobbies;  // Mutable object
+    private final List<String> hobbies;
 
     public ImmutablePerson(String name, int age, List<String> hobbies) {
         this.name = name;
         this.age = age;
-        // Defensive copy to prevent external modification
-        this.hobbies = hobbies != null ? List.copyOf(hobbies) : Collections.emptyList();
+        // Defensive copy for Java 8
+        this.hobbies = hobbies != null 
+            ? Collections.unmodifiableList(new ArrayList<>(hobbies)) 
+            : Collections.emptyList();
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private int getAge() {
+    public int getAge() {
         return age;
     }
 
-    private List<String> getHobbies() {
-        return hobbies; // List.copyOf() returns an unmodifiable list
+    public List<String> getHobbies() {
+        return hobbies;
     }
 }
-
