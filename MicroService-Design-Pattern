@@ -12,10 +12,15 @@ communicate with each other dynamically. It maintains a directory of available m
 It helps improve system resilience by stopping requests to failing services and allowing them to recover before retrying.
 
 Why Use a Circuit Breaker?
-🔹 Prevents cascading failures – Stops excessive calls to failing services.
-🔹 Improves response time – Avoids waiting for timeouts.
-🔹 Enhances system resilience – Allows degraded services to recover.
-🔹 Reduces unnecessary load – Blocks calls to unhealthy services.
+🔹 When a service is not responding or consistently failing, even after multiple retries, then the circuit breaker will stop further attempts and instead
+  invoke a fallback method.
+🔹 When the service response time exceeds a predefined threshold (i.e. it's too slow), the circuit is tripped to prevent resource exhaustion, 
+   and the fallback is executed.
+🔹 While the circuit is open, all calls to the service are short-circuited (fail fast), avoiding unnecessary network or thread usage.
+🔹 After a cool-down period, the circuit enters the half-open state, allowing limited test calls to check if the service has recovered.
+🔹 If the test calls are successful, the circuit closes, and normal flow resumes. If they fail, the circuit returns to the open state.
+🔹 Circuit breakers help maintain system stability, reduce latency, and avoid cascading failures in distributed systems.
+🔹 It is commonly implemented with tools like Resilience4j, Hystrix (deprecated), or Spring Cloud Circuit Breaker in microservices architecture.
 
 ✅ Database per Service 
 In a microservices architecture, each service should own its own database. This pattern is called Database per Service. 
