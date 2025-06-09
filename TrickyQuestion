@@ -471,6 +471,40 @@ public class Main {
 }
 
 ________________________________________________________________________________________________________________________________________
+✅ A circular dependency occurs when two or more components/classes depend on each other directly or indirectly, creating a loop.
+This can cause issues with dependency injection, application startup, or the design structure.
+
+@Component
+public class A {
+    @Autowired
+    private B b;
+}
+
+@Component
+public class B {
+    @Autowired
+    private A a;
+}
+
+->  Decouple the business logic using a mediator/service/facade, so the two beans don’t directly depend on each other.
+@Component
+public class A {
+    @Autowired
+    private MediatorService mediator;
+}
+
+@Component
+public class B {
+    @Autowired
+    private MediatorService mediator;
+}
+
+@Component
+public class MediatorService {
+    public void handleAStuff() {}
+    public void handleBStuff() {}
+}
+
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
