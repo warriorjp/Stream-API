@@ -83,8 +83,8 @@ class Calculator {
     }
 
     // Method with 3 int parameters
-    public int calculate(int a, int b) {
-        return a - c;
+    public int calculate(int a, int b, int c) {
+        return a + b + c;
     }
 }
 public class Main
@@ -92,7 +92,7 @@ public class Main
 	public static void main(String[] args) {
 	    	Calculator calc = new Calculator();
 		System.out.println(calc.calculate(10, 20));       // Output: 30
-		System.out.println(calc.calculate(20, 10,));   // Output: 10
+		System.out.println(calc.calculate(20, 10, 30));   // Output: 10
 	}
 }
 
