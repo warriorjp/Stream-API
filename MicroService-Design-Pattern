@@ -61,6 +61,7 @@ making sure each service does its job in the right sequence.
 Choreography, on the other hand, is a decentralised approach where each service works independently and communicates 
 with other services through event-based messages. There is no central controller; instead, each service knows what to 
 do and when to do it based on the messages it receives. This method relies heavily on predefined rules and protocols for interaction.
+Example  : Kafka can be used for messages
 
 
 
