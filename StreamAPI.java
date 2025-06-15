@@ -100,6 +100,12 @@ public class StreamAPI {
         String n1 = "hi guys welcome to The team";
         Arrays.stream(n1.toLowerCase().split(" ")).filter(e -> e.startsWith("t")).forEach(System.out::println);
 
+	//Sort employee by Name and ID
+	employees.sort(Comparator.comparing(Employee::getName).thenComparing(Employee::getId));
+	employees.forEach(System.out::println);
+
+
+
         // Count employees in each department
         List<Employe> emp = new ArrayList<>();
         emp.add(new Employe("Jay", 24, 25000, "IT", new Date(2009, 1, 22)));
