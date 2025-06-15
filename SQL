@@ -67,8 +67,8 @@ ________________________________________________________________________________
 -> Using HAVING (After GROUP BY)
 🟢 SELECT department, AVG(salary) FROM employees GROUP BY department HAVING AVG(salary) > 60000;
 
--> Suppose you have a table called employees and you want to get 5 records, starting from the 6th row (i.e., skip first 5):
-🟢 SELECT * FROM employees ORDER BY id LIMIT 5 OFFSET 5;
+-> Suppose you have a table called employees and you want to get 5 records, starting from the 10th row (i.e., skip first 10):
+🟢 SELECT * FROM employees ORDER BY id LIMIT 10 OFFSET 5;
 _________________________________________________________________________________
 -> Get employees earning more than the average salary
 SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
