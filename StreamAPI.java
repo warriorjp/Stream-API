@@ -67,10 +67,15 @@ public class StreamAPI {
 	           .ifPresent(entry -> System.out.println(entry.getKey()));
 
 	// Find the most repetitive element in a list
-        List<Integer> arrList = new ArrayList<>(Arrays.asList(3, 7, 5, 1, 3, 6, 7, 7));
-        Map.Entry<Integer, Long> mostRepeated = arrList.stream()
-                .collect(Collectors.groupingBy(c -> c, Collectors.counting()))
-                .entrySet().stream().max(Map.Entry.comparingByValue()).get();
+	    String str = "Hello Jay";
+            Map<String, Long> hm = Arrays.stream(str.toLowerCase()
+					  .replace(" ", "").split(""))
+		                          .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+	            
+	    hm.entrySet().stream()
+	                 .max(Map.Entry.comparingByValue())
+	                 .ifPresent(System.out::println);
+	           
 
             String result="AEHEDFEIE";
 	    Map<String, Long> result = Arrays.stream(input.split(""))
