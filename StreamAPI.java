@@ -59,15 +59,12 @@ public class StreamAPI {
         // Find the first non-repeating character in a string
         String s = "AAHJAKTMJ";
         LinkedHashMap<String, Long> map = Arrays.stream(s.split(""))
-                .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()));
+                .collect(Collectors.groupingBy(c->c,LinkedHashMap::new, Collectors.counting()));
 	  
-	 String key = map.entrySet()
-                            .stream()
-                            .filter(entry -> entry.getValue() == 1)
-                            .map(Map.Entry::getKey)
-                            .findFirst()
-                            .orElse(null);
-	 System.out.print("Result" +key);
+	   map.entrySet().stream()
+		   .filter(entry->entry.getValue()==1)
+		   .findFirst()
+	           .ifPresent(entry -> System.out.println(entry.getKey()));
 
 	// Find the most repetitive element in a list
         List<Integer> arrList = new ArrayList<>(Arrays.asList(3, 7, 5, 1, 3, 6, 7, 7));
