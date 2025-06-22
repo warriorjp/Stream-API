@@ -150,7 +150,7 @@ public class StreamAPI {
 
         // Find vowels in a string
         String demo = "Java Is Good For APP Development";
-        List<String> vowels = Arrays.asList("a", "i", "o", "u", "e");
+        List<String> vowels = List.of("a", "i", "o", "u", "e");
         Arrays.stream(demo.replace(" ", "").toLowerCase().split(""))
                 .filter(vowels::contains).forEach(System.out::println);
 
