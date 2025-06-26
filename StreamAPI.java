@@ -24,9 +24,6 @@ public class StreamAPI {
         Set<Integer> set1 = new HashSet<>();
         myList.stream().filter(n -> !set1.add(n)).forEach(System.out::println);
 
-         // Increase salary by 10%
-          employees.stream()
-         .forEach(e -> e.setSalary(e.getSalary() * 1.10));
 	    
         // Want Keep 0s left, and 1 right
 	List<Integer> list = List.of(1, 0, 1, 0, 1, 0, 0, 1, 0, 1);
@@ -65,6 +62,10 @@ public class StreamAPI {
 		   .filter(entry->entry.getValue()==1)
 		   .findFirst()
 	           .ifPresent(entry -> System.out.println(entry.getKey()));
+	    
+	// Concatenate list of strings
+        List<String> words = Arrays.asList("Java", "8", "String", "Concatenation");
+        String result = String.join(" ", words);
 
 	// Find the most repetitive element in a list
 	    String str = "Hello Jay";
@@ -130,16 +131,15 @@ public class StreamAPI {
         List<String> strings = lsDigit.stream().map(Object::toString).collect(Collectors.toList());
         strings.stream().filter(s -> s.startsWith("1")).forEach(System.out::println);
 
+	  // Increase salary by 10%
+          employees.stream()
+         .forEach(e -> e.setSalary(e.getSalary() * 1.10));
+
         // Find employees whose names start with 'R'
         emp.stream().filter(e -> e.getName().startsWith("R")).forEach(e -> System.out.println(e.getName()));
 
         // Count employees older than 30
         long countOlderThan30 = emp.stream().filter(e -> e.getAge() > 30).count();
-
-        // Concatenate list of strings
-        List<String> words = Arrays.asList("Java", "8", "String", "Concatenation");
-        String result = String.join(" ", words);
-
 
         // Sort employees by salary (ascending and descending)
         emp.stream().sorted(Comparator.comparingInt(Employe::getSalary)).forEach(e -> System.out.print("-" + e.getSalary()));
