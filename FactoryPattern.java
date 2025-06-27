@@ -1,4 +1,5 @@
-
+Instead of creating objects using new in your code, the Factory Pattern provides a central method to return objects based on some input.
+    
 public class PaymentFactory {
 
     public static Payment getPayment(String type) {
