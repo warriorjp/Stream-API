@@ -1,49 +1,69 @@
 
-public class FactoryPattern {
-	
-   //use getShape method to get object of type shape 
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
-         return null;
-      }		
-      if(shapeType.equalsIgnoreCase("CIRCLE")){
-         return new Circle();
-         
-      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
-         return new Rectangle();
-         
-      } else if(shapeType.equalsIgnoreCase("SQUARE")){
-         return new Square();
-      }
-      
-      return null;
-   }
+public class PaymentFactory {
+
+    public static Payment getPayment(String type) {
+        if (type == null) {
+            return null;
+        }
+
+        switch (type.toUpperCase()) {
+            case "CREDITCARD":
+                return new CreditCard();
+            case "DEBITCARD":
+                return new DebitCard();
+            case "UPI":
+                return new UPI();
+            case "EMI":
+                return new EMI();
+            default:
+                return null;
+        }
+    }
 }
 
-public interface Shape {
-	   void draw();
-	}
 
-public class Rectangle implements Shape {
+public interface Payment {
+    void pay();
+}
 
-	   @Override
-	   public void draw() {
-	      System.out.println("Inside Rectangle::draw() method.");
-	   }
-	}
+public class CreditCard implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Paid using Credit Card.");
+    }
+}
 
-public class Square implements Shape {
+public class DebitCard implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Paid using Debit Card.");
+    }
+}
 
-	   @Override
-	   public void draw() {
-	      System.out.println("Inside Square::draw() method.");
-	   }
-	}
+public class UPI implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Paid using UPI.");
+    }
+}
 
-public class Circle implements Shape {
+public class EMI implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Paid using EMI.");
+    }
+}
 
-	   @Override
-	   public void draw() {
-	      System.out.println("Inside Circle::draw() method.");
-	   }
-	}
+public class Main {
+    public static void main(String[] args) {
+        Payment payment1 = PaymentFactory.getPayment("creditcard");
+        payment1.pay();  // Output: Paid using Credit Card.
+
+        Payment payment2 = PaymentFactory.getPayment("upi");
+        payment2.pay();  // Output: Paid using UPI.
+
+        Payment payment3 = PaymentFactory.getPayment("emi");
+        payment3.pay();  // Output: Paid using EMI.
+    }
+}
+
