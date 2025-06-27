@@ -130,6 +130,13 @@ public class StreamAPI {
         Map<String, Employe> maxEmp = emp.stream().collect(Collectors.toMap(
                 Employe::getDept, e -> e, BinaryOperator.maxBy(Comparator.comparingInt(Employe::getSalary))));
 
+	// Average salary of each dept
+    	Map<String,Double> mp = emp.stream()
+    			.collect(Collectors.groupingBy(Employe::getDept, Collectors.averagingDouble(Employe::getSalary)));
+    	mp.forEach((k,v) -> {
+        	System.out.println(k + " " + v);
+    	});
+
         // Find numbers that start with 1
         List<Integer> lsDigit = Arrays.asList(11, 20, 45, 60, 10, 16, 100);
         List<String> strings = lsDigit.stream().map(Object::toString).collect(Collectors.toList());
