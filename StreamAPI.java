@@ -76,17 +76,6 @@ public class StreamAPI {
 	    hm.entrySet().stream()
 	                 .max(Map.Entry.comparingByValue())
 	                 .ifPresent(System.out::println);
-	           
-
-            String result="AEHEDFEIE";
-	    Map<String, Long> result = Arrays.stream(input.split(""))
-            .collect(Collectors.groupingBy(c -> c, Collectors.counting())) // count chars
-            .entrySet()
-            .stream()
-            .max(Map.Entry.comparingByValue()) // find max frequency entry
-            .map(e -> Map.of(e.getKey(), e.getValue())) // convert to Map<String, Long>
-            .orElseGet(Collections::emptyMap); 
-	    result.forEach((k,v)->System.out.print(k +" : "+v));
         
 
         // Find the 2nd highest number in the array
