@@ -93,8 +93,9 @@ public class StreamAPI {
         Arrays.stream(n1.toLowerCase().split(" ")).filter(e -> e.startsWith("t")).forEach(System.out::println);
 
 	//Sort employee by Name and ID
-	employees.sort(Comparator.comparing(Employee::getName).thenComparing(Employee::getId));
-	employees.forEach(System.out::println);
+	List<Employe> empList = emp.stream().sorted(Comparator.comparing(Employe::getDept)
+				.thenComparing(Employe::getAge)).collect(Collectors.toList());
+	empList.forEach(e -> System.out.println(e.getName()));
 
 
 
