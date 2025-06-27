@@ -1,44 +1,42 @@
-public abstract class ProtoTypePattern implements Cloneable {
-   
-   private String id;
-   protected String type;
-   
-   abstract void draw();
-   
-   public String getType(){
-      return type;
-   }
-   
-   public String getId() {
-      return id;
-   }
-   
-   public void setId(String id) {
-      this.id = id;
-   }
-   
-   public Object clone() {
-      Object clone = null;
-      
-      try {
-         clone = super.clone();
-         
-      } catch (CloneNotSupportedException e) {
-         e.printStackTrace();
-      }
-      
-      return clone;
-   }
+public interface Prototype extends Cloneable {
+    Prototype clone();
 }
 
- class Rectangle extends ProtoTypePattern {
+public class Document implements Prototype {
+    private String title;
+    private String content;
 
-	   public Rectangle(){
-	     type = "Rectangle";
-	   }
+    public Document(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
-	   @Override
-	   public void draw() {
-	      System.out.println("Inside Rectangle::draw() method.");
-	   }
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public Document clone() {
+        return new Document(this.title, this.content);
+    }
+
+    public void print() {
+        System.out.println("Title: " + title);
+        System.out.println("Content: " + content);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Original document
+        Document doc1 = new Document("Resume", "This is my resume.");
+        doc1.print();
+
+        System.out.println("\nCloning document...\n");
+
+        // Clone document
+        Document doc2 = doc1.clone();
+        doc2.setTitle("Resume - Copy");
+        doc2.print();
+    }
+}
