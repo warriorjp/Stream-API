@@ -1,5 +1,11 @@
 ✅ Step-by-Step: JWT Token-Based Authentication in Spring Boot :
 
+We generate the two tokens -
+1. Access-Tocker - to access the apis
+2. Refresh-Tocket - to regenerate the access token and refresh token to keep the user logged in.
+
+    We have an expiry of the token of 15 mins.
+
 ✅ 1. Add Dependencies (Spring Boot 3.x)
 These dependencies include Spring Security, Web, and JWT libraries for token generation and validation.
 
