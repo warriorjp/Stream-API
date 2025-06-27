@@ -4,9 +4,6 @@
 These dependencies include Spring Security, Web, and JWT libraries for token generation and validation.
 
 🔧 pom.xml
-xml
-Copy
-Edit
 <dependencies>
     <!-- Spring Boot Web -->
     <dependency>
