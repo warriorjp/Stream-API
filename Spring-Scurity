@@ -126,7 +126,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll() // allow login/register
+                .requestMatchers("/auth/login**").permitAll() // allow login/register
                 .anyRequest().authenticated()            // all others require auth
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
