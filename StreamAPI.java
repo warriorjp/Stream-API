@@ -119,6 +119,10 @@ public class StreamAPI {
 
         Map<String, Long> re = emp.stream().collect(Collectors.groupingBy(Employe::getDept, Collectors.counting()));
 
+	// Get the name of the employe who is having max salary
+	Optional<Employe> empList = emp.stream().max(Comparator.comparing(Employe::getSalary));
+        empList.ifPresent(e -> System.out.println(e.getName()));
+
         // Sum of all salaries
         Integer totalSalary = emp.stream().collect(Collectors.summingInt(Employe::getSalary));
 
