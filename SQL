@@ -50,8 +50,7 @@ ________________________________________________________________________________
 -> RIGHT JOIN
 -> FULL OUTER JOIN
 Ex:
-🟢 SELECT C.OrderID, C.CustomerName, O.OrderDate
-FROM Orders O INNER JOIN Customers C ON O.CustomerID=C.CustomerID;
+🟢 SELECT C.OrderID, C.CustomerName, O.OrderDate FROM Orders O INNER JOIN Customers C ON O.CustomerID=C.CustomerID;
 _________________________________________________________________________________
 
  -> DELETE FROM employees WHERE id = 5;  -- Deletes specific row
