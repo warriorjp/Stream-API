@@ -23,3 +23,21 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Something went wrong: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private Map<Integer, String> userDB = Map.of(1, "Jay", 2, "Rita");
+
+    @GetMapping("/{id}")
+    public String getUser(@PathVariable int id) {
+        String user = userDB.get(id);
+
+        if (user == null) {
+            throw new ResourceNotFoundException("User not found with ID: " + id);
+        }
+
+        return user;
+    }
+}
