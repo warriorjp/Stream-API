@@ -42,7 +42,8 @@ Arrays.stream(s.split(""))
 String str1 = "AAHJAKTMJ";
 LinkedHashMap<String, Long> map1 = Arrays.stream(str1.split(""))
         .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()));
-map1.entrySet().stream().filter(e -> e.getValue() == 1).findFirst().ifPresent(e -> System.out.println(e.getKey()));
+map1.entrySet().stream().filter(e -> e.getValue() == 1)
+        .findFirst().ifPresent(e -> System.out.println(e.getKey()));
 
 // ✅ 10. Concatenate list of strings
 List<String> words = Arrays.asList("Java", "8", "String", "Concatenation");
