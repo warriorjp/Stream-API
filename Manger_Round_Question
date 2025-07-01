@@ -76,6 +76,57 @@ Here are common **Manager Round Interview Questions**, typically focused on eval
   focusing first on delivering the MVP quickly. Since then, I’ve learned to set limits, follow a more iterative approach, and come back to the 
   finer details after the essentials are in place. It’s helped me manage project timelines better while still delivering quality work."
 
+
+****Challenge: One of the APIs stopped working in production*****
+Context:
+In our Asset & Maintenance Service, we had an endpoint:
+GET /assets/by-store/{storeId}
+This API was used to fetch all equipment for a particular store in the React dashboard.
+
+❌ Problem:
+One day, the frontend team reported that this API suddenly stopped responding — it was either timing out or returning 500 errors.
+
+🕵️ Root Cause:
+After checking the logs and debugging:
+
+I found that a recent DB change added a new asset_category column, but the entity class in the code was not updated.
+
+Due to this mismatch, JPA was throwing a runtime error while mapping the result.
+
+Unfortunately, the error was not caught properly and was returning a generic 500 Internal Server Error.
+
+🛠 How I Fixed It:
+Fixed Entity Mapping:
+
+Added the new field assetCategory in the Asset entity class.
+
+Synced the column with the database using JPA annotations.
+
+Improved Exception Handling:
+
+Wrapped the repository call inside a try-catch block.
+
+Returned a proper custom error response (404 - Asset Not Found or 400 - Bad Request) with useful messages.
+
+Wrote a Unit Test:
+
+Added a test case to ensure this endpoint returns expected results with the new column.
+
+Code Review & Hotfix Deployment:
+
+Created a hotfix branch, reviewed, tested, and deployed it via CI/CD pipeline quickly to production.
+
+✅ Result:
+The API started working again in less than an hour.
+
+The frontend team was unblocked.
+
+We added a checklist rule: “Any DB schema change must update the corresponding model” and notify all developers.
+
+🔚 Final Line (if interviewer asks follow-up):
+“This taught me the importance of sync between DB schema and entity models in Spring Boot, and how even small changes can break a 
+  microservice if error handling isn’t robust.”
+
 10. **What are your career goals over the next 3–5 years?**
 11. **What are your expectations from your team and leadership?**
 12. **How do you align your work with company values?**
