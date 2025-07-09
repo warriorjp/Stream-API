@@ -506,6 +506,35 @@ public class MediatorService {
 }
 
 ________________________________________________________________________________________________________________________________________
+✅  How to make sure JVM won't get full or memory leakage issues:
+
+-> Make Objects Eligible for GC: Set large or unused objects to null so they can be garbage collected:
+   ex:  myLargeObject = null;
+
+-> Close Resources Properly: Always close I/O, DB, and socket resources to avoid memory leaks:
+   ex : try (Connection conn = dataSource.getConnection()) {
+        // use conn
+        } 
+
+-> Avoid Memory Leaks: Don’t use long-lived static collections 
+   (e.g., static List) unless necessary.
+
+-> Use Profilers to Detect Leaks:
+    Use tools like:
+    VisualVM
+    Eclipse MAT (Memory Analyzer Tool)
+    JProfiler
+    YourKit
+
+-> Increase Heap Size (if truly needed)
+   Use JVM flags to increase memory limits (when running the program):
+   ex : java -Xmx1024m -Xms512m MyApp
+
+    -Xms: Initial heap size
+    -Xmx: Maximum heap size
+    
+
+
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 
