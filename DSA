@@ -75,6 +75,29 @@ public class Practice {
     }
 }
 
+// OR using HashMap or LinkedHashMap
+
+ public static void main(String args[]) {
+	
+	    	String str = "abcddabfggkn";
+	    	
+	    	Map<Character, Integer> mp = new HashMap<>();
+	    	
+	    	for(char ch: str.toCharArray()) {
+	    		  if(mp.containsKey(ch))
+	    			    mp.put(ch, mp.get(ch)+1);
+	    		  else
+	    			    mp.put(ch, 1);
+	    	}
+	    	
+	    	for(Map.Entry<Character, Integer> entry : mp.entrySet()) {
+	    		  if(entry.getValue() == 1) {
+	    			   System.out.println(entry.getKey());
+	    			   break;
+	    		  }
+	    	}
+	}
+
 **********✅ Anagram String *********
 
 import java.util.Arrays;
