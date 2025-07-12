@@ -155,4 +155,34 @@ if (map.containsKey(num)) {
     map.put(num, 1L); // use 1L to match long type
 }
 
+**********✅ TwoSum if Array is sorted *********
+
+
+public class Practice {
+	
+	public static void main(String args[]) {
+	
+	    int arr[] = {-1,0};
+	    	
+	    int[] result = TwoSum(arr);
+	    	
+	    for(int e: result)
+	    	System.out.println(e);
+	    	
+	}
+	    
+	public static int[] TwoSum(int[] arr) {
+	    int sum = -1;	
+	    int start = 0, end = arr.length-1;
+	    	
+	    while(arr[start] + arr[end] != sum) {
+	    	if(arr[start] + arr[end] < sum)
+			start++;
+		else
+			end--;
+	    }
+	    	
+	    return new int[] {start, end};
+	    }
+}
 
