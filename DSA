@@ -94,3 +94,42 @@ public class AnagramCheck {
     }
 }
 
+**********✅ Count Frequency OR Get the element that appears only once  *********
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Practice {
+
+    public static void main(String args[]) {
+
+    	 int[] nums = {4, 1, 2, 1, 2};
+
+         HashMap<Integer, Long> frequencyMap = new HashMap<>();
+
+         for (int num : nums) {
+             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0L) + 1); // getOrDefault() handles the check: If the key exists, it gets the value.
+                                                                            // If the key does not exist, it returns the default (0L), so we safely increment.
+         }
+
+         
+//         Get the element that appears only once 
+         
+         for (Map.Entry<Integer, Long> entry : frequencyMap.entrySet()) {
+        	    if (entry.getValue() == 1) {
+        	        System.out.println("Unique element: " + entry.getKey());
+        	        break;
+        	    }
+         }
+    }
+}
+
+//OR
+
+if (map.containsKey(num)) {
+    map.put(num, map.get(num) + 1);
+} else {
+    map.put(num, 1L); // use 1L to match long type
+}
+
+
