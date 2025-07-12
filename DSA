@@ -186,3 +186,27 @@ public class Practice {
 	    }
 }
 
+**********✅ TwoSum if Array is Unsorted *********
+
+public class Practice {
+	public static void main(String args[]) {
+		int arr[] = {2,7,11,15};
+		int[] result = TwoSum(arr);
+
+	    	for(int e: result)
+	    		System.out.println(e);
+	}
+	 public static int[] TwoSum(int[] nums) {
+	    	int target = 9;
+		Map<Integer, Integer> numToIndex = new HashMap<>();
+
+	         for (int i = 0; i < nums.length; i++) {
+	             if (numToIndex.containsKey(target - nums[i])) {
+	                 return new int[] {numToIndex.get(target - nums[i]), i};
+	             }
+	             numToIndex.put(nums[i], i);
+	         }
+	         
+	         return new int[] {};
+	    }
+}
