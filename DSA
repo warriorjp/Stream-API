@@ -446,3 +446,15 @@ public class Practice {
 }
 
 TC - O(n)
+
+**********✅ Implement substring search (strStr() or indexOf) *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    System.out.println(findSubStr("hello", "ll"));   
+	}
+	    
+	public static int findSubStr(String str, String subStr) {
+	    return str.indexOf(subStr);	    
+	}
+}
