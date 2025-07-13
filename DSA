@@ -264,3 +264,34 @@ public class Practice {
 	        return -1;
 	    }
 }
+
+**********✅ Balanced Paranthesis *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    System.out.println(balancedParenthensies("()[]{}"));
+	    System.out.println(balancedParenthensies("{(a},b)"));
+	    System.out.println(balancedParenthensies("{)(a,b}"));
+	    	
+	}
+	    
+	public static boolean balancedParenthensies(String str) {
+	    Stack<Character> stack = new Stack<>();
+	    for(char ch : str.toCharArray()) {
+	    	  if(ch == '{' || ch == '(' || ch == '[') {
+	    		  stack.push(ch);
+	    	  } else if(ch == '}') {
+	    		  if(stack.isEmpty() || stack.pop() != '{')
+	    			  return false;
+	    	  }else if(ch == ')') {
+	    		  if(stack.isEmpty() || stack.pop() != '(')
+	    			  return false;
+	    	  }else if(ch == ']') {
+	    		  if(stack.isEmpty() || stack.pop() != '[')
+	    			  return false;
+	    	  }
+		}
+	       
+	       return stack.isEmpty();  
+	}
+}
