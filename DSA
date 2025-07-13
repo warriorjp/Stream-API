@@ -393,3 +393,35 @@ public class Practice {
 
 TC - O(2n) = O(n)
 SC - O(1)
+
+**********✅ Palindrome String Using RECURSION *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    String s = "aabbaa";
+	    	
+	    if(isParalindrom(s))
+	    	System.out.println("String is Palindrome");
+	    else
+	    	System.out.println("String is Not Palindrome");
+
+	}
+	    
+	public static boolean isParalindrom(String str) {
+	     int start = 0, end = str.length()-1;
+	      
+	     return recursivePalindrom(str, start, end);
+	}
+	    
+	public static boolean recursivePalindrom(String str, int start, int end) {
+	     if(start >= end) 
+	     	return true;
+	    	
+	     if(str.charAt(start) != str.charAt(end))
+	    	return false;
+	    	
+	    return recursivePalindrom(str, ++start, --end);
+	}
+}
+
+TC - O(n)
