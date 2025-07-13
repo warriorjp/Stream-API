@@ -295,3 +295,21 @@ public class Practice {
 	       return stack.isEmpty();  
 	}
 }
+
+**********✅ LEFT Rotate an array by 1 position *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    int[] arr = {2, 4, 5, 6, 7, 10};
+	    rotateAnArray(arr);
+	}
+	public static void rotateAnArray(int[] arr) {
+	     int temp = arr[0];
+	     for(int i = 1; i < arr.length; i++) {
+		 arr[i-1] = arr[i];
+	     }
+	     arr[arr.length-1] = temp;
+	     for(int e: arr)
+		System.out.println(e);
+	}
+}
