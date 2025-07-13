@@ -322,6 +322,7 @@ public class Practice {
 	}
 	public static void rotateAnArray(int[] arr, int k) {
 		int temp[] = new int[k];
+		int k = k % arr.length;   // 3 % 6 = 3, 10 % 6 = 4
 
 		// temp[2,4,5] - TC - O(k)
 	    	for(int i = 0; i < k; i++) {
