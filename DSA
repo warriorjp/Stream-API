@@ -210,3 +210,35 @@ public class Practice {
 	         return new int[] {};
 	    }
 }
+
+**********✅ Find max and second max from an array *********
+
+
+public class Practice {
+	public static void main(String args[]) {
+	    int arr[] = {2,7,11,15};
+	    int[] result = findMax(arr);
+
+	    for(int r:result) {
+	    	System.out.println(r);
+	    }
+	    	
+	}
+	    
+	public static int[] findMax(int[] nums) {
+		int max  = Integer.MIN_VALUE;
+	        int secondMax = Integer.MIN_VALUE;
+	        
+	        for(int i = 0;i< nums.length;i++){
+	            
+	            if(nums[i] > max){   
+	                secondMax = max;
+	                max  = nums[i];
+	            }else if(nums[i] > secondMax){
+	                secondMax = nums[i];
+	            }
+	        }
+	        
+	        return  new int[] {max, secondMax};
+	    }
+}
