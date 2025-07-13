@@ -425,3 +425,24 @@ public class Practice {
 }
 
 TC - O(n)
+
+**********✅ Find the maximum element in an array using RECURSION *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    int[] arr = {4, 17, 3, 9, 20, 6};
+	    	 
+	    System.out.println(findMax(arr, 0));
+
+	}
+	    
+	public static int findMax(int[] arr, int index) {
+	     if(index == arr.length-1)
+	    	  return arr[index];
+	      
+	      int maxElement = findMax(arr, index+1);
+	      return Math.max(maxElement, arr[index]);
+	}
+}
+
+TC - O(n)
