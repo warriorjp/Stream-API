@@ -242,3 +242,25 @@ public class Practice {
 	        return  new int[] {max, secondMax};
 	    }
 }
+
+**********✅ Find perticular char in String *********
+
+public class Practice {
+	public static void main(String args[]) {
+	    String strr = "Rita Gujar Jay Patel";
+	    	
+	    System.out.println(findWord(strr));
+	    	
+	}
+	    
+	public static int findWord(String str) {
+		char word = 'j';
+	       for (int i = 0; i < str.length(); i++) {
+	            if (str.charAt(i) == word) {
+	                return i;
+	            }
+	        }
+	        
+	        return -1;
+	    }
+}
