@@ -1,5 +1,7 @@
 // ✅ Merge Sort
 
+// TC - O(n log n)
+
 package com.practice;
 	
 	import java.util.*;
@@ -70,6 +72,8 @@ package com.practice;
 	}
 
 **********✅ Binary Search *********
+
+// TC - O(n log n)
 
  public static void main(String args[]) {
 
