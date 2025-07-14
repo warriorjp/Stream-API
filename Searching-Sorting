@@ -73,7 +73,7 @@ package com.practice;
 
 **********✅ Binary Search *********
 
-// TC - O(n log n)
+// TC - O(log n)
 
  public static void main(String args[]) {
 
