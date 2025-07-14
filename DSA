@@ -478,12 +478,17 @@ public class LoopDetectionWithHashing {
     public static boolean hasLoop(Node head) {
         HashSet<Node> visited = new HashSet<>();
 
+	// node prev = null; // To remove Loop
         Node current = head;
+
         while (current != null) {
             if (visited.contains(current)) {
+		//prev.next = null;  // Loop Removal
                 return true; // Loop detected
             }
             visited.add(current);
+
+	    // prev = current;
             current = current.next;
         }
 
