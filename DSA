@@ -501,3 +501,24 @@ public class LoopDetectionWithHashing {
     }
 }
 
+**********✅ Detect a Loop in LinkedList Optimized *********
+
+public class LinkedListLoopDetector {
+
+    // Detects loop in the linked list
+    public static boolean hasLoop(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;           // moves 1 step
+            fast = fast.next.next;      // moves 2 steps
+
+            if (slow == fast) {
+                return true;            // loop detected
+            }
+        }
+
+        return false; // no loop
+    }
+
