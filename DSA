@@ -519,6 +519,17 @@ public class LinkedListLoopDetector {
             }
         }
 
+	
+    	// Loop Removal Algorithm
+    	slow = head;
+    	// checking for intersection of two pointers
+   	 while (slow.next != fast.next) {
+      		slow = slow.next;
+     		fast = fast.next;
+    	 }
+   	 // loop termination
+   	 fast.next = null;
+
         return false; // no loop
 }
 
