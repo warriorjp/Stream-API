@@ -575,4 +575,23 @@ class Solution {
     }
 }
 
+**********✅ Remove Duplicates from unsorted Array *********
+
+public int[] removeDuplicates(int[] nums) {
+        Set<Integer> set = new LinkedHashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        // Convert set back to array
+
+        int[] uniqueArray = new int[set.size()];
+        int index = 0;
+
+        for (int num : set) {
+            uniqueArray[index++] = num;
+        }
+
+        return uniqueArray;
+ }
 
