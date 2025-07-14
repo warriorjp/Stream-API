@@ -458,3 +458,46 @@ public class Practice {
 	    return str.indexOf(subStr);	    
 	}
 }
+
+**********✅ Detect a Loop in LinkedList BRUTEFORCE *********
+
+import java.util.HashSet;
+
+class Node {
+    int data;
+    Node next;
+    
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LoopDetectionWithHashing {
+
+    public static boolean hasLoop(Node head) {
+        HashSet<Node> visited = new HashSet<>();
+
+        Node current = head;
+        while (current != null) {
+            if (visited.contains(current)) {
+                return true; // Loop detected
+            }
+            visited.add(current);
+            current = current.next;
+        }
+
+        return false; // No loop
+    }
+
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next = head.next; // Creates a loop
+
+        System.out.println("Loop detected? " + hasLoop(head)); // Output: true
+    }
+}
+
