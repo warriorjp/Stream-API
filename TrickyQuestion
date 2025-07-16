@@ -536,6 +536,10 @@ ________________________________________________________________________________
 
 
 ________________________________________________________________________________________________________________________________________
+✅ How to Optimise Slow Queries in SQL:
+Use indexed columns in your WHERE condition.
+Be selective in SELECT (avoid SELECT *). Don't retrieve all the data . Only the required column needs to be fetched.
+Use LIMIT if you need only part of the data.
 ________________________________________________________________________________________________________________________________________
 
 
