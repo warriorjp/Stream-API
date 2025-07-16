@@ -33,19 +33,6 @@ Why Use a Database per Service?
 🔹 Security & Compliance – Data access is restricted to the owning service, reducing risks.
 🔹 Failure Isolation – If one service’s database fails, others remain unaffected.
 
-✅ CQRS :
-🔹 The CQRS (Command Query Responsibility Segregation) design pattern is used in microservices and complex systems to separate 
-The read and write operations are performed on different models. This separation improves scalability, performance, and maintainability. 
-especially in systems with high read/write loads or complex business logic.
--------------------------------------------------------------------------------------------------------------------------
-Benefit	                 |      Explanation
--------------------------------------------------------------------------------------------------------------------------
-Scalability:             |  You can scale the read and write parts independently.
-Performance	             |  Queries can be optimised for reads (caching, denormalisation) and writes for business logic and validation.
-Separation of Concerns:  |  Business logic and data access are clearly separated.
-Flexibility              |  Enables the use of different storage models (e.g., SQL for writes, NoSQL for reads).
---------------------------------------------------------------------------------------------------------------------------
-
 ✅ Saga Pattern 
 🔹 The Saga Pattern is a distributed transaction management approach in microservices architecture.
 It ensures data consistency across multiple services without using two-phase commits (2PC).
@@ -62,6 +49,20 @@ Choreography, on the other hand, is a decentralised approach where each service 
 with other services through event-based messages. There is no central controller; instead, each service knows what to 
 do and when to do it based on the messages it receives. This method relies heavily on predefined rules and protocols for interaction.
 Example  : Kafka can be used for messages
+
+
+✅ CQRS :
+🔹 The CQRS (Command Query Responsibility Segregation) design pattern is used in microservices and complex systems to separate 
+The read and write operations are performed on different models. This separation improves scalability, performance, and maintainability. 
+especially in systems with high read/write loads or complex business logic.
+-------------------------------------------------------------------------------------------------------------------------
+Benefit	                 |      Explanation
+-------------------------------------------------------------------------------------------------------------------------
+Scalability:             |  You can scale the read and write parts independently.
+Performance	             |  Queries can be optimised for reads (caching, denormalisation) and writes for business logic and validation.
+Separation of Concerns:  |  Business logic and data access are clearly separated.
+Flexibility              |  Enables the use of different storage models (e.g., SQL for writes, NoSQL for reads).
+--------------------------------------------------------------------------------------------------------------------------
 
 
 
