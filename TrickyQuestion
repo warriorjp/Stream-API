@@ -538,8 +538,26 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 ✅ How to Optimise Slow Queries in SQL:
 Use indexed columns in your WHERE condition.
-Be selective in SELECT (avoid SELECT *). Don't retrieve all the data . Only the required column needs to be fetched.
+Be selective in SELECT (avoid SELECT *). Don't retrieve all the data. Only the required column needs to be fetched.
 Use LIMIT if you need only part of the data.
+________________________________________________________________________________________________________________________________________
+✅ How many objects will be created
+
+String str = "hello";
+str.concat("hi");
+
+->str.concat("hi") creates a new string object on the heap.
+->String in Java is immutable, meaning once created, it cannot be changed.
+->str.concat("hi") returns a new String "hellohi", but you didn’t assign it to any variable.
+->So the original str still refers to "hello".
+________________________________________________________________________________________________________________________________________
+String str = "hello";
+str=str.concat("hi");
+
+Then, 3 objects created: 
+1 ->hello-stringpool,
+1-hi->stringpool,
+1- heap as contact
 ________________________________________________________________________________________________________________________________________
 
 
