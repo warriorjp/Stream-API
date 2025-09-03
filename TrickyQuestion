@@ -554,11 +554,42 @@ ________________________________________________________________________________
 String str = "hello";
 str=str.concat("hi");
 
-Then, 3 objects created: 
+Then, 3 objects were created: 
 1 ->hello-stringpool,
 1-hi->stringpool,
 1- heap as contact
 ________________________________________________________________________________________________________________________________________
+✅ How to Resolve API Response Slowness
+📌 Database Optimisation
+    • Ensure proper indexes are created on the fields used in WHERE, JOIN, ORDER BY, and GROUP BY.
+    • Avoid using SELECT *; fetch only the required columns.
+    • Optimise queries and check execution plans to identify slow operations.
+    • Use caching (Redis, Memcached, etc.) for frequently accessed or read-only data.
+📦 Payload Optimisation
+    • Avoid returning large payloads.
+    • Implement pagination for list APIs.
+    • Remove unnecessary metadata or nested objects from the response.
+⚡ Code & Logic Optimization
+    • Identify and refactor complex logic or blocking code.
+    • Use asynchronous / non-blocking calls where applicable.
+    • Optimise loops and redundant computations inside the API.
+    • Profile and monitor performance hotspots.
+🛠️ Infrastructure & API Design
+    • Scale API servers horizontally (load balancing, auto-scaling).
+    • Enable connection pooling for DB/API calls.
+    • Use circuit breakers, bulkheads, and retries for external API calls.
+    • Apply rate limiting and request throttling to prevent overload.
+🗂️ Caching Strategies
+    • Use application-level caching (in-memory / distributed).
+    • Implement HTTP caching headers (ETag, Last-Modified, Cache-Control).
+    • Cache DB queries or API responses where freshness is not critical.
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 
