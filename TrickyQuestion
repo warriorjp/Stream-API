@@ -584,6 +584,13 @@ ________________________________________________________________________________
     • Implement HTTP caching headers (ETag, Last-Modified, Cache-Control).
     • Cache DB queries or API responses where freshness is not critical.
 ________________________________________________________________________________________________________________________________________
+* Connection pooling:  Is a technique where your application keeps a set (pool) of ready-to-use database connections instead of creating 
+  a new one for every request.
+  When the application starts, it creates a small number of database connections and stores them in a pool.
+  When request comes Instead of creating a new DB connection, the app borrows one from the pool.
+  Once done, the connection is returned to the pool (not closed). Now it’s available for another request.
+  If traffic increases and more connections are needed, the pool can expand (up to a configured max-pool-size).
+
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
