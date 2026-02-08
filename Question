@@ -1,0 +1,126 @@
+# **1. Core Java Basics:**
+- What is the difference between `==` and `.equals()`?  
+- How to make a class immutable?  
+- Is `null` a keyword?  
+- Can we override private and static methods?  
+- Where are static variables stored in Java 8?  
+- What is the difference between stack and heap?  
+- What is JVM, JRE, and JDK?  
+- Why does an abstract class need a constructor?  
+- What is `try-with-resources`?  
+- What is `ClassLoader`?  
+- Can we make a constructor static?  
+- Explain JVM memory.  
+- What is `super`?  
+
+---
+
+### **2. Object-Oriented Programming (OOP):**
+- What is abstraction?  
+- How to create a custom exception?  
+- What is the difference between `Comparable` and `Comparator`?  
+- What is the Singleton design pattern?  
+- What is aggregation?  
+- What is composition?  
+- What is a marker interface?  
+- What is an interface?  
+- Can we create an Interface Bean?  
+- Explain exception handling with method overriding.  
+- What happens if two interfaces have methods with the same name but different return types, and a class implements both interfaces?  
+- What is cloning and `Cloneable`?  
+
+---
+
+### **3. Collections Framework:**
+- What is `HashMap`, and how does it work internally?  
+- What is the difference between `HashMap` and `HashTable`?  
+- What is the difference between `HashTable` and `ConcurrentHashMap`?  
+- What is a `ConcurrentModificationException`?  
+- Which collections are thread-safe in Java?  
+- How to make a `List` immutable?  
+- What is the difference between `ArrayList` and `LinkedList`?  
+- What is the difference between arrays and `ArrayList`?  
+- What is `CopyOnWriteArrayList`?  
+
+---
+
+### **4. Multithreading and Concurrency:**
+- What is the difference between `Thread` and `Runnable`?  
+- What is a deadlock?  
+- What is the difference between `sleep` and `wait`?  
+- What is a parallel stream?  
+- What is `Stream`, and why is it lazy?  
+- What happens if heap memory is full?  
+- What is `finalize`?  
+- What is a thread?  
+- What is the `synchronized` keyword?  
+- Is `Stream` thread-safe?  
+
+---
+
+### **5. Java 8 and Beyond:**
+- What is new in Java 8 Date-Time API?  
+- What is the default method in an interface?  
+- What is the difference between `map` and `flatMap`?  
+- What are intermediate and terminal operations?  
+- What is the `Predicate`, `Consumer`, and `Supplier` interface?  
+- What is the `findFirst` and `findAny` method?  
+- What are the changes in `HashMap` in Java 8?  
+- What is a functional interface?  
+- What is a static method in an interface?  
+
+---
+
+### **6. Serialization and Deserialization:**
+- What is serialization and deserialization?  
+
+---
+
+### **7. REST and SOAP:**
+- What are REST and SOAP?  
+- What is the difference between `@RequestBody`, `@RequestParam`, and `@PathVariable`?  
+- What is the difference between `@Put` and `@Patch`?  
+- What is `PUT` and `POST`?  
+- What is an idempotent method?  
+- What is the difference between HTTP and HTTPS?  
+- What is SSL certification?  
+
+---
+
+### **8. Spring Boot and Frameworks:**
+- What is a `Bean`, and what are its types?  
+- What is `@Autowired`?  
+- What is `@Qualifier`?  
+- What is `@EnableAutoConfiguration`?  
+- What is IOC (Inversion of Control) in Spring Boot?  
+- How to connect two databases in Spring Boot?  
+- What is the difference between a `RestController` and a `Controller`?  
+- What is Spring Boot Starter Parent?  
+- What is a Spring Starter?  
+- What is a Circuit Breaker?  
+- What is a Cloud Config Server and Client?  
+- What is a Eureka Server and Client?  
+- What is the default port for Eureka Server?  
+- What is the SAGA pattern?  
+- Can we make an inner class `protected`?  
+- What is `@Transactional`?  
+- What is a stereotype annotation?  
+- Do you know How to Inject Prototype Bean into Singleton Bean in Spring Boot?
+
+---
+
+### **9. Design Patterns and Best Practices:**
+- How to mock private and static methods?  
+- What is the difference between `StringBuffer` and `StringBuilder`?  
+- What is `Fail-Fast` and `Fail-Safe`?  
+- What is garbage collection and its types?  
+- What is memory leak, and how is it handled?  
+
+---
+
+### **10. Miscellaneous:**
+- What is SOA and Microservices?  
+- What is aggregation?  
+- What is generics?  
+- What is `classNotFoundException` vs `NoClassDefFoundError`?  
+- What is the role of a garbage colleictor?
