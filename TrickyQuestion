@@ -592,6 +592,16 @@ ________________________________________________________________________________
   If traffic increases and more connections are needed, the pool can expand (up to a configured max-pool-size).
 
 ________________________________________________________________________________________________________________________________________
+LoadBalancer :
+A Load Balancer is used to distribute incoming traffic across multiple servers or application instances so that 
+no single server gets overloaded.
+• Distributes user requests across multiple servers
+• Improves application performance and response time
+• Prevents server overload
+• Provides high availability (if one server goes down, traffic goes to others)
+• Helps in scaling applications easily
+• Monitoring server health checks
+
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
