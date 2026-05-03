@@ -51,3 +51,31 @@ Azure DevOps / GitHub Actions: Automate your build and deployment pipelines.
 Multiple pods can run on the same VM (node).
 Node = VM
 Pod = Application Instance
+
+------------------------------------------------------------------------------------------------------
+-> Serverless 
+Is a cloud computing model where you write and deploy code without managing servers manually.
+How it works
+
+Instead of:
+        creating servers
+        managing scaling
+        patching OS
+        handling infrastructure
+
+You only:
+        write business logic
+        deploy code
+        cloud provider handles the rest
+
+Example :
+        AWS Lambda
+        Azure Functions
+        Google Cloud Functions
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
