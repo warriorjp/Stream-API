@@ -74,6 +74,24 @@ Example :
         Google Cloud Functions
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
+Rate Limiting
+Rate Limiting is a technique used to control how many requests a user/client can send to a system within a specific time period.
+
+Where it is used
+        API Gateway
+        Login systems
+        Payment APIs
+        Public APIs
+        Notification systems
+        Authentication services
+
+Algorithms :
+1. Token Bucket
+Tokens are added at a fixed rate.
+2. Fixed Window Counter
+Simple but can allow spikes near window boundaries. (100 requests per minute)
+3. Sliding Window
+More accurate than fixed window. Checks requests continuously over rolling time.
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------
