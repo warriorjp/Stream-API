@@ -36,3 +36,18 @@ Azure provides managed services to run your Kubernetes clusters and store Docker
 Azure Kubernetes Service (AKS): Fully managed Kubernetes.
 Azure Container Registry (ACR): Store your Docker images securely.
 Azure DevOps / GitHub Actions: Automate your build and deployment pipelines.
+
+------------------------------------------------------------------------------------------------------
+1 Cluster (test,dev , prod)
+   ├── VM / Node 1
+   │     ├── Pod A
+   │     ├── Pod B
+   │     ├── Pod C
+   │
+   ├── VM / Node 2
+   │     ├── Pod D
+   │     ├── Pod E
+
+Multiple pods can run on the same VM (node).
+Node = VM
+Pod = Application Instance
