@@ -602,6 +602,14 @@ no single server gets overloaded.
 • Helps in scaling applications easily
 • Monitoring server health checks
 
+Strategy Used By LoadBalancer :
+  •  Round Robin – Sends requests one by one to each server in sequence.
+  •  Least Connections – Sends traffic to the server with the fewest active connections.
+  •  Weighted Round Robin – Distributes requests based on server capacity using assigned weights.
+  •  IP Hash – Uses the client’s IP address to decide which server handles the request.
+  •  Least Response Time – Sends requests to the server with the fastest response time.
+  •  Random with Weight – Randomly selects a server, but higher-capacity servers get more traffic.
+
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________
