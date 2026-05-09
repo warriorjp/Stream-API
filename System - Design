@@ -23,3 +23,29 @@ Strategy Used By LoadBalancer :
   •  IP Hash – Uses the client’s IP address to decide which server handles the request.
   •  Least Response Time – Sends requests to the server with the fastest response time.
   •  Random with Weight – Randomly selects a server, but higher-capacity servers get more traffic.
+________________________________________________________________________________________________________________________________________
+🌍 Cluster Overview
+
+We use a MongoDB replica set deployed across multiple regions to ensure high availability, disaster recovery, and read scalability.
+
+South Europe → Primary (Writer)
+North Europe → Secondary (Reader)
+North America → Secondary (Reader)
+
+Data Flow & Replication
+All write operations are routed to the Primary node (South Europe)
+The Primary records operations in the oplog (operation log)
+Secondary nodes (North Europe & North America) continuously replicate data asynchronously from the oplog
+
+Failover Mechanism
+If the Primary node (South Europe) goes down:
+An automatic election is triggered
+One of the Secondary nodes becomes the new Primary
+Application reconnects automatically via the MongoDB driver
+
+Application microservices are deployed in Azure and connect to MongoDB using Private Endpoints
+Microservice (Azure VNet) → Private Endpoint → MongoDB Cluster
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________
