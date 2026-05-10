@@ -1,3 +1,21 @@
+🧠 Core Concepts of System Design
+  1. ⚡ Latency
+    How fast a system responds to a request
+    Lower latency = faster response for users
+  2. 🚀 Throughput
+    How many requests a system can handle at once
+    Higher throughput = more work done in less time
+  3. 📈 Scale
+    Ability of the system to handle growth (users/traffic)
+    System should support increasing load smoothly
+  4. 🔄 Consistency
+    Ensures users see accurate and up-to-date data
+    Important in distributed systems
+  5. 🛡️ Availability
+    System remains up and accessible even during failures
+    Minimal downtime
+________________________________________________________________________________________________________________________________________
+
 * Connection pooling: 
 Is a technique where your application keeps a set (pool) of ready-to-use database connections instead of creating a new one for every request.
   When the application starts, it creates a small number of database connections and stores them in a pool.
