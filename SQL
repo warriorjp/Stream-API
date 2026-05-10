@@ -204,7 +204,4 @@ SELECT e.employee_name, s.salary
 FROM employee e
 JOIN salary s
 ON e.emp_id = s.emp_id;
-SELECT e.employee_name, s.salary
-FROM employee e
-JOIN salary s
-ON e.emp_id = s.emp_id;
+
