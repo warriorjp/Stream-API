@@ -183,3 +183,28 @@ Natural Join -
 Self Join - 
    When a table is joined with itself
 
+___________________________________________________________________________________________________
+🧠 N+1 Query Problem (Employee with Salary Example)
+
+👉 “Bring me all employees and their salaries”
+
+Instead of bringing everything at once:
+
+Step 1:
+First brings only employee names (1 query)
+
+Step 2:
+Then for each employee, he goes again to get the salary (N queries)
+
+This becomes:  1 + N queries
+
+✅ Good Way  : Fetching everything together
+
+SELECT e.employee_name, s.salary
+FROM employee e
+JOIN salary s
+ON e.emp_id = s.emp_id;
+SELECT e.employee_name, s.salary
+FROM employee e
+JOIN salary s
+ON e.emp_id = s.emp_id;
