@@ -187,10 +187,10 @@ Best for:
 
 ---
 
-###Optimistic locking### 
+### Optimistic locking ### 
 Assumes conflicts are rare. Both users read the data without acquiring any lock. Each record carries a version number. When a user attempts to write, the database checks: does the version in your update match the current version in the database? If another transaction already incremented the version from 1 to 2, your update still references version 1. The write is rejected.
 
-##Pessimistic locking###
+### Pessimistic locking ###
  Takes the opposite approach. It assumes conflicts are likely, so it blocks them before they happen. The first transaction locks the row, and every other transaction waits until that lock is released. No version checks needed.
 
 If your system is read-heavy with occasional writes, optimistic locking is the best option. When concurrent writes occur frequently and the cost of a conflict is high, pessimistic locking is the safer choice.
@@ -200,7 +200,7 @@ If your system is read-heavy with occasional writes, optimistic locking is the b
 </div>
 
 ---
-##Caching##
+### Caching ###
 Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
 
 Instead of hitting DB every time:
@@ -272,7 +272,7 @@ Example:
 
 ---
 
-##CAP Theorem (System Design)##
+### CAP Theorem (System Design) ###
 
 In a Distributed System, you can guarantee only 2 out of these 3 at the same time:
 
