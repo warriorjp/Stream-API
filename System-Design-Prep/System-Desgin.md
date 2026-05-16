@@ -89,3 +89,214 @@ and request resources from the origin.
 
 ---
 
+## TCP VS UDP
+
+<div style="margin-left:3rem">
+   <img src="./images/TCP-UDP.png" width="600" />
+</div>
+
+---
+
+### Stateless
+- Server does not store client session context between requests
+- Every request carries everything needed to process it
+- Easier to scale horizontally
+- Easier to load balance
+
+Example: most REST APIs
+
+### Stateful
+- Server keeps client-specific context across requests
+- Later requests depend on what happened before
+- Harder to scale and rebalance
+- Needs sticky sessions or shared state
+
+Example: WebSocket connections, game sessions
+
+<div style="margin-left:3rem">
+   <img src="./images/Stateless-Stateful.png" width="600" />
+</div>
+
+---
+
+## SAGA
+
+<div style="margin-left:3rem">
+   <img src="./images/SAGA.png" width="600" />
+</div>
+
+ **Two Types of Saga Pattern :**
+
+**1️⃣ Choreography Saga**
+
+Services communicate through events directly.
+
+
+**Example:**
+
+ - Order Service → publishes event
+
+ - Payment Service → listens & processes
+
+ - Restaurant Service → listens & processes
+
+Each service reacts independently.
+
+ - ✅ Simple to implement
+
+ - ✅ No central controller
+
+ - ❌ Hard to debug in large systems
+
+ - ❌ Complex event chains
+
+Best for:
+ ✔️ Small/medium microservices systems
+
+**2️⃣ Orchestration Saga**
+
+ A central Saga Orchestrator controls the workflow.
+
+**Example:**
+
+Saga Orchestrator
+
+ - Trigger Payment Service
+
+ - Trigger Restaurant Service
+
+ - Trigger Delivery Service
+
+If failure occurs:
+
+Orchestrator decides rollback steps.
+
+  - ✅ Centralized control
+
+  - ✅ Easier monitoring & debugging
+
+  - ✅ Better for enterprise systems
+
+ ❌ Extra orchestration service required
+
+
+Best for:
+
+ - Large enterprise systems
+
+
+---
+
+###Optimistic locking### 
+Assumes conflicts are rare. Both users read the data without acquiring any lock. Each record carries a version number. When a user attempts to write, the database checks: does the version in your update match the current version in the database? If another transaction already incremented the version from 1 to 2, your update still references version 1. The write is rejected.
+
+##Pessimistic locking###
+ Takes the opposite approach. It assumes conflicts are likely, so it blocks them before they happen. The first transaction locks the row, and every other transaction waits until that lock is released. No version checks needed.
+
+If your system is read-heavy with occasional writes, optimistic locking is the best option. When concurrent writes occur frequently and the cost of a conflict is high, pessimistic locking is the safer choice.
+
+<div style="margin-left:3rem">
+   <img src="./images/Locking-Mechanism.png" width="600" />
+</div>
+
+---
+##Caching##
+Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
+
+Instead of hitting DB every time:
+
+App → Cache → Database
+
+- If data is found in cache → return fast
+
+- If not found → fetch from DB and store in cache
+
+- This is called Cache Hit and Cache Miss
+
+**1.Cache Aside (Lazy Loading) ← Most Common**
+
+- Cache-aside, or lazy loading, is a strategy where the application loads data into the cache only on demand. 
+
+- If data isn't in the cache, the app fetches it from the database, returns it, and stores it in the cache for next time. 
+
+- This ensures only frequently used (hot) data gets cached. 
+
+- The downside is the first request for any item will hit the database (slow), but subsequent requests are served quickly from the cache.
+
+**2.Write-Through Caching**
+
+- In a write-through strategy, whenever data is updated, it's written to the database and the cache at the same time. This keeps the cache up-to-date, so reads will always get fresh values from cache. 
+
+- The benefit is consistency and no cache misses on recent writes, but the drawback is extra write overhead – each write does double work and might cache data that never gets read.
+
+**1. Browser Cache **
+
+Frontend side
+
+Example:
+
+- CSS
+- JS
+- Images
+
+**2. CDN Cache**
+
+Stores content near user location
+
+Example:
+
+- Amazon CloudFront
+
+**3. Application Cache**
+
+- Inside service
+
+Example:
+
+- Redis
+- Ehcache
+- Hazelcast
+
+**4. Database Cache**
+
+DB internal caching
+
+Example:
+
+- MongoDB query cache
+
+
+<div style="margin-left:3rem">
+   <img src="./images/Redis.png" width="800" />
+</div>
+
+---
+
+##CAP Theorem (System Design)##
+
+In a Distributed System, you can guarantee only 2 out of these 3 at the same time:
+
+C → Consistency 
+
+A → Availability
+
+P → Partition Tolerance
+
+You cannot perfectly achieve all 3 together.
+
+** Example **
+
+- You have 2 ATM machines connected to same bank server.
+
+- If one ATM updates balance and network issue happens:
+
+ **Now system must choose:**
+
+- Show latest correct balance (Consistency)
+
+OR
+
+- Always give response even if old data (Availability)
+
+ Since network failure exists (Partition), both perfect consistency + availability together is difficult.
+
