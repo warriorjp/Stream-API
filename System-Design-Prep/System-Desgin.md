@@ -11,7 +11,55 @@
    <img src="./images/System_Design_Intro.png" width="400" />
 </div>
 
-# Scale from Zero to Millions of Users
+---
+###SOLID###
+
+<div style="margin-left:3rem">
+   <img src="./images/SOLID.jpeg" width="500" />
+</div>
+
+**1.Single Responsibility Principle (SRP)**
+📌 Meaning
+
+One class should have only one reason to change.
+
+That means:
+→ One class = One responsibility
+
+**2.Open/Closed Principle (OCP)**
+📌 Meaning
+
+Software should be open for extension but closed for modification.
+
+That means:
+→ Add new functionality without changing old code
+
+**3.Liskov Substitution Principle (LSP)**
+📌 Meaning
+
+Child class should be replaceable with parent class without breaking code.
+
+That means:
+→ Subclasses must behave correctly like parent class
+
+**4.Interface Segregation Principle (ISP)**
+📌 Meaning
+
+Clients should not be forced to implement methods they do not use.
+
+That means:
+→ Small specific interfaces are better than one large interface
+
+**5.Dependency Inversion Principle (DIP)**
+📌 Meaning
+
+High-level modules should not depend on low-level modules. Both should depend on abstraction.
+
+That means:
+→ Depend on Interface, not Implementation
+---
+
+#Scale from Zero to Millions of Users
 
 ## Introduction
 Scaling a system to support millions of users is a complex, iterative journey requiring refinement and optimization. This chapter outlines how to begin with a single server setup and scale the architecture step by step to handle millions of users.
@@ -49,23 +97,6 @@ A **load balancer** distributes traffic among multiple servers. Benefits include
 2. Scalability: Easily add servers to handle traffic spikes.
    -  If the website traffic grows rapidly, subsequent servers can be added to handle the additional traffic.
 
-## Caching
-A **cache** stores frequently accessed data in memory to reduce database load. The cache tier is a temporary data store layer, much faster than the database. 
-
-<div style="margin-left:3rem">
-   <img src="./images/cache.png" width="500" />
-</div>
-
-### Caching considerations
-1. **Use case**: Consider using cache when data is read frequently but modified infrequently.
-2. **Expiration Policies:** Once cached data is expired, it is removed from the cache. When there is no expiration policy, cached
-data will be stored in the memory permanently.
-3. **Consistency:** This means keeping the data store and the cache in sync. Inconsistency
-can happen because data-modifying operations on the data store and cache are not in a single transaction. 
-4. **Mitigating failures**: A single cache server represents a potential single point of failure, multiple
-cache servers across different data centers are recommended to avoid SPOF.
-5. **Eviction Policies:**: Once the cache is full, items need to be evicted to free up memory. LRU is the most popular cache eviction policy.
-
 ---
 
 ## Content Delivery Network (CDN)
@@ -96,7 +127,45 @@ and request resources from the origin.
 </div>
 
 ---
+##WebSocket##
 
+WebSocket is a protocol that creates a full-duplex, persistent connection between Client (Browser/App) and Server.
+
+<div style="margin-left:3rem">
+   <img src="./images/WebSockets.jpeg" width="500" />
+</div>
+
+That means:
+
+- Client can send data to server anytime
+- Server can also send data to client anytime
+- No need to request again and again like HTTP
+
+It is mainly used where real-time communication is needed.
+
+**Examples:**
+
+	- Chat applications
+	- Live cricket score
+	- Stock market updates
+	- Online gaming
+	- Notifications
+	- Live tracking (Uber, Swiggy)
+	
+---
+##gRPC###
+
+gRPC (Google Remote Procedure Call) is a high-performance communication framework used between microservices.
+
+It allows one service to call another service’s method like a normal function call, even though it runs on another server.
+
+**It uses:**
+
+- Protocol Buffers (Protobuf) → for fast binary data serialization
+- HTTP/2 → for fast transport and multiplexing
+
+ 
+---
 ### Stateless
 - Server does not store client session context between requests
 - Every request carries everything needed to process it
@@ -203,6 +272,11 @@ If your system is read-heavy with occasional writes, optimistic locking is the b
 ### Caching ###
 Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
 
+
+<div style="margin-left:3rem">
+   <img src="./images/cache.png" width="500" />
+</div>
+
 Instead of hitting DB every time:
 
 App → Cache → Database
@@ -239,7 +313,7 @@ Example:
 - JS
 - Images
 
-**2. CDN Cache**
+ **2. CDN Cache**
 
 Stores content near user location
 
@@ -247,7 +321,7 @@ Example:
 
 - Amazon CloudFront
 
-**3. Application Cache**
+ **3. Application Cache**
 
 - Inside service
 
@@ -257,7 +331,7 @@ Example:
 - Ehcache
 - Hazelcast
 
-**4. Database Cache**
+ **4. Database Cache**
 
 DB internal caching
 
@@ -299,4 +373,51 @@ OR
 - Always give response even if old data (Availability)
 
  Since network failure exists (Partition), both perfect consistency + availability together is difficult.
+ 
+ ---
+ 
+###Forward Proxy and Reverse Proxy ###
+ 
+ <div style="margin-left:3rem">
+   <img src="./images/forward_proxy.webp" width="800" />
+</div>
 
+ Proxy helps in:
+
+	- Security
+	- Load balancing
+	- Caching
+	- Access control
+	- Monitoring
+	- Performance improvement
+	- Hiding internal services
+	
+**1. Forward Proxy** :
+
+A forward proxy (also called a "proxy server") is a server that sits between client devices and the internet. When a client sends a request to access a website or online resource, the request is directed to the forward proxy first. The proxy then forwards the request to the destination server on behalf of the clien
+
+Used on the client side.
+
+Client → Forward Proxy → Internet → Server
+
+**Use Cases**
+- Enhancing client anonymity
+- Accessing geo-blocked or restricted content
+- Content filtering and monitoring in organizations
+- Reducing bandwidth consumption through caching on the proxy server
+- Logging and tracking user activity for compliance
+
+**2. Reverse Proxy**
+
+A reverse proxy works the opposite of a forward proxy. While a forward proxy acts on behalf of the client, a reverse proxy acts on behalf of the server. It is used to protect and manage servers by ensuring that clients do not directly communicate with the origin server.
+
+Used on the server side.
+
+Client → Reverse Proxy → Application Server
+
+**Use Cases**
+- Load balancing across multiple web servers
+- Caching content to improve server performance
+- Protecting backend servers from direct exposure to the internet
+- SSL/TLS offloading to improve server efficiency
+- Mitigating DDoS attacks and enhancing security
