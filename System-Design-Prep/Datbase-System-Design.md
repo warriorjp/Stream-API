@@ -99,5 +99,11 @@ recovery scripts (methods like multi-masters and circular replication could help
 
 ---
 
+### ACID Property : 
+
+<div style="margin-left:3rem">
+   <img src="./images/ACID.gif" width="400" />
+</div>
+
 
 
