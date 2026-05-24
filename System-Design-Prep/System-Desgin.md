@@ -61,24 +61,24 @@ That means:
 
 #Scale from Zero to Millions of Users
 
-## Introduction
+** Introduction**
 Scaling a system to support millions of users is a complex, iterative journey requiring refinement and optimization. This chapter outlines how to begin with a single server setup and scale the architecture step by step to handle millions of users.
 
 ---
 
-## Single Server Setup
+**Single Server Setup**
 Initially, all components (web app, database, cache) run on a single server. 
 
 <div style="margin-left:3rem">
    <img src="./images/single-server.png" width="400" />
 </div>
 
-### Request Flow
+**Request Flow**
 1. Users access the application via domain names (e.g., `api.mysite.com`), resolved to IP addresses using DNS.
 2. IP address of the web-server is returned to the browser or mobile app.
 3. HTTP requests are sent to the web server, which returns HTML or JSON responses.
 
-### Traffic Sources
+**Traffic Sources**
 1. **Web Applications:** Use server-side languages (e.g., Python, Java) for business logic and client-side languages (e.g., JavaScript, HTML) for presentation.
 2. **Mobile Applications:** Communicate with the web server using HTTP and JSON for lightweight data exchange.
 
@@ -98,7 +98,7 @@ A **load balancer** distributes traffic among multiple servers. Benefits include
    -  If the website traffic grows rapidly, subsequent servers can be added to handle the additional traffic.
 
 ---
-**CORS (Cross-Origin Resource Sharing)**
+## CORS (Cross-Origin Resource Sharing)
 
 CORS is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
 
@@ -414,7 +414,7 @@ OR
 
  Since network failure exists (Partition), both perfect consistency + availability together is difficult.
  
- ---
+---
  
 ###Forward Proxy and Reverse Proxy ###
  
@@ -466,23 +466,23 @@ Client → Reverse Proxy → Application Server
 ---
 #Rate Limiter
 
-## Introduction
+** Introduction**
 This chapter explores the design and implementation of a rate limiter—a system component used to control traffic rates sent by clients or services. Rate limiters are crucial for preventing abuse, reducing costs, and ensuring the stability of server resources. Examples of their use include limiting posts, account creations, and reward claims.
 
-## Benefits of Rate Limiting
+**Benefits of Rate Limiting**
 - **Preventing DoS Attacks:** Blocking excess calls to avoid resource starvation.
 - **Cost Reduction:** Limiting unnecessary requests to reduce server expenses.
 - **Preventing Overloads:** Filtering out excessive requests to stabilize server performance.
 
-## Step 1: Understanding the Problem
-### Key Features
+**Step 1: Understanding the Problem**
+**Key Features**
 - Server-side API rate limiter.
 - Support for multiple throttle rules.
 - Handle large-scale systems in distributed environments.
 - Option for a standalone service or application-level code.
 - Inform users when throttled.
 
-### Requirements
+**Requirements**
 - Accurate request throttling.
 - Minimal latency.
 - Low memory usage.
@@ -490,8 +490,8 @@ This chapter explores the design and implementation of a rate limiter—a system
 - Clear exception handling.
 - High fault tolerance.
 
-## Step 2: High-Level Design
-### Placement Options
+**Step 2: High-Level Design**
+**Placement Options**
 <div style="margin-left:2rem">
     <img src="./images/rate_limiter_architecture.png"  alt="Rate Limiting Middleware Architecture" width="550">
 </div>
@@ -501,14 +501,14 @@ This chapter explores the design and implementation of a rate limiter—a system
 3. **Middleware (API Gateway):** A flexible option for integrated rate limiting.
 
 
-### Guidelines for Placement
+** Guidelines for Placement**
 - Evaluate current tech stack and choose efficient options.
 - Select appropriate algorithms based on business needs.
 - Use an API gateway if microservices are employed.
 - Opt for commercial solutions if resources are limited.
 
-## Step 3: Rate Limiting Algorithms
-### 1. Token Bucket
+**Step 3: Rate Limiting Algorithms**
+**1. Token Bucket**
 <div style="margin-left:2rem">
   <img src="./images/token-bucket.png"  alt="Token Bucket Algorithm" width="550">
 </div>
@@ -520,7 +520,7 @@ This chapter explores the design and implementation of a rate limiter—a system
 
 
 
-### 2. Leaking Bucket
+**Leaking Bucket**
 <div style="margin-left:2rem">
   <img src="./images/leaking-bucket.png"  alt="Leaking Bucket Algorithm" width="550">
 </div>
@@ -534,7 +534,7 @@ This chapter explores the design and implementation of a rate limiter—a system
 
 
 
-### 3. Fixed Window Counter
+**3. Fixed Window Counter**
 <div style="margin-left:2rem">
   <img src="./images/fixed-window-counter.png"  alt="Fixed Window Counter" width="550">
 </div>
@@ -549,7 +549,7 @@ could cause more requests than allowed quota to go through.
   <img src="./images/fixed-window-issue.png"  alt="Fixed Window Issue" width="550">
 
 
-### 4. Sliding Window Log
+**4. Sliding Window Log**
 <div style="margin-left:2rem">
   <img src="./images/sliding-window-log.png"  alt="Sliding Window Log" width="550">
 </div>
@@ -560,7 +560,7 @@ could cause more requests than allowed quota to go through.
   
 
 
-### 5. Sliding Window Counter
+**5. Sliding Window Counter**
 <div style="margin-left:2rem">
   <img src="./images/sliding-window-counter.png"  alt="Fixed Window Counter" width="550">
 </div>
@@ -570,9 +570,7 @@ could cause more requests than allowed quota to go through.
 - **Cons:** Approximation may not be perfectly strict.
   
 
-
-
-## High-Level Architecture
+**High-Level Architecture**
 <div style="margin-left:2rem">
   <img src="./images/architecture.png" style="margin-left: 40px; margin-top: 40px; margin-bottom: 20px;" alt="Architecture" width="550">
 </div>
@@ -582,4 +580,12 @@ could cause more requests than allowed quota to go through.
   1. Client sends request to middleware.
   2. Middleware checks counters in Redis.
   3. Request is processed or rejected based on limits.
+  
+---
+### KAFKA###
+
+<div style="margin-left:2rem">
+  <img src="./images/KAFKA.jpeg"  alt="Leaking Bucket Algorithm" width="600">
+</div>
+
 

@@ -38,13 +38,14 @@ As the user base grows, the database is moved to a dedicated server to allow ind
 ---
 
 ## Database Scaling
-### Vertical Scaling
+** Vertical Scaling**
+
 - Adds hardware resources but has physical and cost limitations.
 - Has multiple drawbacks:
    -  Greater risk of single point of failures.
    -  Overall cost of vertical scaling is high
 
-### Horizontal Scaling (Sharding)
+** Horizontal Scaling (Sharding) **
 
 <div style="margin-left:3rem">
    <img src="./images/horizontal-scaling.png" width="400" />
@@ -98,6 +99,32 @@ master.
 recovery scripts (methods like multi-masters and circular replication could help).
 
 ---
+
+## What is Consistent Hashing?
+
+Consistent Hashing is a technique used in distributed systems to distribute data across multiple servers efficiently.
+Consistent hashing minimizes data redistribution when servers are added or removed in distributed systems.
+
+**Consistent Hashing Solution**
+
+Only a small portion of data moves when:
+
+Server added
+Server removed
+
+This makes scaling efficient.
+
+**Advantages**
+
+✅ Better scalability
+
+✅ Minimal data movement
+
+✅ Useful for distributed caching
+
+✅ High availability
+
+✅ Efficient load distribution
 
 ### ACID Property : 
 
