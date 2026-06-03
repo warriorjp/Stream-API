@@ -142,6 +142,12 @@ Browser sees this and allows the request.
 ## Content Delivery Network (CDN)
 A **CDN** improves load times by caching static content (images, CSS, JavaScript) on geographically distributed servers.
 
+
+<div style="margin-left:3rem">
+   <img src="./images/CDN-1.jpeg" width="500" />
+</div>
+
+
 <div style="margin-left:3rem">
    <img src="./images/cdn.png" width="400" />
 </div>
@@ -164,6 +170,10 @@ and request resources from the origin.
 
 <div style="margin-left:3rem">
    <img src="./images/TCP-UDP.png" width="600" />
+</div>
+
+<div style="margin-left:3rem">
+   <img src="./images/TLS.png" width="600" />
 </div>
 
 ---
@@ -310,7 +320,9 @@ If your system is read-heavy with occasional writes, optimistic locking is the b
 
 ---
 ### Caching ###
-Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
+- Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
+
+- Redis is mainly used for caching, rate limiting, session management, distributed locking, and real-time data processing in scalable systems.”
 
 
 <div style="margin-left:3rem">
@@ -382,6 +394,12 @@ Example:
 
 <div style="margin-left:3rem">
    <img src="./images/Redis.png" width="800" />
+</div>
+
+
+<div style="margin-left:3rem">
+   <img src="./images/Cache1.jpeg" width="800" />
+   
 </div>
 
 ---
