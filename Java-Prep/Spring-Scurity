@@ -1,8 +1,24 @@
+
+JWT vs OAuth 2.0
+
+Many people confuse JWT and OAuth 2.0, but they solve different problems.
+
+JWT = Token Format
+OAuth 2.0 = Authorization Framework
+
+Difference Between 401 and 403?
+
+401:
+User not authenticated.
+403:
+User authenticated but lacks permission.
+
+
 ✅ Step-by-Step: JWT Token-Based Authentication in Spring Boot :
 
 We generate the two tokens -
-1. Access-Tocker - to access the apis
-2. Refresh-Tocket - to regenerate the access token and refresh token to keep the user logged in.
+1. Access-Tocken - to access the apis
+2. Refresh-Tocken - to regenerate the access token and refresh token to keep the user logged in.
 
     We have an expiry of the token of 15 mins.
 

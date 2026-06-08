@@ -115,7 +115,7 @@ NOTE : 1. When using GROUP BY with a column, any column included in the SELECT s
           b. Used with an aggregate function such as MIN(), MAX(), COUNT(), SUM(), etc.
 
           Example:
-          🟢  SELECT Department, COUNT(*) 
+          🟢  SELECT Department, COUNT(*) AS Employee_Count
             FROM Employees 
             GROUP BY Department;
        2. When a subquery (inner query) returns multiple values, use the IN operator instead of =.
@@ -133,7 +133,7 @@ NOTE : 1. When using GROUP BY with a column, any column included in the SELECT s
   🟢 SELECT emp_name FROM employee where salary = (SELECT max(salary) from employee);
 
 -> Write a query to display all the department names along with the no. of employees working in that department.
- 🟢 SELECT dept, count(*) FROM employee GROUP BY dept;
+ 🟢 SELECT dept, count(*) as employe_count FROM employee GROUP BY dept;
       Or
  🟢 SELECT dept, count(dept) FROM employee GROUP BY dept;
 
@@ -144,6 +144,9 @@ Output -
 -> Write a query to display all the department names where the number of employees is less than 2.
 🟢  SELECT dept FROM employee GROUP BY dept HAVING COUNT(*) < 2;
 
+-> Write query to find customer name who order more than one product
+🟢  SELECT Customer_id, COUNT(*) As Total_Count FROM OrderTable GROUP BY Order Customer_Id HAVING COUNT(*) > 1;
+
 Output -  MRKT
 
 -> Write a query to display the name of the employee in which department no. of employees is less than 2.
@@ -152,6 +155,22 @@ Output -  MRKT
 -> Write a query to display the highest salary department-wise and the name of the employee who is receiving that highest salary.
  🟢 SELECT e.emp_name, e.dept, e.salary FROM employee e WHERE e.salary = 
   (SELECT MAX(salary) FROM employee WHERE dept = e.dept);
+  
+-> Count Employees by Joining Month
+  🟢 SELECT MONTH(JOIN_DATE) AS joining_month,
+       COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY MONTH(JOIN_DATE)
+ORDER BY joining_month;
+
+If you want Month Name :
+
+  🟢 SELECT MONTHNAME(JOIN_DATE) AS joining_month,
+       COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY MONTHNAME(JOIN_DATE)
+ORDER BY MONTH(JOIN_DATE);
+  
 ___________________________________________________________________________________________________
 
 ## JOINS = Cross Product + Select Statement(Condition)
@@ -205,3 +224,5 @@ FROM employee e
 JOIN salary s
 ON e.emp_id = s.emp_id;
 
+___________________________________________________________________________________________________
+ 
