@@ -7,39 +7,69 @@ A curated collection of practical Stream API problems with clean solutions and e
 ## Table of Contents
 
 **String & Character Operations**
+
 1. [Count Occurrences of Each Character](#6-count-occurrences-of-each-character-in-a-string)
+
 2. [First Non-Repeating Character](#9-first-non-repeating-character-in-a-string)
+
 3. [Most Repetitive Element in a String](#11-most-repetitive-element-in-a-string)
+
 4. [Print Non-Duplicate Characters](#8-print-non-duplicate-characters-in-a-string)
+
 5. [Find Duplicate Characters](#17-find-duplicate-characters-in-a-string)
+
 6. [Find Vowels in a String](#15-find-vowels-in-a-string)
+
 7. [Concatenate List of Strings](#10-concatenate-list-of-strings)
 
 **List & Array Operations**
+
 8. [Find First Element](#1-find-the-first-element-in-a-list)
+
 9. [Sort an Array](#2-sort-an-array)
+
 10. [Remove Duplicates](#3-remove-duplicates-from-a-list)
+
 11. [Find Duplicate Elements](#4-find-duplicate-elements-in-a-list)
+
 12. [Keep 0s Left, 1s Right](#5-keep-0s-on-left-1s-on-right)
+
 13. [Divide Into Even and Odd](#7-divide-a-list-into-even-and-odd)
+
 14. [Find 2nd Highest Number](#12-find-nth-highest-number-in-an-array)
+
 15. [Find Numbers Starting With 1](#14-find-numbers-starting-with-1)
+
 16. [Cube of Odd Numbers](#16-find-cube-of-odd-numbers)
+
 17. [Filter Common Elements from Two Arrays](#18-filter-common-elements-from-two-arrays)
+
 18. [Find Words Starting With a Letter](#13-find-words-starting-with-a-specific-letter)
 
 **Employee Stream Operations**
+
 19. [Sort Employees by Dept & Age](#19-sort-employees-by-dept-and-age)
+
 20. [Count Employees Per Department](#20-count-employees-in-each-department)
+
 21. [Employee With Max Salary](#21-employee-with-max-salary)
+
 22. [Sum of All Salaries](#22-sum-of-all-salaries)
+
 23. [Max Salary Per Department](#23-max-salary-per-department)
+
 24. [Average Salary by Department](#24-average-salary-by-department)
+
 25. [Increase Salary by 10%](#25-increase-all-salaries-by-10)
+
 26. [Filter Employees by Name](#26-find-employees-whose-names-start-with-r)
+
 27. [Count Employees Older Than 30](#27-count-employees-older-than-30)
+
 28. [Sort by Salary Asc & Desc](#28-sort-employees-by-salary-ascending-and-descending)
+
 29. [Raise Salary for Employees Over 25](#29-increase-salary-for-employees-older-than-25)
+
 30. [Top 3 Highest Salaries](#30-top-3-highest-salaries)
 
 ---
@@ -517,21 +547,33 @@ emp.stream()
 
 | Operation | Method | Type |
 |---|---|---|
+
 | Filter elements | `filter(predicate)` | Intermediate |
+
 | Transform elements | `map(function)` | Intermediate |
+
 | Remove duplicates | `distinct()` | Intermediate |
+
 | Sort | `sorted()` / `sorted(comparator)` | Intermediate |
+
 | Limit results | `limit(n)` | Intermediate |
+
 | Skip elements | `skip(n)` | Intermediate |
+
 | Collect to List | `collect(Collectors.toList())` | Terminal |
+
 | Group elements | `collect(Collectors.groupingBy(...))` | Terminal |
+
 | Partition (true/false) | `collect(Collectors.partitioningBy(...))` | Terminal |
+
 | Count | `count()` | Terminal |
+
 | Find first | `findFirst()` | Terminal |
+
 | Max / Min | `max(comparator)` / `min(comparator)` | Terminal |
+
 | Sum | `mapToInt/Double/Long(...).sum()` | Terminal |
+
 | Iterate | `forEach(consumer)` | Terminal |
 
 ---
-
-*Last updated: 2025*

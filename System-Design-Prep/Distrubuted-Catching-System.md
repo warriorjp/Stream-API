@@ -63,6 +63,24 @@
 - Cache nodes share the load — no single node holds all data
 - Database is the **source of truth** — only queried on cache miss
 
+##L1 Cache :
+
+In memory cache inside the application
+
+Extremely fast
+
+##L2 Cache :
+
+Distributed cache shared across multiple application instance.
+
+Faster then querying database
+
+##L3 Cache :
+Hardware cache inside the CPU.
+
+Stores frequently accessed memory data. 
+
+
 ---
 
 ## 3. Request Flow

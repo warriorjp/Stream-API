@@ -30,6 +30,7 @@ A curated reference of commonly asked tricky Java interview questions with expla
 22. [String Pool vs Heap — `intern()`](#22-bonus-string-pool-vs-heap--intern)
 23. [`==` vs `equals()` for Strings](#23-bonus--vs-equals-for-strings)
 24. [`volatile` vs `synchronized`](#24-bonus-volatile-vs-synchronized)
+25. [Default Rollback Behavior @Transcational](#25-default-rollback-behavior-@transcational)
 
 ---
 
@@ -68,11 +69,12 @@ public void testMethod(String str)   { ... }
 
 ## 2. Thread `start()` vs `run()`
 
-| Feature | `start()` | `run()` |
-|---|---|---|
-| Creates a new thread? | ✅ Yes | ❌ No |
-| Execution context | New thread | Current (main) thread |
-| Use case | True parallel execution | Normal method call |
+```
+| Feature                  | `start()`             | `run()`               |
+|--------------------------|-----------------------|-----------------------|
+| Creates a new thread?    | ✅ Yes                | ❌ No                 |
+| Execution context        | New thread            | Current (main) thread |
+| Use case                 | True parallel execution | Normal method call  |
 
 ```java
 class MyThread extends Thread {
@@ -224,13 +226,13 @@ public class LambdaExample {
 
 Java provides four core functional interfaces in the `java.util.function` package:
 
-| Interface | Input | Output | Use Case |
-|---|---|---|---|
-| `Predicate<T>` | T | `boolean` | Filtering, validation |
-| `Consumer<T>` | T | `void` | Printing, saving, side effects |
-| `Supplier<T>` | None | T | Lazy init, value generation |
-| `Function<T, R>` | T | R | Data transformation |
-
+```
+| Interface     | Input | Output    | Use Case                          |
+|---------------|-------|-----------|-----------------------------------|
+| `Predicate<T>` | T     | `boolean` | Filtering, validation             |
+| `Consumer<T>`  | T     | `void`    | Printing, saving, side effects    |
+| `Supplier<T>`  | None  | T         | Lazy initialization, value generation |
+| `Function<T, R>` | T   | R         | Data transformation               |
 ```java
 import java.util.function.*;
 
@@ -261,7 +263,7 @@ public class FunctionalInterfaceExample {
 ## 8. Exception Handling in Method Overriding
 
 ### When parent method **declares** a checked exception:
-
+```
 | Child method can… | Allowed? |
 |---|---|
 | Declare the **same** exception | ✅ Yes |
@@ -297,8 +299,14 @@ class Child extends Parent {
     @Override
     void show() throws ArithmeticException { }  // ✅ Unchecked (runtime) — allowed
 }
-```
 
+
+| | Shallow Copy | Deep Copy |
+|--------------------------|-------------------------|--------------------------------|
+| What is copied           | Reference to the object | A new independent object        |
+| Changes affect original? | ✅ Yes (mutable fields) | ❌ No                          |
+| How                      | Return/assign the reference | `new ArrayList<>(original)` |
+```
 ---
 
 ## 9. Constructor Chaining
@@ -767,13 +775,14 @@ System.out.println(s1.equals(s3));    // true  — same content
 ---
 
 ## 24. *(Bonus)* `volatile` vs `synchronized`
-
-| Feature | `volatile` | `synchronized` |
-|---|---|---|
-| Guarantees visibility | ✅ Yes | ✅ Yes |
-| Guarantees atomicity | ❌ No | ✅ Yes |
-| Locks / blocks threads | ❌ No | ✅ Yes |
-| Use case | Simple flags, status variables | Compound operations, critical sections |
+```
+| Feature                 | `volatile`                     | `synchronized`                       |
+|-------------------------|--------------------------------|--------------------------------------|
+| Guarantees visibility   | ✅ Yes                         | ✅ Yes                               |
+| Guarantees atomicity    | ❌ No                          | ✅ Yes                               |
+| Locks / blocks threads  | ❌ No                          | ✅ Yes                               |
+| Use case                | Simple flags, status variables | Compound operations, critical sections|
+```
 
 ```java
 // volatile — safe for a simple boolean flag
@@ -786,4 +795,84 @@ public synchronized void increment() {
 ```
 
 ---
+## 25. Default Rollback Behavior @Transcational
 
+By default, Spring rolls back transactions only for:
+
+✅ RuntimeException
+
+✅ Error
+
+It does not roll back for checked exceptions.
+
+```
+@Transactional
+public void saveEmployee() throws IOException {
+
+    repository.save(employee);
+
+    throw new IOException("Checked Exception");
+}
+```
+
+The employee is saved.
+
+**Why?**
+
+Spring assumes checked exceptions are recoverable/business exceptions, so it commits the transaction unless configured otherwise.
+
+**How to Roll Back for Checked Exceptions**
+
+Use rollbackFor.
+
+```
+@Transactional(rollbackFor = Exception.class)
+public void saveEmployee() throws Exception {
+
+    repository.save(employee);
+
+    throw new IOException();
+}
+```
+
+**What if a RuntimeException is thrown?**
+
+```
+@Transactional
+public void process() {
+
+    repository.save(emp);
+
+    throw new NullPointerException();
+}
+```
+Transaction rolls back.
+
+Nothing is saved.
+
+
+**What if you catch the exception?**
+
+```
+@Transactional
+public void process() {
+
+    try {
+
+        repository.save(emp);
+
+        throw new RuntimeException();
+
+    } catch (Exception e) {
+
+        System.out.println(e.getMessage());
+
+    }
+}
+```
+
+The transaction commits.
+
+**Why?**
+
+Because the exception never leaves the transactional method. Spring sees the method complete normally and commits.
