@@ -177,7 +177,8 @@ and request resources from the origin.
 </div>
 
 ---
-##WebSocket##
+
+## WebSocket
 
 WebSocket is a protocol that creates a full-duplex, persistent connection between Client (Browser/App) and Server.
 
@@ -203,7 +204,7 @@ It is mainly used where real-time communication is needed.
 	- Live tracking (Uber, Swiggy)
 	
 ---
-##gRPC###
+## gRPC
 
 gRPC (Google Remote Procedure Call) is a high-performance communication framework used between microservices.
 
@@ -216,7 +217,7 @@ It allows one service to call another service’s method like a normal function 
 
  
 ---
-### Stateless
+## Stateless
 - Server does not store client session context between requests
 - Every request carries everything needed to process it
 - Easier to scale horizontally
@@ -224,7 +225,7 @@ It allows one service to call another service’s method like a normal function 
 
 Example: most REST APIs
 
-### Stateful
+## Stateful
 - Server keeps client-specific context across requests
 - Later requests depend on what happened before
 - Harder to scale and rebalance
@@ -434,7 +435,7 @@ OR
  
 ---
  
-###Forward Proxy and Reverse Proxy ###
+##Forward Proxy and Reverse Proxy ##
  
  <div style="margin-left:3rem">
    <img src="./images/forward_proxy.webp" width="800" />
@@ -482,7 +483,7 @@ Client → Reverse Proxy → Application Server
 
 
 ---
-#Rate Limiter
+##Rate Limiter##
 
 ** Introduction**
 This chapter explores the design and implementation of a rate limiter—a system component used to control traffic rates sent by clients or services. Rate limiters are crucial for preventing abuse, reducing costs, and ensuring the stability of server resources. Examples of their use include limiting posts, account creations, and reward claims.
@@ -600,7 +601,7 @@ could cause more requests than allowed quota to go through.
   3. Request is processed or rejected based on limits.
   
 ---
-### KAFKA###
+## KAFKA##
 
 <div style="margin-left:2rem">
   <img src="./images/KAFKA.jpeg"  alt="Leaking Bucket Algorithm" width="600">
