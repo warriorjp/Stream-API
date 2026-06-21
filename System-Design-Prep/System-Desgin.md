@@ -59,9 +59,9 @@ That means:
 → Depend on Interface, not Implementation
 ---
 
-#Scale from Zero to Millions of Users
+## Scale from Zero to Millions of Users
 
-** Introduction**
+** Introduction **
 Scaling a system to support millions of users is a complex, iterative journey requiring refinement and optimization. This chapter outlines how to begin with a single server setup and scale the architecture step by step to handle millions of users.
 
 ---
@@ -116,7 +116,7 @@ Origin = Protocol + Domain + Port
 
 are considered different origins because ports differ.
 
-** ❌ Problem Without CORS**
+**❌ Problem Without CORS**
 
 &nbsp;&nbsp;&nbsp;&nbsp; Frontend:  http://localhost:3000
 
