@@ -607,4 +607,81 @@ could cause more requests than allowed quota to go through.
   <img src="./images/KAFKA.jpeg"  alt="Leaking Bucket Algorithm" width="600">
 </div>
 
+---
+## What is Elasticsearch?
+
+Elasticsearch is a distributed search engine built on Apache Lucene. It stores JSON documents inside indexes and uses an inverted index to provide extremely fast full-text search. Data is distributed across shards for scalability and replicated for high availability. 
+
+In a typical microservices architecture, relational databases such as PostgreSQL or MySQL remain the source of truth, while Elasticsearch is used to power search, filtering, autocomplete, and analytics.
+
+### SQL vs Elasticsearch Mapping
+
+```
+Relational DB    ->   Elasticsearch
+-------------         --------------
+Database         ->   Cluster
+Table            ->   Index
+Row              ->   Document
+Column           ->   Field
+Schema           ->   Mapping
+JOIN             ->   Denormalization (no joins)
+
+```
+
+**Shards**
+
+Large indexes are split into shards.
+
+Employee Index
+
+- Shard 1
+
+- Shard 2
+
+- Shard 3
+ 
+
+**Benefits:**
+
+- Parallel search
+
+- Horizontal scaling
+
+
+**Replicas**
+
+Copies of shards.
+
+```
+Primary Shard
+
+      |
+---------------------------------
+|                |              |
+
+Replica1     Replica2      Replica3
+```
+
+**Purpose:**
+
+- High Availability
+
+- Failover
+
+- Faster searches
+
+
+**Full Text Search**
+
+**Search:**
+
+"Java Developer"
+
+**Elasticsearch tokenizes:**
+
+- Java
+
+- Developer
+
+Instead of storing one string.
 

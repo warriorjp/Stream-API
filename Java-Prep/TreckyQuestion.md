@@ -764,14 +764,41 @@ String s3 = new String("Java");
 System.out.println(s1 == s2);         // true  — same pool reference
 System.out.println(s1 == s3);         // false — s3 is a heap object
 System.out.println(s1.equals(s3));    // true  — same content
+
 ```
 
-> **Always use `equals()`** for string content comparison. Use `==` only for reference equality.
+**Reason**
 
-<div style="margin-left:3rem">
-   <img src="./images/String_Pool.jpeg" width="550" />
-</div>
+- == compares memory addresses.
 
+- equals() compares the actual string content because String overrides equals().
+
+```
+StringBuilder sb1 = new StringBuilder("Java");
+StringBuilder sb2 = new StringBuilder("Java");
+
+System.out.println(sb1 == sb2);      // false
+System.out.println(sb1.equals(sb2)); // false
+
+```
+**Reason**
+- == compares references.
+
+- StringBuilder does not override equals().
+
+- Therefore, equals() behaves exactly like == (reference comparison).
+
+```
+StringBuffer sb1 = new StringBuffer("Java");
+StringBuffer sb2 = new StringBuffer("Java");
+
+System.out.println(sb1 == sb2);      // false
+System.out.println(sb1.equals(sb2)); // false
+```
+**Reason**
+- StringBuffer also does not override equals().
+
+- It inherits Object.equals(), which compares references.
 ---
 
 ## 24. *(Bonus)* `volatile` vs `synchronized`
