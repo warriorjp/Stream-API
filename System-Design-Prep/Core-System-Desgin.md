@@ -607,6 +607,15 @@ could cause more requests than allowed quota to go through.
   <img src="./images/KAFKA.jpeg"  alt="Leaking Bucket Algorithm" width="600">
 </div>
 
+<div style="margin-left:2rem">
+  <img src="./images/kafka-usage.gif"  alt="Leaking Bucket Algorithm" width="600">
+</div>
+
+---
+**Change Data Capture (CDC) **
+
+is a mechanism that captures database changes (INSERT, UPDATE, DELETE) by reading the transaction log and publishes them as events to downstream systems such as Kafka. This enables near real-time synchronization of services like Elasticsearch, Redis, analytics platforms, and other microservices without polling the database, resulting in lower latency and reduced database load.
+
 ---
 ## What is Elasticsearch?
 
