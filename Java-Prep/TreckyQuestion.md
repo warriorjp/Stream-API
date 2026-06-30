@@ -30,7 +30,8 @@ A curated reference of commonly asked tricky Java interview questions with expla
 22. [String Pool vs Heap — `intern()`](#22-bonus-string-pool-vs-heap--intern)
 23. [`==` vs `equals()` for Strings](#23-bonus--vs-equals-for-strings)
 24. [`volatile` vs `synchronized`](#24-bonus-volatile-vs-synchronized)
-25. [Default Rollback Behavior @Transcational](#25-default-rollback-behavior-@transcational)
+25. [Default Rollback Behavior `@Transactional`](#25-default-rollback-behavior-transactional)
+26. [Why are Passwords Hashed Instead of Encrypted?](#26-why-are-passwords-hashed-instead-of-encrypted)
 
 ---
 
@@ -802,6 +803,7 @@ System.out.println(sb1.equals(sb2)); // false
 ---
 
 ## 24. *(Bonus)* `volatile` vs `synchronized`
+
 ```
 | Feature                 | `volatile`                     | `synchronized`                       |
 |-------------------------|--------------------------------|--------------------------------------|
@@ -822,7 +824,8 @@ public synchronized void increment() {
 ```
 
 ---
-## 25. Default Rollback Behavior @Transcational
+
+## 25. Default Rollback Behavior @Transcational ##
 
 By default, Spring rolls back transactions only for:
 
@@ -903,3 +906,56 @@ The transaction commits.
 **Why?**
 
 Because the exception never leaves the transactional method. Spring sees the method complete normally and commits.
+
+---
+
+## 26. Why are passwords hashed instead of encrypted?##
+
+**Hashing**
+
+Think of hashing like making a fingerprint of data.
+
+```
+Password: "Java123"
+
+Hash Function
+      ↓
+A7D92BC1F4...
+```
+
+- Same input always produces the same hash.
+- Even a tiny change in input creates a completely different hash.
+- You cannot get the original password back from the hash.
+
+**Encryption**
+
+Encryption is like putting data in a locked box.
+
+```
+"Hello"
+
+Encrypt with Key
+      ↓
+X9#P@L2
+
+Decrypt with Key
+      ↓
+"Hello"
+```
+
+- Data can be restored using the correct key.
+- Used when the original information must remain recoverable.
+
+**Answer:**
+
+Because the application never needs to know your original password. During login, it simply hashes the entered password and compares it with the stored hash. Even if the database is leaked, attackers cannot directly recover the original passwords from properly hashed values (especially when modern password-hashing algorithms with salts are used).
+
+When to Use Which?
+
+✅ Hashing: Password storage, file integrity checks, digital signatures, checksums.
+
+✅ Encryption: Secure communication, payment information, confidential files, sensitive personal data.
+
+
+
+
