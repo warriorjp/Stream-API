@@ -435,7 +435,7 @@ OR
  
 ---
  
-##Forward Proxy and Reverse Proxy ##
+## Forward Proxy and Reverse Proxy ##
  
  <div style="margin-left:3rem">
    <img src="./images/forward_proxy.webp" width="800" />
