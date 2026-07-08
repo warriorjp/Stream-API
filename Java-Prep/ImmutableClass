@@ -39,3 +39,8 @@ public final class ImmutablePerson {
         return hobbies;
     }
 }
+
+Q: If I declare a List as final, does it become immutable?
+No. Declaring a list as final only prevents the reference from being reassigned to another list. It does not prevent modifications 
+to the contents of the list. To make the list immutable, you need to use an immutable implementation such as List.of() or List.copyOf(), 
+or expose an unmodifiable view if appropriate.
