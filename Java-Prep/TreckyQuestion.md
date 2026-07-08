@@ -70,7 +70,7 @@ public void testMethod(String str)   { ... }
 
 ## 2. Thread `start()` vs `run()`
 
-```
+
 | Feature                  | `start()`             | `run()`               |
 |--------------------------|-----------------------|-----------------------|
 | Creates a new thread?    | ✅ Yes                | ❌ No                 |
@@ -227,13 +227,14 @@ public class LambdaExample {
 
 Java provides four core functional interfaces in the `java.util.function` package:
 
-```
+
 | Interface     | Input | Output    | Use Case                          |
 |---------------|-------|-----------|-----------------------------------|
 | `Predicate<T>` | T     | `boolean` | Filtering, validation             |
 | `Consumer<T>`  | T     | `void`    | Printing, saving, side effects    |
 | `Supplier<T>`  | None  | T         | Lazy initialization, value generation |
 | `Function<T, R>` | T   | R         | Data transformation               |
+
 ```java
 import java.util.function.*;
 
@@ -264,7 +265,7 @@ public class FunctionalInterfaceExample {
 ## 8. Exception Handling in Method Overriding
 
 ### When parent method **declares** a checked exception:
-```
+
 | Child method can… | Allowed? |
 |---|---|
 | Declare the **same** exception | ✅ Yes |
@@ -804,7 +805,7 @@ System.out.println(sb1.equals(sb2)); // false
 
 ## 24. *(Bonus)* `volatile` vs `synchronized`
 
-```
+
 | Feature                 | `volatile`                     | `synchronized`                       |
 |-------------------------|--------------------------------|--------------------------------------|
 | Guarantees visibility   | ✅ Yes                         | ✅ Yes                               |
