@@ -745,7 +745,7 @@ str = str.concat("hi");
 
 ```java
 String a = "hello";           // String Pool
-String b = new String("hello"); // Heap — new object every time
+String b = new String("hello"); // Heap — new object every time and refernce in StringPool
 String c = b.intern();         // Returns String Pool reference
 
 System.out.println(a == b);   // false — different references
@@ -756,7 +756,7 @@ System.out.println(a == c);   // true  — same pool reference
 
 ---
 
-## 23. *(Bonus)* `==` vs `equals()` for Strings
+## 23.`==` vs `equals()` for Strings
 
 ```java
 String s1 = "Java";
@@ -803,7 +803,7 @@ System.out.println(sb1.equals(sb2)); // false
 - It inherits Object.equals(), which compares references.
 ---
 
-## 24. *(Bonus)* `volatile` vs `synchronized`
+## 24.`volatile` vs `synchronized`
 
 
 | Feature                 | `volatile`                     | `synchronized`                       |
