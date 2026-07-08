@@ -59,6 +59,16 @@ JDK is a software development kit used to develop Java applications.
 It includes the JRE, JVM, and developer tools like the javac compiler, java runner, javadoc, and debugging tools. 
 It is essential for Java developers.
 
+✅ Maven vs Gradle
+Maven and Gradle are build automation tools used to manage dependencies and automate tasks like compiling code, running tests, 
+packaging applications, and deployment. 
+Maven uses XML (pom.xml) and follows a convention-over-configuration approach, making it simple and standardised. 
+
+Gradle uses Groovy or Kotlin DSL (build.gradle) and provides more flexibility, faster builds through 
+incremental compilation and caching, and easier customisation. 
+Maven is widely used for its simplicity, while Gradle is often preferred for large projects where build performance and customisation 
+are important.
+
 
 
 
