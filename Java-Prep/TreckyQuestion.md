@@ -300,14 +300,14 @@ class Child extends Parent {
     @Override
     void show() throws ArithmeticException { }  // ✅ Unchecked (runtime) — allowed
 }
-
+```
 
 | | Shallow Copy | Deep Copy |
 |--------------------------|-------------------------|--------------------------------|
 | What is copied           | Reference to the object | A new independent object        |
 | Changes affect original? | ✅ Yes (mutable fields) | ❌ No                          |
 | How                      | Return/assign the reference | `new ArrayList<>(original)` |
-```
+
 ---
 
 ## 9. Constructor Chaining
@@ -640,7 +640,7 @@ public class MediatorService {
 
 ---
 
-## 18. Preventing JVM Memory Leaks / OOM
+## 18. Preventing JVM Memory Leaks / OOM(Out Of Memory)
 
 | Strategy | How |
 |---|---|
