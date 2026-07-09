@@ -26,17 +26,13 @@
 - Cache invalidation on data updates
 
 ### ⚙️ Non-Functional
-| Property&ensp;&ensp;&ensp;&ensp;&ensp;   | Target |
 
-|--------------------|--------|
-
-| Latency &ensp;&ensp;&ensp;&ensp;&ensp;| < 10 ms |
-
-| Availability&ensp;&ensp;&ensp;| High (99.99%) |
-
-| Scalability&ensp;&ensp;&ensp;&ensp;     | Horizontal scaling |
-
-| Fault Tolerance&ensp; | No single point of failure |
+| Property          | Target                     |
+|-------------------|----------------------------|
+| Latency           | < 10 ms                    |
+| Availability      | High (99.99%)              |
+| Scalability       | Horizontal scaling         |
+| Fault Tolerance   | No single point of failure |
 
 ---
 
@@ -63,19 +59,19 @@
 - Cache nodes share the load — no single node holds all data
 - Database is the **source of truth** — only queried on cache miss
 
-##L1 Cache :
+## L1 Cache :
 
 In memory cache inside the application
 
 Extremely fast
 
-##L2 Cache :
+## L2 Cache :
 
 Distributed cache shared across multiple application instance.
 
 Faster then querying database
 
-##L3 Cache :
+## L3 Cache :
 Hardware cache inside the CPU.
 
 Stores frequently accessed memory data. 
