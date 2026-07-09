@@ -712,7 +712,7 @@ Client → Reverse Proxy → Application Server
 
 
 ---
-##Rate Limiter##
+## Rate Limiter ##
 
 ** Introduction**
 This chapter explores the design and implementation of a rate limiter—a system component used to control traffic rates sent by clients or services. Rate limiters are crucial for preventing abuse, reducing costs, and ensuring the stability of server resources. Examples of their use include limiting posts, account creations, and reward claims.
