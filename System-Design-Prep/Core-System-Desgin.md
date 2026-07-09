@@ -319,6 +319,235 @@ If your system is read-heavy with occasional writes, optimistic locking is the b
    <img src="./images/Locking-Mechanism.png" width="600" />
 </div>
 
+# Optimistic Locking vs Pessimistic Locking
+
+## What is Locking?
+
+Locking is a concurrency control mechanism used to prevent data
+inconsistency when multiple transactions access the same data
+simultaneously.
+
+------------------------------------------------------------------------
+
+# Optimistic Locking
+
+## Assumption
+
+**Conflicts are rare**, so don't lock the data.
+
+Multiple users can read the same record at the same time. Before
+updating, the application checks whether the record has been modified by
+someone else using a **version** column.
+
+### Example
+
+Initial database state:
+
+  ID   Balance   Version
+  ---- --------- ---------
+  1    1000      1
+
+### Step 1: Two users read the same record
+
+``` text
+User A reads:
+Balance = 1000
+Version = 1
+
+User B reads:
+Balance = 1000
+Version = 1
+```
+
+### Step 2: User A updates first
+
+User A deposits ₹500.
+
+Database becomes:
+
+  ID   Balance   Version
+  ---- --------- ---------
+  1    1500      2
+
+### Step 3: User B tries to update
+
+User B still has Version = 1.
+
+The generated SQL is similar to:
+
+``` sql
+UPDATE account
+SET balance = 800,
+    version = 2
+WHERE id = 1
+  AND version = 1;
+```
+
+Since the database version is already **2**, no row is updated and an
+**OptimisticLockException** is thrown.
+
+### Timeline
+
+``` text
+Time
+
+User A ---- Read(V1) -------- Update -------- Success
+
+User B ---- Read(V1) -------- Update -------- Failed
+```
+
+### Spring Boot Example
+
+``` java
+@Entity
+public class Account {
+
+    @Id
+    private Long id;
+
+    private double balance;
+
+    @Version
+    private int version;
+}
+```
+
+------------------------------------------------------------------------
+
+# Pessimistic Locking
+
+## Assumption
+
+**Conflicts are common**, so lock the data before updating.
+
+The first transaction locks the row. Other transactions must wait until
+the lock is released.
+
+### Example
+
+Initial database:
+
+  ID   Balance
+  ---- ---------
+  1    1000
+
+### Step 1: User A starts updating
+
+``` sql
+SELECT *
+FROM account
+WHERE id = 1
+FOR UPDATE;
+```
+
+The row is locked.
+
+### Step 2: User B tries to update
+
+User B executes the same query.
+
+The database responds:
+
+``` text
+WAIT...
+```
+
+User B waits until User A commits or rolls back.
+
+### Timeline
+
+``` text
+Time
+
+User A ---- Lock ---- Update ---- Commit ---- Unlock
+
+User B -------- Waiting ---------------------- Update
+```
+
+### Spring Boot Example
+
+``` java
+@Lock(LockModeType.PESSIMISTIC_WRITE)
+@Query("SELECT a FROM Account a WHERE a.id = :id")
+Account findByIdForUpdate(Long id);
+```
+
+------------------------------------------------------------------------
+
+# Real-World Examples
+
+## Optimistic Locking
+
+-   Google Docs collaborative editing
+-   Employee profile updates
+-   Product catalog management
+
+## Pessimistic Locking
+
+-   Banking transactions
+-   Movie ticket booking
+-   Flight seat reservation
+-   Inventory management
+
+------------------------------------------------------------------------
+
+# When to Use
+
+## Use Optimistic Locking
+
+-   Read-heavy applications
+-   Occasional updates
+-   High concurrency
+-   Better performance
+
+## Use Pessimistic Locking
+
+-   Write-heavy applications
+-   Frequent concurrent updates
+-   Data consistency is critical
+
+------------------------------------------------------------------------
+
+# Comparison Table
+
+  -------------------------------------------------------------------------------------
+  Feature       Optimistic Locking            Pessimistic Locking
+  ------------- ----------------------------- -----------------------------------------
+  Assumption    Conflicts are rare            Conflicts are common
+
+  Locks Data?   No                            Yes
+
+  Uses Version  Yes (`@Version`)              No
+  Column                                      
+
+  Concurrent    Allowed                       Allowed
+  Reads                                       
+
+  Concurrent    Conflict detected during      Other writers wait
+  Writes        update                        
+
+  Performance   Faster                        Slower due to locking
+
+  Best For      Read-heavy systems            Write-heavy systems
+
+  Spring        `@Version`                    `@Lock(LockModeType.PESSIMISTIC_WRITE)`
+  Support                                     
+  -------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+### Interview Answer
+
+**Optimistic Locking** assumes conflicts are rare and avoids locking
+records. It uses a version field (`@Version`) to detect whether another
+transaction has modified the data before committing. If the version has
+changed, Spring throws an `OptimisticLockException`.
+
+**Pessimistic Locking** assumes conflicts are likely, so it locks the
+database row before updating. Other transactions must wait until the
+lock is released. It is commonly used in banking, ticket booking, and
+inventory systems where conflicting writes must be prevented.
+
 ---
 ### Caching ###
 - Caching means storing frequently used data in a temporary fast storage so that next time we don’t need to fetch it again from the main database or service.
