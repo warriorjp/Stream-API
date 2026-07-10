@@ -14,6 +14,7 @@ A comprehensive reference covering all 15 must-know design patterns with explana
 5. [Builder](#5-builder-pattern)
 
 **Structural Patterns**
+
 6. [Adapter](#6-adapter-pattern)
 7. [Decorator](#7-decorator-pattern)
 8. [Facade](#8-facade-pattern)
@@ -21,6 +22,7 @@ A comprehensive reference covering all 15 must-know design patterns with explana
 10. [Composite](#10-composite-pattern)
 
 **Behavioral Patterns**
+
 11. [Observer](#11-observer-pattern)
 12. [Strategy](#12-strategy-pattern)
 13. [Command](#13-command-pattern)
