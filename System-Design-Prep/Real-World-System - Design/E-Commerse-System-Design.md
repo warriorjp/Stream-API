@@ -448,26 +448,26 @@ Product Images -> S3 (origin)
 
 | How to prevent overselling? | Two-phase reserve: soft reserve at order, hard deduct at payment; use DB row-level locking |
 
-| How to handle flash sales? | Redis DECR with Lua for atomic decrement; queue excess requests; async confirmation |
+| How to handle flash sales?  |  Redis DECR with Lua for atomic decrement; queue excess requests; async confirmation |
 
-| Cart storage choice? | Redis Hash per user; fast, TTL-based auto-expiry, no DB needed |
+| Cart storage choice?        | Redis Hash per user; fast, TTL-based auto-expiry, no DB needed |
 
-| How to keep ES in sync? | CDC via Debezium + Kafka; eventual consistency ~1-2s acceptable for catalog |
+| How to keep ES in sync?     |   CDC via Debezium + Kafka; eventual consistency ~1-2s acceptable for catalog |
 
-| Payment idempotency? | Client-generated UUID idempotency key; check Redis before processing |
+| Payment idempotency?        | Client-generated UUID idempotency key; check Redis before processing |
 
-| Order state management? | State machine with explicit transitions; only Kafka events trigger state changes |
+| Order state management?     | State machine with explicit transitions; only Kafka events trigger state changes |
 
 | How to scale product search? | Elasticsearch with BM25 + Redis cache for hot queries |
 
-| DB for orders vs products? | Orders: MySQL (ACID, strong consistency); Products: MongoDB (flexible schema) |
+| DB for orders vs products?   | Orders: MySQL (ACID, strong consistency); Products: MongoDB (flexible schema) |
 
 | How to handle payment failure? | Release inventory reserve, update order to FAILED, notify user, allow retry |
 
 | Monolith vs Microservices here? | Microservices: independent scaling of Search, Inventory, Payment; fault isolation |
 
-| How to recommend products? | Collaborative filtering on purchase history; pre-compute in batch, serve from Redis |
+| How to recommend products?      | Collaborative filtering on purchase history; pre-compute in batch, serve from Redis |
 
-| Handling returns and refunds? | Order state: RETURN_REQUESTED -> REFUNDED; Kafka event triggers payment reversal and inventory restore |
+| Handling returns and refunds?   | Order state: RETURN_REQUESTED -> REFUNDED; Kafka event triggers payment reversal and inventory restore |
 
 ```
