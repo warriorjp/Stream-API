@@ -70,12 +70,14 @@ public void testMethod(String str)   { ... }
 
 ## 2. Thread `start()` vs `run()`
 
-
+```
 | Feature                  | `start()`             | `run()`               |
 |--------------------------|-----------------------|-----------------------|
 | Creates a new thread?    | ✅ Yes                | ❌ No                 |
 | Execution context        | New thread            | Current (main) thread |
 | Use case                 | True parallel execution | Normal method call  |
+
+```
 
 ```java
 class MyThread extends Thread {
@@ -227,6 +229,7 @@ public class LambdaExample {
 
 Java provides four core functional interfaces in the `java.util.function` package:
 
+```
 
 | Interface     | Input | Output    | Use Case                          |
 |---------------|-------|-----------|-----------------------------------|
@@ -234,6 +237,8 @@ Java provides four core functional interfaces in the `java.util.function` packag
 | `Consumer<T>`  | T     | `void`    | Printing, saving, side effects    |
 | `Supplier<T>`  | None  | T         | Lazy initialization, value generation |
 | `Function<T, R>` | T   | R         | Data transformation               |
+```
+
 
 ```java
 import java.util.function.*;
@@ -266,12 +271,15 @@ public class FunctionalInterfaceExample {
 
 ### When parent method **declares** a checked exception:
 
+```
+
 | Child method can… | Allowed? |
 |---|---|
 | Declare the **same** exception | ✅ Yes |
 | Declare a **subclass** of the exception | ✅ Yes |
 | Declare **no** exception | ✅ Yes |
 | Declare a **broader/superclass** exception | ❌ No |
+```
 
 ```java
 class Parent {
@@ -303,11 +311,14 @@ class Child extends Parent {
 }
 ```
 
-| | Shallow Copy | Deep Copy |
-|--------------------------|-------------------------|--------------------------------|
-| What is copied           | Reference to the object | A new independent object        |
-| Changes affect original? | ✅ Yes (mutable fields) | ❌ No                          |
-| How                      | Return/assign the reference | `new ArrayList<>(original)` |
+```
+| Feature                  | Shallow Copy                                  | Deep Copy                                                        |
+|--------------------------|-----------------------------------------------|------------------------------------------------------------------|
+| What is copied           | Reference to the existing object              | A new independent object is created                              |
+| Changes affect original? | ✅ Yes (for shared mutable objects)           | ❌ No                                                            |
+| How                      | Assign or copy the reference                  | Create a new object and copy all nested objects                  |
+
+```
 
 ---
 
@@ -406,11 +417,13 @@ public class TryWithResourcesExample {
 
 ## 12. Deep Copy vs Shallow Copy
 
-| | Shallow Copy | Deep Copy |
-|---|---|---|
-| What is copied | Reference to the object | A new independent object |
-| Changes affect original? | ✅ Yes (mutable fields) | ❌ No |
-| How | Return/assign the reference | `new ArrayList<>(original)` |
+```
+| Feature                  | Shallow Copy                     | Deep Copy                     |
+|--------------------------|----------------------------------|-------------------------------|
+| What is copied           | Reference to the existing object | A new independent object      |
+| Changes affect original? | ✅ Yes (shared mutable objects)  | ❌ No                         |
+| How                      | Assign or copy the reference     | Copy all objects recursively  |
+```
 
 ```java
 import java.util.*;
@@ -643,13 +656,15 @@ public class MediatorService {
 
 ## 18. Preventing JVM Memory Leaks / OOM(Out Of Memory)
 
-| Strategy | How |
-|---|---|
-| Make objects GC-eligible | Set unused large objects to `null` |
-| Close resources | Use try-with-resources for I/O, DB, sockets |
-| Avoid static collections | Don't hold data in long-lived `static List` / `Map` unless necessary |
-| Tune heap size | Use `-Xms` and `-Xmx` JVM flags |
-| Profile | Use VisualVM, Eclipse MAT, JProfiler, YourKit |
+```
+| Strategy                 | How                                                                  |
+|--------------------------|----------------------------------------------------------------------|
+| Make objects GC-eligible | Set unused large objects to `null`                                   |
+| Close resources          | Use try-with-resources for I/O, databases, and sockets               |
+| Avoid static collections | Don't hold data in long-lived `static List` or `static Map`          |
+| Tune heap size           | Use `-Xms` and `-Xmx` JVM flags                                      |
+| Profile memory           | Use VisualVM, Eclipse MAT, JProfiler, or YourKit                     |
+```
 
 ```bash
 # Increase JVM heap size
@@ -805,6 +820,7 @@ System.out.println(sb1.equals(sb2)); // false
 
 ## 24.`volatile` vs `synchronized`
 
+```
 
 | Feature                 | `volatile`                     | `synchronized`                       |
 |-------------------------|--------------------------------|--------------------------------------|
