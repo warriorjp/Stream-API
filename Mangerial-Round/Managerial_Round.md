@@ -98,9 +98,8 @@ solving one issue at a time.
 I encourage collaboration, appreciate good work, support teammates, and
 promote open communication.
 
-## 17. Questions to ask the interviewer
+## 17. Salary Expectations
 
--   What are the team's biggest technical challenges?
--   What does success look like in the first six months?
--   How do you support technical learning and career growth?
--   What are the team's long-term goals?
+Based on my experience and skills and the current market, I believe the salary range for this role 
+is around ₹32–35 LPA. However, I’m open to discussing it further based on the role, responsibilities,
+and the overall compensation package.
