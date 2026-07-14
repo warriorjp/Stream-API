@@ -712,12 +712,28 @@ Client → Reverse Proxy → Application Server
 
 
 ---
+
 ## Rate Limiter ##
 
-** Introduction**
-This chapter explores the design and implementation of a rate limiter—a system component used to control traffic rates sent by clients or services. Rate limiters are crucial for preventing abuse, reducing costs, and ensuring the stability of server resources. Examples of their use include limiting posts, account creations, and reward claims.
+***Introduction***
+
+This chapter explains the design and implementation of a rate limiter, a component that controls how many requests a user, IP address, or service can make within a specific time period. Rate limiting helps prevent abuse, reduce costs, and protect server resources. Common use cases include limiting the number of API requests per minute, restricting OTP requests per day, limiting password retry attempts, and controlling reward or coupon claims.
+
+```
+| Application | API            | Example Limit                  |
+|-------------|----------------|--------------------------------|
+| Banking     | Login          | 5 attempts in 15 minutes       |
+| Banking     | Fund Transfer  | 10 transfers per minute        |
+| Amazon      | Add to Cart    | 100 requests per minute        |
+| Swiggy      | Place Order    | 5 requests per minute          |
+| WhatsApp    | Send OTP       | 3 OTP requests per hour        |
+| GitHub API  | API Requests   | Depends on authentication level|
+| AI APIs     | Model Inference| Requests or tokens per minute  |
+```
+**Rate Limiting Apply On AppGateway Level**
 
 **Benefits of Rate Limiting**
+
 - **Preventing DoS Attacks:** Blocking excess calls to avoid resource starvation.
 - **Cost Reduction:** Limiting unnecessary requests to reduce server expenses.
 - **Preventing Overloads:** Filtering out excessive requests to stabilize server performance.
@@ -726,7 +742,7 @@ This chapter explores the design and implementation of a rate limiter—a system
 **Key Features**
 - Server-side API rate limiter.
 - Support for multiple throttle rules.
-- Handle large-scale systems in distributed environments.
+- Handles large-scale systems in distributed environments.
 - Option for a standalone service or application-level code.
 - Inform users when throttled.
 
@@ -740,6 +756,7 @@ This chapter explores the design and implementation of a rate limiter—a system
 
 **Step 2: High-Level Design**
 **Placement Options**
+
 <div style="margin-left:2rem">
     <img src="./images/rate_limiter_architecture.png"  alt="Rate Limiting Middleware Architecture" width="550">
 </div>
