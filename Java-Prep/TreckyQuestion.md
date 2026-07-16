@@ -929,9 +929,10 @@ Because the exception never leaves the transactional method. Spring sees the met
 ## 26. Why are passwords hashed instead of encrypted?##
 
 **Hashing**
-
-Think of hashing like making a fingerprint of data.
-
+- Same input always produces the same hash.
+- Even a tiny change in input creates a completely different hash.
+- You cannot get the original password back from the hash.
+- 
 ```
 Password: "Java123"
 
@@ -939,10 +940,38 @@ Hash Function
       ↓
 A7D92BC1F4...
 ```
+**Make Hash More Secure By Adding Salt**
 
-- Same input always produces the same hash.
-- Even a tiny change in input creates a completely different hash.
-- You cannot get the original password back from the hash.
+Salt is a random value added to each password before hashing. It ensures that even if two users choose the same password, their stored hashes are different. This prevents attackers from identifying shared passwords and protects against rainbow table attacks. In Spring Security, BCryptPasswordEncoder automatically generates, stores, and uses the salt as part of the hash, so developers don't need to manage it manually.
+
+    Suppose the user enters:
+    
+    Password = Welcome@123
+    
+    BCrypt generates a random salt:
+    
+    Salt = XyZ123AbCdEf...
+    
+    It hashes:
+    
+    Welcome@123 + XyZ123AbCdEf...
+    
+    The stored value looks something like:
+    
+    $2a$10$XyZ123AbCdEfGhIjKlMnOuvQ9f7bR3mX6nW...
+
+**How to compare hash with entered password**
+
+- Reads the stored hash from the database.
+- Extracts the salt embedded inside that hash.
+- Combines the entered password with the extracted salt.
+- Hashes it again using the same algorithm and cost factor.
+- Compares the newly generated hash with the stored hash.
+
+**Algorithm used**
+- Spring Security typically uses the BCrypt algorithm for password hashing.
+- Argon2  ✅ Best choice (modern)
+    
 
 **Encryption**
 
