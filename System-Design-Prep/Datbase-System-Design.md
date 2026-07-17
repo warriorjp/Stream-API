@@ -126,91 +126,92 @@ This makes scaling efficient.
 
 ✅ Efficient load distribution
 
+---
 ### ACID Property : 
 
 ✅ Atomicity: A transaction either completes entirely or not at all.
 
-   Example:
+      Example:
+      
+      Step 1:
+      
+      Balance: 5000
+      Debit ₹1000 from A
+      ✅ Success
+      
+      Step 2:
+      Credit ₹1000 to B
+      ❌ Failed (server crash)
    
-   Step 1:
-   
-   Balance: 5000
-   Debit ₹1000 from A
-   ✅ Success
-   
-   Step 2:
-   Credit ₹1000 to B
-   ❌ Failed (server crash)
-
-   Without atomicity:
-   A = ₹4000
-   B = ₹3000
-   
-   ₹1000 has disappeared.
+      Without atomicity:
+      A = ₹4000
+      B = ₹3000
+      
+      ₹1000 has disappeared.
    
 ✅ Consistency: A transaction must move the database from one valid state to another, preserving all defined rules and constraints.
 
-   Example :
-   Current state:
-   
-   Available Seats = 1
-   
-   Two users try to book the last seat.
-   
-   Without consistency:
-   
-   User A books → Success
-   
-   User B books → Success
-   
-   Available Seats = -1 ❌
-   
-   This is an invalid state.
-   
-   With consistency:
-   
-   User A books → Success
-   
-   User B books → Rejected
-   
-   Available Seats = 0 ✅
+      Example :
+      Current state:
+      
+      Available Seats = 1
+      
+      Two users try to book the last seat.
+      
+      Without consistency:
+      
+      User A books → Success
+      
+      User B books → Success
+      
+      Available Seats = -1 ❌
+      
+      This is an invalid state.
+      
+      With consistency:
+      
+      User A books → Success
+      
+      User B books → Rejected
+      
+      Available Seats = 0 ✅
  
 
 ✅ Isolation: Multiple transactions running at the same time should not interfere with one another.
 
-   Example:
+      Example:
+      
+      Balance:
+      
+      Account A = ₹5000
+      
+      Two ATM withdrawals happen simultaneously.
+      
+      Transaction 1
+      
+      Withdraw ₹1000
+      
+      Transaction 2
+      
+      Withdraw ₹2000
    
-   Balance:
-   
-   Account A = ₹5000
-   
-   Two ATM withdrawals happen simultaneously.
-   
-   Transaction 1
-   
-   Withdraw ₹1000
-   
-   Transaction 2
-   
-   Withdraw ₹2000
-
 
 ✅ Once a transaction is committed, it remains committed—even if the server crashes immediately afterward.
 
-   Example:
-   
-   Transfer completed
-   
-   COMMIT
-   
-   Immediately after:
-   
-   Power failure
-   
-   When the database restarts:
-   
-   Account A = ₹4000
-   Account B = ₹4000
+      Example:
+      
+      Transfer completed
+      
+      COMMIT
+      
+      Immediately after:
+      
+      Power failure
+      
+      When the database restarts:
+      
+      Account A = ₹4000
+      Account B = ₹4000
 
 <div style="margin-left:3rem">
    <img src="./images/ACID.gif" width="400" />
