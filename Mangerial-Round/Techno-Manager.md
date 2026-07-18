@@ -1,0 +1,116 @@
+## 1. An API suddenly becomes slow after a release, but CPU and memory look normal. Where do you start?
+
+Since CPU and memory are normal, I wouldn't assume infrastructure is the issue. I'd first compare the release changes,
+identify whether the slowdown affects all APIs or a specific endpoint, then use metrics and APM to break down response time 
+into database, external service, and business logic. I'd also review slow SQL queries, thread dumps, and logs to isolate the
+bottleneck before applying a fix.
+
+---
+## 2. A Spring Boot service returns 500 errors randomly without clear logs. What will you check?
+
+Random 500 errors usually indicate an intermittent issue rather than a permanent bug. My approach is to isolate where the request is
+failing by collecting as much information as possible.
+
+**1. Reproduce the issue**
+- Check whether it happens for a specific API, user, payload, or randomly.
+- Try reproducing it in lower environments with the same request.
+- Verify if it started after a recent deployment or configuration change.
+
+Reason: If I can reproduce it, debugging becomes much easier.
+
+**2. Check Application Logs**
+  
+**3. Check External Dependencies**
+
+If the API calls:
+
+- Database
+- Kafka
+- Redis
+- Another microservice
+- Third-party API
+
+Check whether they are occasionally failing.
+
+**Examples:**
+- Database connection timeout
+- Feign client timeout
+- HTTP 503 from another service
+- Kafka broker unavailable
+
+**4. Check Thread Dumps**
+   Look for:
+  -  Blocked threads
+   - Deadlocks
+   - Thread starvation
+   - Infinite loops
+
+**5. Check Recent Deployment**
+- What changed?
+- New feature?
+- Dependency upgrade?
+- Configuration change?
+- Environment variable change?
+
+---
+ ### 3.Response time keeps increasing over time, even though traffic is stable. What could be happening?
+
+I would analyze the database for slow queries, missing indexes, lock contention, or long-running transactions
+that may have degraded performance over time. I would also verify whether external dependencies such as other microservices,
+Kafka, Redis, or third-party APIs are responding slowly, since their latency directly impacts my application's response time.
+
+## 4. A database query works fine locally but is slow in production. How will you debug it?
+
+my approach is to compare execution plans, verify indexes, analyze production data volume, check locks and database health, review ORM-generated SQL,
+and use monitoring tools to identify the actual bottleneck before making any changes.
+
+## 5. Multiple threads are causing inconsistent data updates. How will you fix it?
+
+If multiple threads are causing inconsistent data updates, I would first identify whether it's a race condition, 
+where multiple threads are reading and updating the same data simultaneously without proper synchronization.
+
+If the issue is within the application, I would use thread-safe approaches such as synchronized blocks, ReentrantLock, 
+or concurrent collections like ConcurrentHashMap to ensure that only one thread modifies the shared resource at a time.
+However, I would be careful not to overuse synchronization because it can reduce performance by blocking other threads.
+
+If the data is stored in a database, I would use proper transaction management and choose an appropriate locking strategy.
+For most business applications, I prefer optimistic locking using a version field (@Version in JPA), where the update fails 
+if another transaction has already modified the record. If conflicts are frequent and data consistency is critical, 
+I would use pessimistic locking to prevent other transactions from updating the record until the current transaction completes.
+
+In distributed systems where multiple application instances are running, application-level synchronization is not sufficient 
+because each instance has its own memory. In that case, I would use a distributed locking mechanism, such as Redis or ZooKeeper,
+or rely on database locking to coordinate updates across instances.
+
+## 6.A memory issue crashes the application after a few hours. How will you identify the root cause?
+
+If the application crashes after running for a few hours, my first suspicion would be a memory leak or resource exhaustion. 
+Instead of immediately changing the code, I would collect evidence to identify the root cause.
+
+First, I would review the application logs to check whether the crash is caused by an OutOfMemoryError, excessive garbage
+collection, or another JVM-related issue. I would also monitor JVM metrics such as heap usage, non-heap memory, garbage collection 
+frequency, and GC pause times using tools like Grafana, Prometheus, or JConsole.
+
+Next, I would check for common causes of memory leaks, such as objects stored indefinitely in static collections, unbounded caches,
+memory-heavy sessions, unreleased database connections, file streams, HTTP client connections, or large collections that continue growing over time.
+
+I would also monitor thread count and capture thread dumps to ensure there isn't a thread leak, where threads continue increasing because they 
+are never terminated. Similarly, I would verify that database connections and thread pools are being properly released and are not exhausted.
+
+
+## 7.A service call blocks threads and leads to timeouts under load. What's your approach?
+
+If a service call blocks threads and causes timeouts under load, my first goal is to identify why the threads are 
+waiting and where the bottleneck is. I would start by checking application logs, response time metrics, thread pool 
+utilization, and thread dumps to determine whether threads are blocked waiting for an external service, database, or some synchronized code.
+
+Next, I would measure the latency of the downstream service. If that service is responding slowly, my application 
+threads will remain blocked until a response is received, eventually exhausting the thread pool and causing new requests to time out.
+
+I would then verify that proper connection timeouts and read timeouts are configured for the HTTP client, 
+such as RestTemplate, WebClient, or Feign Client. Without timeouts, threads may wait indefinitely for a response.
+
+I would also implement a Circuit Breaker (using Resilience4j) so that if the downstream service is unhealthy, 
+requests fail fast instead of continuously waiting. Along with that, I would configure Retry with exponential backoff
+only for transient failures and avoid excessive retries that could make the situation worse.
+
