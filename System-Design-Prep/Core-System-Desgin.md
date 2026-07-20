@@ -291,7 +291,7 @@ If failure occurs:
 
 Orchestrator decides rollback steps.
 
-  - ✅ Centralized control
+  - ✅ Centralised control
 
   - ✅ Easier monitoring & debugging
 
@@ -847,7 +847,7 @@ could cause more requests than allowed quota to go through.
   3. Request is processed or rejected based on limits.
   
 ---
-## KAFKA##
+## KAFKA ##
 
 <div style="margin-left:2rem">
   <img src="./images/KAFKA.jpeg"  alt="Leaking Bucket Algorithm" width="600">
@@ -857,10 +857,32 @@ could cause more requests than allowed quota to go through.
   <img src="./images/kafka-usage.gif"  alt="Leaking Bucket Algorithm" width="600">
 </div>
 
----
-**Change Data Capture (CDC) **
+**Kafka StreamAPI :**
 
-is a mechanism that captures database changes (INSERT, UPDATE, DELETE) by reading the transaction log and publishes them as events to downstream systems such as Kafka. This enables near real-time synchronization of services like Elasticsearch, Redis, analytics platforms, and other microservices without polling the database, resulting in lower latency and reduced database load.
+A Kafka Streams application is simply a Java application that uses the Kafka Streams API to read data from one or more Kafka topics, process it, and write the results to another Kafka topic.
+
+Normal Kafka Consumer
+	Kafka Topic
+	      |
+	Consumer
+	      |
+	Java code
+	      |
+	Database/API
+	
+Kafka Streams Application
+	Kafka Topic
+	      |
+	Kafka Streams App
+	      |
+	Filter / Map / Aggregate / Join
+	      |
+	Another Kafka Topic	
+
+---
+**Change Data Capture (CDC)**
+
+It is a mechanism that captures database changes (INSERT, UPDATE, DELETE) by reading the transaction log and publishes them as events to downstream systems such as Kafka. This enables near-real-time synchronisation of services like Elasticsearch, Redis, analytics platforms, and other microservices without polling the database, resulting in lower latency and reduced database load.
 
 ---
 ## What is Elasticsearch?
