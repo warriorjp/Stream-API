@@ -12,7 +12,7 @@
 </div>
 
 ---
-###SOLID###
+### SOLID ###
 
 <div style="margin-left:3rem">
    <img src="./images/SOLID.jpeg" width="500" />
@@ -57,6 +57,7 @@ High-level modules should not depend on low-level modules. Both should depend on
 
 That means:
 → Depend on Interface, not Implementation
+
 ---
 
 ## Scale from Zero to Millions of Users
@@ -249,16 +250,42 @@ Example: WebSocket connections, game sessions
 
 **1️⃣ Choreography Saga**
 
-Services communicate through events directly.
-
+In Choreography, there is no Saga Orchestrator. Each microservice reacts to events and decides what to do next. Services communicate directly through events, usually using Kafka or RabbitMQ.
 
 **Example:**
 
- - Order Service → publishes event
+| **Success Flow (Happy Path)**         | **Failure Flow (Compensation / Rollback)** |
+| ------------------------------------- | ------------------------------------------ |
+| Client                                | Client                                     |
+| ↓                                     | ↓                                          |
+| **Order Service**                     | **Order Service**                          |
+| ↓                                     | ↓                                          |
+| **OrderCreatedEvent**                 | **OrderCreatedEvent**                      |
+| ↓                                     | ↓                                          |
+| **Kafka**                             | **Inventory Service**                      |
+| ↓                                     | ↓                                          |
+| **Inventory Service**                 | **InventoryReservedEvent**                 |
+| ↓                                     | ↓                                          |
+| **InventoryReservedEvent**            | **Payment Service**                        |
+| ↓                                     | ↓                                          |
+| **Kafka**                             | **PaymentFailedEvent**                     |
+| ↓                                     | ↓                                          |
+| **Payment Service**                   | **Inventory Service**                      |
+| ↓                                     | ↓                                          |
+| **PaymentSuccessEvent**               | **InventoryReleasedEvent**                 |
+| ↓                                     | ↓                                          |
+| **Kafka**                             | **Order Service** *(Order Cancelled)*      |
+| ↓                                     |                                            |
+| **Shipping Service**                  |                                            |
+| ↓                                     |                                            |
+| **ShipmentCreatedEvent**              |                                            |
+| ↓                                     |                                            |
+| **Kafka**                             |                                            |
+| ↓                                     |                                            |
+| **Order Service** *(Order Completed)* |                                            |
 
- - Payment Service → listens & processes
-
- - Restaurant Service → listens & processes
+ 
+		
 
 Each service reacts independently.
 
@@ -279,17 +306,47 @@ Best for:
 
 **Example:**
 
-Saga Orchestrator
-
- - Trigger Payment Service
-
- - Trigger Restaurant Service
-
- - Trigger Delivery Service
+| **Success Flow (Orchestration)**  | **Failure Flow (Orchestration)**  |
+| --------------------------------- | --------------------------------- |
+| Client                            | Client                            |
+| ↓                                 | ↓                                 |
+| Order Service                     | Order Service                     |
+| ↓                                 | ↓                                 |
+| OrderCreatedEvent                 | OrderCreatedEvent                 |
+| ↓                                 | ↓                                 |
+| **Saga Orchestrator**             | **Saga Orchestrator**             |
+| ↓                                 | ↓                                 |
+| ReserveInventoryCommand           | ReserveInventoryCommand           |
+| ↓                                 | ↓                                 |
+| Inventory Service                 | Inventory Service                 |
+| ↓                                 | ↓                                 |
+| InventoryReservedEvent            | InventoryReservedEvent            |
+| ↓                                 | ↓                                 |
+| **Saga Orchestrator**             | **Saga Orchestrator**             |
+| ↓                                 | ↓                                 |
+| ProcessPaymentCommand             | ProcessPaymentCommand             |
+| ↓                                 | ↓                                 |
+| Payment Service                   | Payment Service                   |
+| ↓                                 | ↓                                 |
+| PaymentSuccessEvent               | PaymentFailedEvent                |
+| ↓                                 | ↓                                 |
+| **Saga Orchestrator**             | **Saga Orchestrator**             |
+| ↓                                 | ↓                                 |
+| CreateShipmentCommand             | ReleaseInventoryCommand           |
+| ↓                                 | ↓                                 |
+| Shipping Service                  | Inventory Service                 |
+| ↓                                 | ↓                                 |
+| ShipmentCreatedEvent              | InventoryReleasedEvent            |
+| ↓                                 | ↓                                 |
+| **Saga Orchestrator**             | **Saga Orchestrator**             |
+| ↓                                 | ↓                                 |
+| CompleteOrderCommand              | FailOrderCommand                  |
+| ↓                                 | ↓                                 |
+| Order Service *(Order Completed)* | Order Service *(Order Cancelled)* |
 
 If failure occurs:
 
-Orchestrator decides rollback steps.
+The orchestrator decides rollback steps.
 
   - ✅ Centralised control
 
@@ -319,19 +376,10 @@ If your system is read-heavy with occasional writes, optimistic locking is the b
    <img src="./images/Locking-Mechanism.png" width="600" />
 </div>
 
-# Optimistic Locking vs Pessimistic Locking
-
-## What is Locking?
-
-Locking is a concurrency control mechanism used to prevent data
-inconsistency when multiple transactions access the same data
-simultaneously.
-
-------------------------------------------------------------------------
 
 # Optimistic Locking
 
-## Assumption
+**Assumption**
 
 **Conflicts are rare**, so don't lock the data.
 
@@ -339,7 +387,7 @@ Multiple users can read the same record at the same time. Before
 updating, the application checks whether the record has been modified by
 someone else using a **version** column.
 
-### Example
+**Example**
 
 Initial database state:
 
@@ -347,7 +395,7 @@ Initial database state:
   ---- --------- ---------
   1    1000      1
 
-### Step 1: Two users read the same record
+**Step 1: Two users read the same record**
 
 ``` text
 User A reads:
@@ -359,7 +407,7 @@ Balance = 1000
 Version = 1
 ```
 
-### Step 2: User A updates first
+**Step 2: User A updates first**
 
 User A deposits ₹500.
 
@@ -369,7 +417,7 @@ Database becomes:
   ---- --------- ---------
   1    1500      2
 
-### Step 3: User B tries to update
+**Step 3: User B tries to update**
 
 User B still has Version = 1.
 
@@ -386,7 +434,7 @@ WHERE id = 1
 Since the database version is already **2**, no row is updated and an
 **OptimisticLockException** is thrown.
 
-### Timeline
+**Timeline**
 
 ``` text
 Time
@@ -396,7 +444,7 @@ User A ---- Read(V1) -------- Update -------- Success
 User B ---- Read(V1) -------- Update -------- Failed
 ```
 
-### Spring Boot Example
+**Spring Boot Example**
 
 ``` java
 @Entity
@@ -416,14 +464,14 @@ public class Account {
 
 # Pessimistic Locking
 
-## Assumption
+**Assumption**
 
 **Conflicts are common**, so lock the data before updating.
 
 The first transaction locks the row. Other transactions must wait until
 the lock is released.
 
-### Example
+**Example**
 
 Initial database:
 
@@ -431,7 +479,7 @@ Initial database:
   ---- ---------
   1    1000
 
-### Step 1: User A starts updating
+**Step 1: User A starts updating**
 
 ``` sql
 SELECT *
@@ -442,7 +490,7 @@ FOR UPDATE;
 
 The row is locked.
 
-### Step 2: User B tries to update
+**Step 2: User B tries to update**
 
 User B executes the same query.
 
@@ -454,7 +502,7 @@ WAIT...
 
 User B waits until User A commits or rolls back.
 
-### Timeline
+**Timeline**
 
 ``` text
 Time
@@ -464,7 +512,7 @@ User A ---- Lock ---- Update ---- Commit ---- Unlock
 User B -------- Waiting ---------------------- Update
 ```
 
-### Spring Boot Example
+**Spring Boot Example**
 
 ``` java
 @Lock(LockModeType.PESSIMISTIC_WRITE)
@@ -474,15 +522,15 @@ Account findByIdForUpdate(Long id);
 
 ------------------------------------------------------------------------
 
-# Real-World Examples
+**Real-World Examples**
 
-## Optimistic Locking
+**Optimistic Locking**
 
 -   Google Docs collaborative editing
 -   Employee profile updates
 -   Product catalog management
 
-## Pessimistic Locking
+**Pessimistic Locking**
 
 -   Banking transactions
 -   Movie ticket booking
@@ -491,16 +539,16 @@ Account findByIdForUpdate(Long id);
 
 ------------------------------------------------------------------------
 
-# When to Use
+**When to Use**
 
-## Use Optimistic Locking
+**Use Optimistic Locking**
 
 -   Read-heavy applications
 -   Occasional updates
 -   High concurrency
 -   Better performance
 
-## Use Pessimistic Locking
+**Use Pessimistic Locking**
 
 -   Write-heavy applications
 -   Frequent concurrent updates
@@ -508,7 +556,7 @@ Account findByIdForUpdate(Long id);
 
 ------------------------------------------------------------------------
 
-# Comparison Table
+**Comparison Table**
 
   -------------------------------------------------------------------------------------
   Feature       Optimistic Locking            Pessimistic Locking
@@ -536,7 +584,7 @@ Account findByIdForUpdate(Long id);
 
 ------------------------------------------------------------------------
 
-### Interview Answer
+**Interview Answer**
 
 **Optimistic Locking** assumes conflicts are rare and avoids locking
 records. It uses a version field (`@Version`) to detect whether another
