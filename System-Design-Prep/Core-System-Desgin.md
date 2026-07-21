@@ -639,9 +639,9 @@ Frontend side
 
 Example:
 
-- CSS
-- JS
-- Images
+	- CSS
+	- JS
+	- Images
 
  **2. CDN Cache**
 
@@ -679,6 +679,20 @@ Example:
    <img src="./images/Cache1.jpeg" width="800" />
    
 </div>
+
+**DataType Support By Radis**
+
+| Data Type | Description | Example |
+|-----------|-------------|---------|
+| **String** | Stores text, numbers, JSON, serialized objects, or binary data. | `"name" -> "Jay"` |
+| **Hash** | Stores field-value pairs, similar to a Java `Map<String, Object>`. Best for representing objects. | `user:101 -> {name: "Jay", age: "27"}` |
+| **List** | An ordered collection of elements that allows duplicates. Supports insertion/removal from both ends. | Notifications, message queues |
+| **Set** | An unordered collection of unique elements. Duplicate values are automatically ignored. | User roles, tags |
+| **Sorted Set (ZSet)** | A set where each member has an associated score, allowing automatic sorting by score. | Leaderboards, rankings |
+| **Stream** | An append-only log for storing and processing event data in order. | Event processing, messaging systems |
+| **Bitmap** | Stores bits (0 or 1) efficiently for tracking boolean states at scale. | User activity tracking, feature flags |
+| **HyperLogLog** | Probabilistic data structure used to estimate the count of unique elements with very low memory usage. | Counting unique website visitors |
+| **Geospatial** | Stores geographic coordinates (latitude and longitude) and supports location-based queries. | Nearby stores, ride-sharing, delivery services |
 
 ---
 
