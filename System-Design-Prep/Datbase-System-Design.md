@@ -1,18 +1,64 @@
 
 ### Database Choices
 
-1. **Relational Databases (SQL):** Structured data stored in tables. Examples: MySQL, PostgreSQL.
-2. **Non-Relational Databases (NoSQL):** Suitable for unstructured data or low-latency requirements. Categories include:
+ **1.Relational Databases (SQL):**
+  
+    - When we need to stored data in structured way.
+   
+    Examples: MySQL, PostgreSQL.
+   
+ **2. Non-Relational Databases (NoSQL):** 
+ 
+ Suitable for unstructured data or low-latency requirements.
+
+  Examples : MongoDB, Cansadra , DynamoDB
+
+   Categories include:
    - Key-Value Stores
    - Graph Databases
    - Column Stores
    - Document Stores
 
-- Non-relational databases might be the right choice if:
+   - Non-relational databases might be the right choice if:
    - application requires super-low latency.
    - data is unstructured, or  there is no relational data.
    - only need to serialize and deserialize data (JSON, XML, YAML, etc.).
    - need to store a massive amount of data.
+
+ **Cansadra** : Apache Cassandra is an open-source, distributed, wide-column NoSQL database designed for:
+  ```
+                Client
+                  │
+      ┌───────────┼───────────┐
+      │           │           │
+      ▼           ▼           ▼
+   Node 1      Node 2      Node 3
+      │           │           │
+      └───────────┼───────────┘
+                  │
+              Node 4
+  ```
+Unlike MySQL:
+
+- There is no master.
+- Every node is equal (peer-to-peer architecture).
+- Any node can accept reads and writes.
+
+- Cassandra uses consistent hashing.
+
+  **DynamoDB :** Amazon DynamoDB is a fully managed NoSQL database service provided by AWS.
+
+  You don't manage:
+
+      Servers
+      Clusters
+      Storage
+      Backups
+      Failover
+
+AWS handles everything.
+You only create tables and use them.
+  
 
 ---
 
