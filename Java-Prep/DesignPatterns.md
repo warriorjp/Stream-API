@@ -83,6 +83,12 @@ public class Main {
 
 > ⚠️ The basic `if (instance == null)` without `synchronized` is **not thread-safe**. Always use Double-Checked Locking with `volatile` in multithreaded environments.
 
+If an interviewer asks "Why are there two if conditions?", don't answer in one sentence.
+
+Explain it like this:
+
+"The first if(instance == null) is a performance optimization. Once the Singleton has been initialized, most calls return immediately without acquiring the synchronization lock. However, multiple threads can pass this first check simultaneously before any thread acquires the lock. That's why we need the second if(instance == null) inside the synchronized block. While one thread was waiting for the lock, another thread might already have created the Singleton. The second check verifies the latest state after acquiring the lock and prevents duplicate object creation. This combination is called Double-Checked Locking and, together with volatile, provides a thread-safe and efficient lazy initialization implementation."
+
 ---
 
 ## 2. Factory Method Pattern
