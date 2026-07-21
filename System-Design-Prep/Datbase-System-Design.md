@@ -109,10 +109,50 @@ Consistent hashing minimizes data redistribution when servers are added or remov
 
 Only a small portion of data moves when:
 
-Server added
-Server removed
+- Server added
+- Server removed
 
 This makes scaling efficient.
+
+**It is used in:**
+   
+      Redis Cluster
+      Cassandra
+      DynamoDB
+      Apache Kafka (partitioning concept is similar)
+      Memcached
+      Distributed caches
+      CDN systems
+      Load balancers
+
+**Place Servers on the Ring**
+
+**Server**
+```
+hash(Server A)=20
+
+hash(Server B)=45
+
+hash(Server C)=70
+
+hash(Server D)=90
+```
+**Ring**
+
+```
+
+                0
+                 |
+                 |
+            D(90)
+          /      \
+         /        \
+A(20)             C(70)
+      \          /
+       \        /
+         B(45)
+
+```
 
 **Advantages**
 
