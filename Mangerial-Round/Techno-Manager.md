@@ -114,3 +114,40 @@ I would also implement a Circuit Breaker (using Resilience4j) so that if the dow
 requests fail fast instead of continuously waiting. Along with that, I would configure Retry with exponential backoff
 only for transient failures and avoid excessive retries that could make the situation worse.
 
+---
+## 8.Our teammate want NoSQL for scalability for a service that need a strong consistency and join. How do you make the call?
+
+Scalability alone isn't enough to justify NoSQL. Since this service requires strong consistency and joins, I'd choose a relational database because it provides ACID guarantees and efficient joins. If scalability becomes an issue, I'd scale the SQL database through indexing, caching, read replicas, or sharding. If different parts of the system have different requirements, I'd use SQL for transactional data and NoSQL for high-scale, non-relational workloads.
+
+I would first understand the service requirements rather than choosing NoSQL just for scalability. If the service requires strong consistency, ACID transactions, and frequent joins across multiple entities, I would lean toward a relational database like PostgreSQL or MySQL.
+
+NoSQL databases are excellent for horizontal scalability, flexible schemas, and high write throughput, but most do not support complex joins efficiently, and some prioritize availability or partition tolerance over strong consistency.
+
+    Read replicas for read-heavy workloads
+    Proper indexing
+    Query optimization
+    Caching (e.g., Redis)
+    Partitioning or sharding if needed
+
+## 9.If scalability is still a concern, I would first explore scaling the SQL database using##
+
+I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or SOAP client adapters) would only translate requests and responses. Both would invoke the same business service containing the business logic. This avoids duplication, keeps the code maintainable, and allows us to replace the SOAP integration in the future with minimal changes. 
+
+                 Client
+                   |
+          REST Controller
+                   |
+          -----------------
+          |               |
+     SOAP Adapter    REST Adapter
+          \               /
+           \             /
+        Business Service
+               |
+      Repository/Database
+
+  - REST Controller handles HTTP requests/responses, JSON, validation, and authentication.
+- SOAP Adapter/Endpoint handles SOAP XML, WSDL, and converts SOAP requests into internal DTOs.
+- Both call the same business service, where all the business logic resides.
+- The business service interacts with the database or downstream services.    
+
