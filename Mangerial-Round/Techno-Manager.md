@@ -180,3 +180,18 @@ In addition, we optimized the service by:
 **Result:** After deploying the service in the Asia region and connecting it to the Singapore read replica, API response times for the China factories were significantly reduced, providing a much better user experience while maintaining data consistency.
 
 
+---
+## 11. Describe a production issue where you were involved. How did you handle it?
+
+**Situation:** During one of our production releases for the merger project, we deployed a new microservice that introduced new business logic along with Liquibase database changes to create the required indexes. However, during deployment, the DevOps team accidentally deployed the application before executing the Liquibase migration scripts.
+
+**Problem:** Because the required database indexes were missing, the new endpoint executed expensive queries that resulted in full collection scans. As traffic increased, the queries became very slow, causing request timeouts. The API Gateway eventually returned **502 Bad Gateway** responses because the backend service was not responding within the configured timeout.
+
+**Action:** As soon as we noticed the increase in 502 errors, I joined the production incident bridge and started investigating. I reviewed the application logs, API Gateway logs, and database metrics to identify the root cause. We confirmed that the application deployment had completed successfully, but the Liquibase migration had not been executed. I coordinated with the DevOps team to immediately run the pending Liquibase scripts, which created the required indexes. After the indexes were created, we validated the query execution plans, monitored API response times, and confirmed that the endpoint was performing as expected. We also closely monitored the service for some time after the fix to ensure there were no recurring issues.
+
+**Prevention:** After the incident, we improved our deployment process by making database migrations a mandatory prerequisite before application deployment. We also updated the deployment checklist and pipeline validation to ensure Liquibase migrations completed successfully before the new application version could go live. This reduced the risk of similar deployment issues in future releases.
+
+**Result:** Once the indexes were created, query performance improved significantly, the 502 errors stopped, and the service returned to normal operation. The incident also led to a more robust deployment process and better coordination between the development and DevOps teams.
+
+
+
