@@ -104,7 +104,7 @@ Based on my experience and skills and the current market, I believe the salary r
 is around ₹32–35 LPA. However, I’m open to discussing it further based on the role, responsibilities,
 and the overall compensation package.
 
-## 18. 1. Tell me about a challenging situation you faced recently.
+## 18. Your solution was opposed by your team. How did you handle it?
 
 I don't assume my idea is the best one. If my proposal is opposed by the team or my manager, I first try to understand their concerns. Sometimes they have constraints or context that I'm not aware of, such as business priorities, timelines, operational risks, or technical limitations.
 
