@@ -6,12 +6,19 @@
     - When we need to stored data in structured way.
    
     Examples: MySQL, PostgreSQL.
+
+  **PostgreSQL** : When to used 
+   - Strong ACID Transactions (Banking, Payment System,E- commerse )
+   - Complex Relationships (Joins)
+   - Fixed Schema
+   - Full-text Search
+   - JSON Support
    
  **2. Non-Relational Databases (NoSQL):** 
  
  Suitable for unstructured data or low-latency requirements.
 
-  Examples : MongoDB, Cansadra , DynamoDB
+    Examples : MongoDB, Cansadra , DynamoDB
 
    Categories include:
    - Key-Value Stores
@@ -46,7 +53,7 @@ Unlike MySQL:
 
 - Cassandra uses consistent hashing.
 
-  **DynamoDB :** Amazon DynamoDB is a fully managed NoSQL database service provided by AWS.
+ **DynamoDB :** Amazon DynamoDB is a fully managed NoSQL database service provided by AWS.
 
   You don't manage:
 
