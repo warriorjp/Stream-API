@@ -103,3 +103,13 @@ promote open communication.
 Based on my experience and skills and the current market, I believe the salary range for this role 
 is around ₹32–35 LPA. However, I’m open to discussing it further based on the role, responsibilities,
 and the overall compensation package.
+
+## 18. 1. Tell me about a challenging situation you faced recently.
+
+I don't assume my idea is the best one. If my proposal is opposed by the team or my manager, I first try to understand their concerns. Sometimes they have constraints or context that I'm not aware of, such as business priorities, timelines, operational risks, or technical limitations.
+
+I present my idea with data rather than opinions—for example, performance metrics, estimated impact, trade-offs, or a proof of concept. I encourage an open discussion so everyone can evaluate the pros and cons objectively.
+
+If the team still decides on a different approach, I respect the decision and fully support it. Once a decision is made, my focus shifts from proving my idea right to making the chosen solution successful.
+
+If I still have strong concerns, I document the risks and assumptions so they're visible to everyone. If those risks materialize later, we can revisit the decision based on evidence rather than opinions.
