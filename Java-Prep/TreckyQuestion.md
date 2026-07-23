@@ -1002,6 +1002,34 @@ When to Use Which?
 
 ✅ Encryption: Secure communication, payment information, confidential files, sensitive personal data.
 
+---
+## 27.How do you make sure your application does not consume duplicate Kafka messages?##
+
+Make the Consumer Idempotent (Most Common)
+
+Every message should have a unique identifier.
+
+```
+Receive Message
+
+↓
+
+Check if orderId already processed
+
+↓
+
+Yes → Ignore
+
+No → Process
+```
+
+
+ | orderId | processed |
+| ------- | --------- |
+| ORD123  | Yes       |
+| ORD124  | Yes       |
+
+
 
 
 
