@@ -129,6 +129,7 @@ NoSQL databases are excellent for horizontal scalability, flexible schemas, and 
     Caching (e.g., Redis)
     Partitioning or sharding if needed
 
+---
 ## 9.If scalability is still a concern, I would first explore scaling the SQL database using##
 
 I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or SOAP client adapters) would only translate requests and responses. Both would invoke the same business service containing the business logic. This avoids duplication, keeps the code maintainable, and allows us to replace the SOAP integration in the future with minimal changes. 
@@ -149,5 +150,33 @@ I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or S
   - REST Controller handles HTTP requests/responses, JSON, validation, and authentication.
 - SOAP Adapter/Endpoint handles SOAP XML, WSDL, and converts SOAP requests into internal DTOs.
 - Both call the same business service, where all the business logic resides.
-- The business service interacts with the database or downstream services.    
+- The business service interacts with the database or downstream services.
+
+## 10. Tell me about the most challenging situation you faced recently.
+
+**Situation 1:** One of the most challenging issues I recently handled was a race condition in our event-driven microservices architecture. We had two Kafka topics publishing events for the same business entity, and occasionally both events arrived almost simultaneously. As a result, two consumers tried to update the same MongoDB document at the same time.
+
+Task: My responsibility was to ensure that only the correct update was persisted without causing data inconsistency or losing any business information.
+
+Action: I first analyzed the Kafka and application logs to confirm that the issue was caused by two messages being processed concurrently for the same document. We evaluated several approaches, including distributed locking and Kafka partitioning. Since the messages were coming from two independent Kafka topics, partitioning alone could not guarantee ordering across topics.
+
+We implemented optimistic locking using a version field and added idempotency checks to ensure that only one update could be applied at a time. If another update encountered a version conflict, it was temporarily rejected, moved to a retry state, and retried after fetching the latest version of the document. This ensured that no valid update was lost and that both messages were eventually applied in a consistent manner. We also introduced retry logic for version conflicts and enhanced monitoring to detect and investigate similar concurrency issues in the future.
+
+Result: The race condition was eliminated, data consistency improved significantly, and we no longer saw incorrect updates in production. The solution also made the service more resilient to concurrent events without impacting performance.
+
+**Situation: 2** Another challenging issue I worked on was high application latency for our China manufacturing plants. Our microservice was deployed in the Europe region, while users and factories were located in China. Every request had to travel a long distance, resulting in high response times and a poor user experience.
+
+**Task:** My responsibility was to reduce the latency without affecting data consistency or the existing application functionality.
+
+**Action:** I analyzed the application metrics, API response times, and infrastructure topology to identify the root cause. The primary issue was network latency caused by cross-region communication. To address this, we deployed a dedicated instance of the microservice in the Asia region, closer to the China factories. We also configured it to use the MongoDB read-only (RO) node hosted in the Singapore region, significantly reducing the distance between the application and the database for read operations.
+
+In addition, we optimized the service by:
+
+* Routing China traffic to the Asia deployment through the load balancer.
+* Ensuring read-heavy requests were served from the local read replica while write operations continued to go to the primary node.
+* Monitoring latency, CPU utilization, and database response times before and after the deployment to validate the improvement.
+* Verifying that indexes were in place for the frequently executed queries to minimize database execution time.
+
+**Result:** After deploying the service in the Asia region and connecting it to the Singapore read replica, API response times for the China factories were significantly reduced, providing a much better user experience while maintaining data consistency.
+
 
