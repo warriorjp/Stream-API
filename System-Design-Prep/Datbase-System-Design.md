@@ -3,7 +3,7 @@
 
  **1.Relational Databases (SQL):**
   
-    - When we need to stored data in structured way.
+  When we need to stored data in structured way.
    
     Examples: MySQL, PostgreSQL.
 
@@ -16,9 +16,9 @@
    
  **2. Non-Relational Databases (NoSQL):** 
  
- Suitable for unstructured data or low-latency requirements.
+   Suitable for unstructured data or low-latency requirements.
 
-    Examples : MongoDB, Cansadra , DynamoDB
+      Examples : MongoDB, Cansadra , DynamoDB
 
    Categories include:
    - Key-Value Stores
@@ -222,7 +222,7 @@ A(20)             C(70)
 ---
 ### ACID Property : 
 
-✅ Atomicity: A transaction either completes entirely or not at all.
+✅ **Atomicity:** A transaction either completes entirely or not at all.
 
       Example:
       
@@ -242,7 +242,7 @@ A(20)             C(70)
       
       ₹1000 has disappeared.
    
-✅ Consistency: A transaction must move the database from one valid state to another, preserving all defined rules and constraints.
+✅ **Consistency:** A transaction must move the database from one valid state to another, preserving all defined rules and constraints.
 
       Example :
       Current state:
@@ -270,7 +270,7 @@ A(20)             C(70)
       Available Seats = 0 ✅
  
 
-✅ Isolation: Multiple transactions running at the same time should not interfere with one another.
+✅ **Isolation:** Multiple transactions running at the same time should not interfere with one another.
 
       Example:
       
@@ -289,7 +289,7 @@ A(20)             C(70)
       Withdraw ₹2000
    
 
-✅ Once a transaction is committed, it remains committed—even if the server crashes immediately afterward.
+✅ **Durability**Once a transaction is committed, it remains committed—even if the server crashes immediately afterward.
 
       Example:
       
@@ -309,6 +309,8 @@ A(20)             C(70)
 <div style="margin-left:3rem">
    <img src="./images/ACID.gif" width="400" />
 </div>
+
+---
 
 
    
