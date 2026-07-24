@@ -193,5 +193,57 @@ In addition, we optimized the service by:
 
 **Result:** Once the indexes were created, query performance improved significantly, the 502 errors stopped, and the service returned to normal operation. The incident also led to a more robust deployment process and better coordination between the development and DevOps teams.
 
+## 12. A hacker steals a user's JWT before the user logs out. Since JWTs are stateless, how can you prevent the stolen token from being used?
+
+**Option 1: Short-lived Access Tokens (Recommended)** 
+
+Access Token: 5–15 minutes - So token gets expired easliy
+
+**Option 2: Refresh Token Rotation**
+
+Every time the client refreshes the access token:
+
+    Old Refresh Token
+            ↓
+    Validate
+            ↓
+    Generate New Refresh Token
+    
+If a stolen refresh token is reused, you can detect it and revoke the user's session.
+
+**Option 3: Token Blacklisting (Logout)**
+
+When a user logs out:
+
+  Logout
+     ↓
+  Store JWT ID (jti) in Redis
+     ↓
+  Reject future requests with that token
+
+Every request checks whether the token is on the blacklist.
+
+This works but makes JWT validation stateful.
+
+**Option 6: Revoke Refresh Token**
+
+If the access token expires after 10 minutes and the refresh token is revoked on logout, the attacker cannot obtain new access tokens.
+
+**Option 7:  Maintain Session Version**
+
+Store a session version in the database.
+
+    JWT contains:
+    
+    {
+      "sub": "123",
+      "sessionVersion": 5
+    }
+
+If the user changes their password or logs out everywhere:
+
+   DB sessionVersion = 6
+
+The old token contains version 5, so it's rejected.
 
 
