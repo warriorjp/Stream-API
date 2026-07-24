@@ -82,6 +82,7 @@ In distributed systems where multiple application instances are running, applica
 because each instance has its own memory. In that case, I would use a distributed locking mechanism, such as Redis or ZooKeeper,
 or rely on database locking to coordinate updates across instances.
 
+---
 ## 6.A memory issue crashes the application after a few hours. How will you identify the root cause?
 
 If the application crashes after running for a few hours, my first suspicion would be a memory leak or resource exhaustion. 
@@ -97,7 +98,7 @@ memory-heavy sessions, unreleased database connections, file streams, HTTP clien
 I would also monitor thread count and capture thread dumps to ensure there isn't a thread leak, where threads continue increasing because they 
 are never terminated. Similarly, I would verify that database connections and thread pools are being properly released and are not exhausted.
 
-
+---
 ## 7.A service call blocks threads and leads to timeouts under load. What's your approach?
 
 If a service call blocks threads and causes timeouts under load, my first goal is to identify why the threads are 
@@ -152,6 +153,7 @@ I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or S
 - Both call the same business service, where all the business logic resides.
 - The business service interacts with the database or downstream services.
 
+---
 ## 10. Tell me about the most challenging situation you faced recently.
 
 **Situation 1:** One of the most challenging issues I recently handled was a race condition in our event-driven microservices architecture. We had two Kafka topics publishing events for the same business entity, and occasionally both events arrived almost simultaneously. As a result, two consumers tried to update the same MongoDB document at the same time.
@@ -179,7 +181,6 @@ In addition, we optimized the service by:
 
 **Result:** After deploying the service in the Asia region and connecting it to the Singapore read replica, API response times for the China factories were significantly reduced, providing a much better user experience while maintaining data consistency.
 
-
 ---
 ## 11. Describe a production issue where you were involved. How did you handle it?
 
@@ -193,6 +194,7 @@ In addition, we optimized the service by:
 
 **Result:** Once the indexes were created, query performance improved significantly, the 502 errors stopped, and the service returned to normal operation. The incident also led to a more robust deployment process and better coordination between the development and DevOps teams.
 
+---
 ## 12. A hacker steals a user's JWT before the user logs out. Since JWTs are stateless, how can you prevent the stolen token from being used?
 
 **Option 1: Short-lived Access Tokens (Recommended)** 
@@ -245,5 +247,54 @@ If the user changes their password or logs out everywhere:
    DB sessionVersion = 6
 
 The old token contains version 5, so it's rejected.
+
+---
+## 13 .Our application is heavily dependent on Redis. If one Redis node fails, I want failover to be extremely smooth with almost zero downtime. How would you design it? ##
+
+What kind of data we storing ?
+
+There are generally two possibilities.
+
+**Lightweight temporary data - Use Redis Sentinel**
+  
+If Redis is storing temporary or lightweight data such as:
+
+    Session IDs
+    JWT Tokens
+    OTPs
+    User Login Sessions
+    Small Counters
+    then Redis Sentinel is usually the right choice.
+
+- Redis Sentinel is a high-availability solution.
+- Instead of distributing data across multiple nodes, Sentinel continuously monitors your Redis master.
+- If the master crashes, Sentinel automatically promotes one of the replicas to become the new master.
+- Your application reconnects to the new master with minimal downtime.
+
+**Heavy Caching → Use Redis Cluster**
+
+Your application is caching:
+    
+    Entire API responses
+    Product Catalogs
+    Recommendation Results
+    Search Results
+    User Feed Data
+    
+- Millions of users are accessing the system every day.
+- One Redis server simply cannot handle this amount of data.
+- This is where Redis Cluster comes into the picture.
+
+Redis Cluster is designed for both:
+
+- Horizontal Scaling
+- High Availability
+
+Instead of storing all data on a single Redis instance, Redis Cluster distributes the data across multiple Redis masters while ensuring each master has one or more replicas for failover.
+
+
+  
+
+
 
 
