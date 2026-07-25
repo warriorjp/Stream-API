@@ -1029,6 +1029,22 @@ No → Process
 | ORD123  | Yes       |
 | ORD124  | Yes       |
 
+---
+
+## 28 . If a Kafka topic has 3 partitions, how many consumers can consume it?
+
+**What is a consumer? :**
+An application instance that consumes data from that Kafka topic is called a consumer. 
+
+3 Pods - 3 Consumers
+
+If there are 3 partitions, we should create min 1 or max 3 consumers, but if we create 4 consumers, then it will be idle.
+
+You can create more than 3 consumers, but any additional consumers will remain idle until more partitions are added or a consumer leaves the group.
+
+If consumers belong to different consumer groups, then each group can have up to 3 active consumers independently. Every group receives its own copy of the messages.
+
+
 
 
 
