@@ -1044,6 +1044,64 @@ You can create more than 3 consumers, but any additional consumers will remain i
 
 If consumers belong to different consumer groups, then each group can have up to 3 active consumers independently. Every group receives its own copy of the messages.
 
+---
+
+## 29. Which pagination will you choose?
+
+| Feature                   | Offset Pagination | Cursor/Keyset Pagination |
+| ------------------------- | ----------------- | ------------------------ |
+| Easy to implement         | ✅                 | Slightly more complex    |
+| Jump to Page 100          | ✅                 | ❌ Usually sequential     |
+| Performance on large data | ❌ Slower          | ✅ Excellent              |
+| Infinite scrolling        | ❌                 | ✅                        |
+| Used by social media      | Rarely            | ✅                        |
+
+
+**Offset Pagination**
+
+**Endpoint:**
+
+     GET /users?page=3&size=10
+
+Offset = (3-1)*10
+
+**Query:**
+
+    SELECT *
+    FROM users
+    ORDER BY id
+    LIMIT 10 OFFSET 20;
+
+ Problem with offset pagination: suppose the user entered page=100000.
+ 
+ The database still has to scan or skip nearly one million rows before returning the next page.
+
+ **Cursor Pagination**
+ 
+ Instead of page numbers, use the last record.
+
+ **Endpoint:**
+ 
+       GET /users?lastId=100
+
+**Query:**
+
+        SELECT *
+        FROM users
+        WHERE id > 100
+        ORDER BY id
+        LIMIT 20;
+
+Database uses the index.
+
+Instead of:  Skip 5 million rows
+
+It does: Jump directly to ID = 5000001
+
+This is much faster.       
+    
+
+
 
 
 
