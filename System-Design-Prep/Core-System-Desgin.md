@@ -1024,3 +1024,29 @@ Replica1     Replica2      Replica3
 
 Instead of storing one string.
 
+---
+
+## 30.CSRF (Cross-site request forgery)
+
+Is a web security attack that tricks an authenticated user into running unwanted actions on a trusted website.
+
+**User Authentication:** The victim logs into a trusted website, and the browser saves a valid session cookie.
+
+**Malicious Trigger:** The user visits an attacker-controlled site or clicks a malicious link containing a forged request.
+
+**Implicit Trust:** The browser automatically attaches the stored session cookie to the request sent to the target site. 
+
+**Execution:** The server processes the command, believing it came from the actual user rather than an outside exploit.
+
+---
+
+## 31.CORS (Cross-Origin Resource Sharing )
+
+Is a browser security mechanism that uses extra HTTP headers to let a server tell a web browser if a website on a different domain, scheme, or port can read its response data
+
+**Same-Origin Policy:** Browsers block web pages from reading data from another domain by default to keep user info safe.
+
+**Server Opt-In:** Servers use special response headers like Access-Control-Allow-Origin to safely allow specific outside domains to access their data.
+
+**Preflight Requests:** For complex actions, the browser sends an OPTIONS "preflight" check first to see if the server allows the actual request before sending it.
+
