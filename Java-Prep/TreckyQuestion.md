@@ -842,7 +842,51 @@ public synchronized void increment() {
 
 ---
 
-## 25. Default Rollback Behavior @Transcational ##
+## 25. Default Rollback Behavior @Transcational 
+
+@Transactional in Spring works using AOP(Aspect oriented programing) proxies. The transaction is started only when a method is invoked through the Spring proxy. 
+
+If a method within the same class directly calls another @Transactional method, the call bypasses the proxy, so Spring never intercepts it, and the transaction annotation is ignored. This is known as the self-invocation problem.
+
+The call does not go through the Spring proxy, so @Transactional is ignored.
+
+    @Service
+    public class OrderService {
+    
+        public void placeOrder() {
+            // Direct method call
+            saveOrder();
+        }
+    
+        @Transactional
+        public void saveOrder() {
+            // Save data to database
+        }
+    }
+
+**How to make it work?**
+
+Move the transactional method to another Spring bean (Recommended)
+
+        @Service
+        public class OrderService {
+        
+            @Autowired
+            private PaymentService paymentService;
+        
+            public void placeOrder() {
+                paymentService.saveOrder();
+            }
+        }
+        
+        @Service
+        public class PaymentService {
+        
+            @Transactional
+            public void saveOrder() {
+                // DB operation
+            }
+        }
 
 By default, Spring rolls back transactions only for:
 
@@ -926,7 +970,7 @@ Because the exception never leaves the transactional method. Spring sees the met
 
 ---
 
-## 26. Why are passwords hashed instead of encrypted?##
+## 26. Why are passwords hashed instead of encrypted?
 
 **Hashing**
 - Same input always produces the same hash.
