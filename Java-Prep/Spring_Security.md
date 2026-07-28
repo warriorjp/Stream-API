@@ -68,7 +68,7 @@ These dependencies include Spring Security, Web, and the JJWT library for token 
 
 **2. JWT Utility to Generate and Validate Both Tokens**
 
-This utility class creates and validates access and refresh tokens, extracts the username, and checks expiration. The expiry values now match the 15 minute access token and 7 day refresh token described above, and a refresh token generator has been added since the original snippet described two tokens but only implemented one.
+This utility class creates and validates access and refresh tokens, extracts the username, and checks expiration. The expiry values now match the 15 minute access token and 7 day refresh token described above.
 
 `JwtUtil.java`
 
