@@ -460,8 +460,6 @@ public class Account {
 }
 ```
 
-------------------------------------------------------------------------
-
 # Pessimistic Locking
 
 **Assumption**
@@ -520,8 +518,6 @@ User B -------- Waiting ---------------------- Update
 Account findByIdForUpdate(Long id);
 ```
 
-------------------------------------------------------------------------
-
 **Real-World Examples**
 
 **Optimistic Locking**
@@ -536,8 +532,6 @@ Account findByIdForUpdate(Long id);
 -   Movie ticket booking
 -   Flight seat reservation
 -   Inventory management
-
-------------------------------------------------------------------------
 
 **When to Use**
 
@@ -554,7 +548,6 @@ Account findByIdForUpdate(Long id);
 -   Frequent concurrent updates
 -   Data consistency is critical
 
-------------------------------------------------------------------------
 
 **Comparison Table**
 
@@ -581,8 +574,6 @@ Account findByIdForUpdate(Long id);
   Spring        `@Version`                    `@Lock(LockModeType.PESSIMISTIC_WRITE)`
   Support                                     
   -------------------------------------------------------------------------------------
-
-------------------------------------------------------------------------
 
 **Interview Answer**
 
@@ -633,7 +624,7 @@ App → Cache → Database
 
 - The benefit is consistency and no cache misses on recent writes, but the drawback is extra write overhead – each write does double work and might cache data that never gets read.
 
-**1. Browser Cache **
+**1. Browser Cache**
 
 Frontend side
 
@@ -710,9 +701,9 @@ You cannot perfectly achieve all 3 together.
 
 ** Example **
 
-- You have 2 ATM machines connected to same bank server.
+- You have 2 ATM machines connected to the same bank server.
 
-- If one ATM updates balance and network issue happens:
+- If one ATM updates balance and a network issue happens:
 
  **Now system must choose:**
 
@@ -941,8 +932,60 @@ Kafka Streams Application
 	      |
 	Another Kafka Topic	
 
+**Kafka approaches:**
+
+**1.Fire-and-Forget**
+
+	Producer sends the message and immediately continues.
+	Producer never waits.
+	Producer doesn't know whether Kafka received the message.
+	Producer doesn't know whether the consumer processed it.
+
+**When to use**
+
+	Logging
+	Metrics
+	Monitoring
+	Analytics
+	
+Where losing a few messages is acceptable.  
+
+**2.Synchronous Producer**
+
+	The producer waits only until Kafka acknowledges the message.
+	It does not wait for the consumer.
+
+**When to use**
+
+	Banking
+	Payments
+	Order creation
+	Financial transactions
+
+Where the producer must know Kafka has safely accepted the message.
+
+**3.Asynchronous Producer**
+
+		The producer doesn't block.
+		The producer is informed later whether Kafka accepted or rejected the message.
+		Still does not wait for the consumer.
+
+**When to use**		
+
+Imagine Amazon receives 10,000 orders per second.
+
+Suppose your Spring Boot application sends:
+
+			Order Created
+			Email Notification
+			Inventory Update
+			Analytics Event
+
+
+	
+
 ---
-**Change Data Capture (CDC)**
+## Change Data Capture (CDC)
 
 It is a mechanism that captures database changes (INSERT, UPDATE, DELETE) by reading the transaction log and publishes them as events to downstream systems such as Kafka. This enables near-real-time synchronisation of services like Elasticsearch, Redis, analytics platforms, and other microservices without polling the database, resulting in lower latency and reduced database load.
 
