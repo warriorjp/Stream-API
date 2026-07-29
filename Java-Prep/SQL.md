@@ -222,8 +222,16 @@ WHERE dept IN (
     HAVING COUNT(*) < 2
 );
 ```
+### Find the highest salary in each department
 
-### Highest Paid Employee in Each Department
+```sql
+
+SELECT department, MAX(salary)
+FROM employee
+GROUP BY department;
+
+```
+### Find the employee who has the highest salary in each department
 
 ```sql
 SELECT e.emp_name, e.dept, e.salary
@@ -233,6 +241,18 @@ WHERE e.salary = (
     FROM employee
     WHERE dept = e.dept
 );
+```
+```
+SELECT emp_name, department, salary
+FROM (
+    SELECT *,
+           DENSE_RANK() OVER (
+               PARTITION BY department
+               ORDER BY salary DESC
+           ) AS rnk
+    FROM employee
+) t
+WHERE rnk = 1;
 ```
 
 ### Customer Who Ordered More Than One Product
