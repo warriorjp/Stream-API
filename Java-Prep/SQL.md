@@ -242,6 +242,7 @@ WHERE e.salary = (
     WHERE dept = e.dept
 );
 ```
+
 ```
 SELECT emp_name, department, salary
 FROM (
@@ -255,7 +256,7 @@ FROM (
 WHERE rnk = 1;
 ```
 
-### Customer Who Ordered More Than One Product
+### Customers Who Ordered More Than One Product
 
 ```sql
 SELECT customer_id, COUNT(*) AS total_count
@@ -263,6 +264,17 @@ FROM OrderTable
 GROUP BY customer_id
 HAVING COUNT(*) > 1;
 ```
+
+```sql
+SELECT c.customer_id, COUNT(o.order_id)
+FROM customers c
+JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY o.customer_id
+HAVING COUNT(o.order_id) > 0;
+
+```
+
 
 ### Employees by Joining Month (Number)
 
