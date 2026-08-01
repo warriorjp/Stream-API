@@ -791,39 +791,48 @@ This chapter explains the design and implementation of a rate limiter, a compone
 - **Cost Reduction:** Limiting unnecessary requests to reduce server expenses.
 - **Preventing Overloads:** Filtering out excessive requests to stabilize server performance.
 
-**Step 1: Understanding the Problem**
-**Key Features**
-- Server-side API rate limiter.
-- Support for multiple throttle rules.
-- Handles large-scale systems in distributed environments.
-- Option for a standalone service or application-level code.
-- Inform users when throttled.
+**API Gateway (Most Common) ⭐**
 
-**Requirements**
-- Accurate request throttling.
-- Minimal latency.
-- Low memory usage.
-- Distributed capability.
-- Clear exception handling.
-- High fault tolerance.
+This is where rate limiting is usually configured because it protects all backend services.
 
-**Step 2: High-Level Design**
+Examples:
+
+		Azure API Management (APIM)
+		Gravitee
+		Kong
+		Apigee
+		AWS API Gateway
+		NGINX
+		
+**Load Balancer / Reverse Proxy**
+
+Examples:
+
+	NGINX
+	HAProxy
+	Envoy
+
+**Kubernetes Ingress**
+
+If you're using Kubernetes:
+
+		NGINX Ingress
+		Istio
+		Traefik
+
+**Spring Boot Application**
+
+If you want per-endpoint or per-user rate limiting, you can configure it in the application using libraries like Bucket4j or Resilience4j.
+		
+			
+
+**High-Level Design**
+
 **Placement Options**
 
 <div style="margin-left:2rem">
     <img src="./images/rate_limiter_architecture.png"  alt="Rate Limiting Middleware Architecture" width="550">
 </div>
-
-1. **Client-Side Implementation:** Unreliable due to potential misuse.
-2. **Server-Side Implementation:** Preferred for control and reliability.
-3. **Middleware (API Gateway):** A flexible option for integrated rate limiting.
-
-
-** Guidelines for Placement**
-- Evaluate current tech stack and choose efficient options.
-- Select appropriate algorithms based on business needs.
-- Use an API gateway if microservices are employed.
-- Opt for commercial solutions if resources are limited.
 
 **Step 3: Rate Limiting Algorithms**
 **1. Token Bucket**
