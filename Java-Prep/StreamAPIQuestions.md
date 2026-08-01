@@ -541,6 +541,19 @@ emp.stream()
 // Sneha : 80000, Raj : 75000, Ravi : 60000
 ```
 
+### 31 .0 on left, other element in sorted order
+
+```java
+int[] arr = {0, -1, 0, 3, -2, 0, 6, 4, 10};
+
+        int[] result = IntStream.concat(
+                Arrays.stream(arr).filter(n -> n == 0),
+                Arrays.stream(arr).filter(n -> n != 0).sorted()
+        ).toArray();
+       Arrays.stream(result).forEach(System.out::println);
+    }
+```
+
 ---
 
 ## Quick Reference — Common Stream Operations
