@@ -314,6 +314,20 @@ WHERE DepartmentID IN (
 );
 ```
 
+## Find Number of order per city which completed
+
+```
+SELECT
+    city,
+    COUNT(*) AS total_orders,
+    SUM(CASE
+            WHEN order_status LIKE 'Cancel%' THEN 1
+            ELSE 0
+        END) AS cancelled_orders
+FROM orders
+GROUP BY city;
+```
+
 ---
 
 ## N+1 Query Problem
