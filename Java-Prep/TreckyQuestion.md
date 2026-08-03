@@ -1142,8 +1142,37 @@ Instead of:  Skip 5 million rows
 
 It does: Jump directly to ID = 5000001
 
-This is much faster.       
-    
+This is much faster.     
+
+---
+
+## Why not serialize abstract classes in Java?
+
+You cannot serialize an abstract class itself because:
+
+You cannot create an object of an abstract class.
+
+But you can achieve it if Abstract classes implement Serializable.
+
+            abstract class Animal implements Serializable {
+            
+                String name;
+            
+                Animal(String name) {
+                    this.name = name;
+                }
+            }
+            
+            class Dog extends Animal {
+            
+                Dog(String name) {
+                    super(name);
+                }
+            }
+
+Dog dog = new Dog("Tom");
+
+This object can be serialized because Animal implements Serializable.
 
 
 
