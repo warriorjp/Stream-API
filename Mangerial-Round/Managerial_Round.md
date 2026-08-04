@@ -49,9 +49,13 @@ consistently deliver quality solutions while supporting my team.
 
 ## 8. Why are you looking for a job change?
 
-**Answer:** I appreciate my current organization, but I'm looking for
-larger technical challenges, greater ownership, and opportunities to
-continue growing professionally.
+**Answer:** 
+**If your manager or workplace was difficult**
+I realised that the work environment and management style were not the right fit for me in the long term. However, the experience taught me a lot about the kind of environment where I perform my best. I'm now looking for a collaborative workplace where I can contribute meaningfully, continue learning, and grow over the long term.
+
+**If you didn't get the promotion you wanted***
+
+I learned a lot in my current role and gained valuable experience. I'm now looking for a role where I can contribute at a higher level, take on more challenging work, and continue learning.
 
 ## 9. Why do you want to join our company?
 
