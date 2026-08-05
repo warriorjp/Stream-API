@@ -587,14 +587,24 @@ App → Cache → Database
 
 **1. Browser Cache**
 
-Frontend side
+     Frontend side
 
-Example:
+     Example:
 
-	- CSS
-	- JS
-	- Images
+		- CSS
+		- JS
+		- Images
 
+When memory is full, Redis removes keys based on its eviction policy.
+
+Common policies include:
+
+	LRU (Least Recently Used) – removes data that hasn't been accessed recently.
+	LFU (Least Frequently Used) – removes data accessed the fewest times.
+	TTL-based – removes expired keys.
+		
+
+---
  **2. CDN Cache**
 
 Stores content near user location
