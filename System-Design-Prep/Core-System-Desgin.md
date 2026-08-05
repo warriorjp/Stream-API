@@ -62,10 +62,10 @@ That means:
 
 ## Scale from Zero to Millions of Users
 
-** Introduction **
+**Introduction**
+
 Scaling a system to support millions of users is a complex, iterative journey requiring refinement and optimization. This chapter outlines how to begin with a single server setup and scale the architecture step by step to handle millions of users.
 
----
 
 **Single Server Setup**
 Initially, all components (web app, database, cache) run on a single server. 
@@ -75,6 +75,7 @@ Initially, all components (web app, database, cache) run on a single server.
 </div>
 
 **Request Flow**
+
 1. Users access the application via domain names (e.g., `api.mysite.com`), resolved to IP addresses using DNS.
 2. IP address of the web-server is returned to the browser or mobile app.
 3. HTTP requests are sent to the web server, which returns HTML or JSON responses.
@@ -97,46 +98,6 @@ A **load balancer** distributes traffic among multiple servers. Benefits include
    -  If server 1 goes offline, all the traffic will be routed to server 2.
 2. Scalability: Easily add servers to handle traffic spikes.
    -  If the website traffic grows rapidly, subsequent servers can be added to handle the additional traffic.
-
----
-## CORS (Cross-Origin Resource Sharing)
-
-CORS is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
-
-🌍 What is an Origin?
-
-Origin = Protocol + Domain + Port
-
-**Example:**
-
-	http://localhost:3000
-	
-	and
-	
-	http://localhost:8080
-
-are considered different origins because ports differ.
-
-**❌ Problem Without CORS**
-
-&nbsp;&nbsp;&nbsp;&nbsp; Frontend:  http://localhost:3000
-
-&nbsp;&nbsp;&nbsp;&nbsp; Backend API:  http://localhost:8080
-
-
-**✅ How CORS Works**
-
-&nbsp;&nbsp;&nbsp;&nbsp; Backend sends special headers like:
-
-&nbsp;&nbsp;&nbsp;&nbsp; Access-Control-Allow-Origin: http://localhost:3000
-
-Browser sees this and allows the request.
-
-**Usually configured at:**
-
-- API Gateway
-- Nginx
-- Backend service
 
 ---
 
@@ -1101,4 +1062,44 @@ Is a browser security mechanism that uses extra HTTP headers to let a server tel
 **Server Opt-In:** Servers use special response headers like Access-Control-Allow-Origin to safely allow specific outside domains to access their data.
 
 **Preflight Requests:** For complex actions, the browser sends an OPTIONS "preflight" check first to see if the server allows the actual request before sending it.
+
+
+CORS is a browser security mechanism that controls whether a frontend application from one origin can access resources from another origin.
+
+🌍 What is an Origin?
+
+Origin = Protocol + Domain + Port
+
+**Example:**
+
+	http://localhost:3000
+	
+	and
+	
+	http://localhost:8080
+
+are considered different origins because ports differ.
+
+**❌ Problem Without CORS**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Frontend:  http://localhost:3000
+
+&nbsp;&nbsp;&nbsp;&nbsp; Backend API:  http://localhost:8080
+
+
+**✅ How CORS Works**
+
+&nbsp;&nbsp;&nbsp;&nbsp; Backend sends special headers like:
+
+&nbsp;&nbsp;&nbsp;&nbsp; Access-Control-Allow-Origin: http://localhost:3000
+
+Browser sees this and allows the request.
+
+**Usually configured at:**
+
+- API Gateway
+- Nginx
+- Backend service
+
+---
 
