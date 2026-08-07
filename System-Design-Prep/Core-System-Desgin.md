@@ -636,6 +636,8 @@ App → Cache → Database
 
 - This is called Cache Hit and Cache Miss
 
+**Approach for cache**
+
 **1.Cache Aside (Lazy Loading) ← Most Common**
 
 - Cache-aside, or lazy loading, is a strategy where the application loads data into the cache only on demand. 
@@ -661,16 +663,6 @@ App → Cache → Database
 		- CSS
 		- JS
 		- Images
-
-When memory is full, Redis removes keys based on its eviction policy.
-
-Common policies include:
-
-	LRU (Least Recently Used) – removes data that hasn't been accessed recently.
-	LFU (Least Frequently Used) – removes data accessed the fewest times.
-	TTL-based – removes expired keys.
-		
-
 ---
  **2. CDN Cache**
 
@@ -722,6 +714,37 @@ Example:
 | **Bitmap** | Stores bits (0 or 1) efficiently for tracking boolean states at scale. | User activity tracking, feature flags |
 | **HyperLogLog** | Probabilistic data structure used to estimate the count of unique elements with very low memory usage. | Counting unique website visitors |
 | **Geospatial** | Stores geographic coordinates (latitude and longitude) and supports location-based queries. | Nearby stores, ride-sharing, delivery services |
+
+
+When memory is full, Redis removes keys based on its eviction policy.
+
+Common policies include:
+
+	LRU (Least Recently Used) – removes data that hasn't been accessed recently.
+	LFU (Least Frequently Used) – removes data accessed the fewest times.
+	TTL-based – removes expired keys.
+
+**TTL Stampede**
+
+ Suppose you have a Redis cache entry:
+
+		Key: product:iphone 17
+		TTL: 30 minutes
+
+At exactly 30 minutes, the key expires. Now imagine 10,000 users request the same product immediately after expiration.
+
+ - 1.Mutex Lock (Most Common)
+		
+		Only one request queries the database on a cache miss, while all other requests
+        wait briefly and retry fetching the data from Redis.
+
+ - 2.Random TTL
+
+	Suppose you cache 10,000 products with the same TTL
+    At exactly 30 minutes, all cache entries expire together.
+    Now if 10,000 users request those products simultaneously, they hit the DB, which causes DB overload
+
+   Instead of giving every key the same expiration time, assign different expiration times.
 
 ---
 
