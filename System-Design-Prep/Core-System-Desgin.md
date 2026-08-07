@@ -710,7 +710,7 @@ A forward proxy (also called a "proxy server") is a server that sits between cli
 
 Used on the client side.
 
-Client → Forward Proxy → Internet → Server
+Client → Internet → Forward Proxy → Internet → Server
 
 **Use Cases**
 - Enhancing client anonymity
