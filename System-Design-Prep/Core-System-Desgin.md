@@ -12,6 +12,10 @@
 </div>
 
 ---
+<div style="margin-left:3rem">
+   <img src="./images/Complete_flow.png" width="800" />
+</div>
+---
 ### SOLID ###
 
 <div style="margin-left:3rem">
@@ -85,8 +89,6 @@ Initially, all components (web app, database, cache) run on a single server.
 2. **Mobile Applications:** Communicate with the web server using HTTP and JSON for lightweight data exchange.
 
 ---
-
-
 ## Load Balancer
 
 <div style="margin-left:3rem">
@@ -98,6 +100,53 @@ A **load balancer** distributes traffic among multiple servers. Benefits include
    -  If server 1 goes offline, all the traffic will be routed to server 2.
 2. Scalability: Easily add servers to handle traffic spikes.
    -  If the website traffic grows rapidly, subsequent servers can be added to handle the additional traffic.
+
+---
+## Forward Proxy and Reverse Proxy ##
+
+ <div style="margin-left:3rem">
+   <img src="./images/forward_proxy.webp" width="800" />
+</div>
+
+Proxy helps in:
+
+	- Security
+	- Load balancing
+	- Caching
+	- Access control
+	- Monitoring
+	- Performance improvement
+	- Hiding internal services
+
+**1. Forward Proxy** :
+
+A forward proxy (also called a "proxy server") is a server that sits between client devices and the internet. When a client sends a request to access a website or online resource, the request is directed to the forward proxy first. The proxy then forwards the request to the destination server on behalf of the clien
+
+Used on the client side.
+
+Client → Internet → Forward Proxy → Internet → Server
+
+**Use Cases**
+- Enhancing client anonymity
+- Accessing geo-blocked or restricted content
+- Content filtering and monitoring in organizations
+- Reducing bandwidth consumption through caching on the proxy server
+- Logging and tracking user activity for compliance
+
+**2. Reverse Proxy**
+
+A reverse proxy works the opposite of a forward proxy. While a forward proxy acts on behalf of the client, a reverse proxy acts on behalf of the server. It is used to protect and manage servers by ensuring that clients do not directly communicate with the origin server.
+
+Used on the server side.
+
+Client → Reverse Proxy → Application Server
+
+**Use Cases**
+- Load balancing across multiple web servers
+- Caching content to improve server performance
+- Protecting backend servers from direct exposure to the internet
+- SSL/TLS offloading to improve server efficiency
+- Mitigating DDoS attacks and enhancing security
 
 ---
 
@@ -686,55 +735,6 @@ OR
 
  Since network failure exists (Partition), both perfect consistency + availability together is difficult.
  
----
- 
-## Forward Proxy and Reverse Proxy ##
- 
- <div style="margin-left:3rem">
-   <img src="./images/forward_proxy.webp" width="800" />
-</div>
-
- Proxy helps in:
-
-	- Security
-	- Load balancing
-	- Caching
-	- Access control
-	- Monitoring
-	- Performance improvement
-	- Hiding internal services
-	
-**1. Forward Proxy** :
-
-A forward proxy (also called a "proxy server") is a server that sits between client devices and the internet. When a client sends a request to access a website or online resource, the request is directed to the forward proxy first. The proxy then forwards the request to the destination server on behalf of the clien
-
-Used on the client side.
-
-Client → Internet → Forward Proxy → Internet → Server
-
-**Use Cases**
-- Enhancing client anonymity
-- Accessing geo-blocked or restricted content
-- Content filtering and monitoring in organizations
-- Reducing bandwidth consumption through caching on the proxy server
-- Logging and tracking user activity for compliance
-
-**2. Reverse Proxy**
-
-A reverse proxy works the opposite of a forward proxy. While a forward proxy acts on behalf of the client, a reverse proxy acts on behalf of the server. It is used to protect and manage servers by ensuring that clients do not directly communicate with the origin server.
-
-Used on the server side.
-
-Client → Reverse Proxy → Application Server
-
-**Use Cases**
-- Load balancing across multiple web servers
-- Caching content to improve server performance
-- Protecting backend servers from direct exposure to the internet
-- SSL/TLS offloading to improve server efficiency
-- Mitigating DDoS attacks and enhancing security
-
-
 ---
 
 ## Rate Limiter ##
