@@ -12,11 +12,29 @@
 </div>
 
 ---
+In this image, there are multiple app gateway thats why the load balancer is in front of the app gateway
+
 <div style="margin-left:3rem">
    <img src="./images/Complete_flow.png" width="800" />
 </div>
+
+In many cloud environments (Azure, AWS, GCP), the gateway itself already includes load-balancing capabilities.
+
+**For example:**
+
+**Azure**
+
+	Internet
+	    │
+	Application Gateway/Load Balancer
+	    │
+	AKS / VM Scale Set
+
+Here, Application Gateway itself acts as a Layer 7 load balancer, so there's no separate load balancer before it.
+
 ---
-### SOLID ###
+
+# SOLID #
 
 <div style="margin-left:3rem">
    <img src="./images/SOLID.jpeg" width="500" />
