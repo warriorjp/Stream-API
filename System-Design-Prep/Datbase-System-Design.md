@@ -68,7 +68,26 @@ You only create tables and use them.
   
 
 ---
+**Clustered Index**
 
+A clustered index stores the actual table data in sorted order based on the indexed column.
+
+     CREATE TABLE Employee (
+        id INT PRIMARY KEY,
+        name VARCHAR(50)
+    );
+
+The PRIMARY KEY creates a clustered index (in SQL Server; InnoDB in MySQL also clusters by the primary key).
+
+**Non-Clustered Index**
+
+A non-clustered index stores:
+
+Indexed Value → Pointer to Row
+
+It does not change the physical order of the table.
+
+---
 ## Database Separation
 As the user base grows, the database is moved to a dedicated server to allow independent scaling of web and database tiers.
 
