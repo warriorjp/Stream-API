@@ -117,3 +117,7 @@ I present my idea with data rather than opinions—for example, performance metr
 If the team still decides on a different approach, I respect the decision and fully support it. Once a decision is made, my focus shifts from proving my idea right to making the chosen solution successful.
 
 If I still have strong concerns, I document the risks and assumptions so they're visible to everyone. If those risks materialize later, we can revisit the decision based on evidence rather than opinions.
+
+## If another company offer you double salary, will you leave us?
+
+I would definitely consider any opportunity carefully, because compensation is a practical factor. However, my decision wouldn't be based  on salary. I would also consider the role, learning opportunities, work environment, career growth, and the overall value I’m getting from the organisation. If I’m continuing to grow, learning, and making meaningful contributions here, I wouldn’t make a decision purely based on short-term financial gain.
