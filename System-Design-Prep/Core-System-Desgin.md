@@ -648,12 +648,21 @@ App → Cache → Database
 
 - The downside is the first request for any item will hit the database (slow), but subsequent requests are served quickly from the cache.
 
-**2.Write-Through Caching**
+**2. Read-Through Cache**
+
+- In a read-through cache, the application asks the cache for data. If the value is missing, the cache layer loads it from the database,       stores it, and returns it.
+
+**3.Write-Through Caching**
 
 - In a write-through strategy, whenever data is updated, it's written to the database and the cache at the same time. This keeps the cache up-to-date, so reads will always get fresh values from cache. 
 
 - The benefit is consistency and no cache misses on recent writes, but the drawback is extra write overhead – each write does double work and might cache data that never gets read.
 
+**4. Write-Behind (Write-Back)**
+
+- Caching strategy where your application writes data directly to the cache for an immediate success response, while the database is updated asynchronously in the background
+
+---
 **1. Browser Cache**
 
      Frontend side
@@ -663,7 +672,7 @@ App → Cache → Database
 		- CSS
 		- JS
 		- Images
----
+		
  **2. CDN Cache**
 
 Stores content near user location
