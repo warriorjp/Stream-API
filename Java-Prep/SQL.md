@@ -327,7 +327,7 @@ WHERE DepartmentID IN (
 );
 ```
 
-## Find Number of order per city which completed
+## Find the number of orders per city which completed
 
 ```
 SELECT
@@ -339,6 +339,14 @@ SELECT
         END) AS cancelled_orders
 FROM orders
 GROUP BY city;
+```
+
+## Find the salary difference between the highest-paid employee of each department 
+```
+SELECT  emp_name , department , 
+MAX(salary) over(partition by department) as maxsalary
+, MAX(salary) over(partition by department)  - salary
+FROM employee;
 ```
 
 ---
