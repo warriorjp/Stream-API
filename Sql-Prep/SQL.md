@@ -348,6 +348,28 @@ MAX(salary) over(partition by department) as maxsalary
 , MAX(salary) over(partition by department)  - salary
 FROM employee;
 ```
+---
+
+## Find the customer with the highest price order placed 
+
+    ```sql
+    SELECT customer_name,
+           product_name,
+           price
+    FROM (
+        SELECT c.customer_name,
+               p.product_name,
+               p.price,
+               DENSE_RANK() OVER (
+                   PARTITION BY p.customer_id
+                   ORDER BY p.price DESC
+               ) AS rnk
+        FROM customer c
+        JOIN product p
+            ON c.customer_id = p.customer_id
+    ) t
+    WHERE rnk = 1;
+    ```sql
 
 ---
 
