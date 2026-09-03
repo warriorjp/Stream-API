@@ -1162,4 +1162,131 @@ Browser sees this and allows the request.
 - Backend service
 
 ---
+# 31. Nginx (Engine-X)
+
+## What is Nginx?
+
+Nginx is a high-performance web server, reverse proxy server, and load balancer commonly used in Spring Boot and Microservices architectures.
+
+---
+
+## 1. Reverse Proxy
+
+Instead of users directly accessing your Spring Boot application:
+
+```text
+User
+  ↓
+Spring Boot App
+```
+
+Users access Nginx first:
+
+```text
+User
+  ↓
+Nginx
+  ↓
+Spring Boot App
+```
+
+Nginx forwards requests to the application.
+
+---
+
+## 2. Load Balancer
+
+When multiple application instances are running:
+
+```text
+User
+  ↓
+Nginx
+ ↙ ↓ ↘
+App1 App2 App3
+```
+
+Nginx distributes traffic across multiple application instances.
+
+### Example Configuration
+
+```nginx
+upstream app {
+    server app1:8080;
+    server app2:8080;
+    server app3:8080;
+}
+
+server {
+    location / {
+        proxy_pass http://app;
+    }
+}
+```
+
+---
+
+## 3. SSL/TLS Termination
+
+```text
+User (HTTPS)
+      ↓
+    Nginx
+      ↓ (HTTP)
+Spring Boot App
+```
+
+Benefits:
+- Centralized SSL certificate management
+- Reduced application overhead
+- Improved security
+
+---
+
+## 4. Static Content Serving
+
+Nginx efficiently serves:
+- HTML
+- CSS
+- JavaScript
+- Images
+- Videos
+
+---
+
+## Nginx in Kubernetes
+
+```text
+Internet
+    ↓
+Nginx Ingress Controller
+    ↓
+Kubernetes Service
+    ↓
+Pods
+```
+
+Responsibilities:
+- Request routing
+- Load balancing
+- SSL termination
+- Path-based routing
+
+---
+
+## Key Benefits
+
+- High performance
+- Reverse proxy
+- Load balancing
+- SSL termination
+- Static content serving
+- Kubernetes ingress support
+
+---
+
+## Interview Answer
+
+Nginx is a web server and reverse proxy used to route traffic to backend applications. It provides load balancing, SSL termination, request routing, and static content serving. In Kubernetes, Nginx is commonly used as an Ingress Controller to manage external traffic and distribute requests across application pods.
+
 

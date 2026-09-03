@@ -1174,6 +1174,31 @@ Dog dog = new Dog("Tom");
 
 This object can be serialized because Animal implements Serializable.
 
+---
+## A JWT (JSON Web Token) consists of 3 parts separated by dots (.):
+
+    xxxxx.yyyyy.zzzzz
+    Header.Payload.Signature
+
+### 1.Header  : 
+Contains metadata about the token.
+
+### 2. Body : 
+Contains user and authorization information.
+
+### 3. Signature : 
+A JSON signature is a digital seal used to prove that a JSON documen is authentic and has not been altered.
+
+     HMACSHA256(
+     base64UrlEncode(header) + "." +
+     base64UrlEncode(payload),
+     secret
+     )
+If someone changes the payload, the signature becomes invalid.
+
+### Why not to store confidential details in JSON Token
+Because the payload is only Base64 encoded, not encrypted. Anyone can decode it.
+
 
 
 
