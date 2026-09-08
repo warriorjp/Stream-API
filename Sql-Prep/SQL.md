@@ -1,3 +1,7 @@
+<div style="margin-left:3rem">
+   <img src="./image/execution_order.png" width="600" />
+</div>
+
 # SQL Interview Notes
 
 ## Table of Contents

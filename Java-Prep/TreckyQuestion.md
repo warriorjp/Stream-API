@@ -1199,6 +1199,28 @@ If someone changes the payload, the signature becomes invalid.
 ### Why not to store confidential details in JSON Token
 Because the payload is only Base64 encoded, not encrypted. Anyone can decode it.
 
+ ---
+## How do you ensure the same Kafka message is not consumed twice?
+
+### 1. Store a unique event ID : 
+ - Store the uniqueKey in seperate table which keep track of msg recived . If msg recived again then skip it
+  
+       {
+       "eventId": "12345",
+       "orderId": "ORD001"
+       }
+
+### 2. Manual Offset Commit
+ - Once msg process successfully then ack it by commiting offset .
+
+     Read Message
+     Process Successfully
+     Commit Offset
+
+Kafka guarantees at-least-once delivery, so duplicates are possible. I make my consumer idempotent by using a unique event 
+ID in the message. Before processing, I check whether the event has already been processed using a database table or Redis.
+I commit the Kafka offset only after successful processing.
+
 
 
 
