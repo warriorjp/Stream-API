@@ -270,6 +270,222 @@ class Counter {
 
 > Use `AtomicInteger`, `AtomicLong`, `AtomicBoolean` from `java.util.concurrent.atomic` for simple counter/flag operations — they are lock-free and faster than `synchronized`.
 
+
+# volatile
+
+## What is volatile?
+A keyword that guarantees visibility of changes across threads.
+
+```java
+volatile boolean flag = false;
+```
+
+## What does it guarantee?
+- Visibility ✅
+- Latest value read from main memory ✅
+
+## What does it NOT guarantee?
+- Atomicity ❌
+- Thread safety ❌
+
+Example:
+
+```java
+volatile int count = 0;
+count++;
+```
+
+Not thread-safe because:
+
+```text
+count++
+=
+Read
+Modify
+Write
+```
+
+Multiple threads can interfere with each other.
+
+## When to use?
+- Status flags
+- Shutdown flags
+- Configuration values updated by one thread and read by many
+
+## Interview Answer
+"volatile guarantees visibility of variable updates across threads, but it does not make compound operations like count++ atomic."
+
+---
+
+# synchronized
+
+## What is synchronized?
+A Java keyword that allows only one thread at a time to execute a critical section of code.
+
+```java
+public synchronized void increment() {
+    count++;
+}
+```
+
+## What does it guarantee?
+- Mutual Exclusion ✅
+- Visibility ✅
+- Atomicity ✅
+- Thread Safety ✅
+
+## Object Lock
+
+```java
+public synchronized void method() {}
+```
+
+Lock acquired on:
+
+```java
+this
+```
+
+Different objects = Different locks
+
+## Class Lock
+
+```java
+public static synchronized void method() {}
+```
+
+Lock acquired on:
+
+```java
+ClassName.class
+```
+
+All objects share the same lock.
+
+## Synchronized Block
+
+```java
+synchronized(this) {
+    count++;
+}
+```
+
+Preferred when only part of a method needs protection.
+
+## Advantages
+- Simple to use
+- Built into Java
+- Prevents race conditions
+
+## Disadvantages
+- Threads may block and wait
+- Can reduce throughput under high concurrency
+- Can lead to deadlocks if locks are acquired incorrectly
+
+## Interview Answer
+"synchronized provides thread safety by allowing only one thread at a time to execute a critical section. It guarantees mutual exclusion, visibility, and atomicity."
+
+---
+
+# AtomicInteger
+
+## What is AtomicInteger?
+A thread-safe integer class from:
+
+```java
+java.util.concurrent.atomic
+```
+
+Uses CAS (Compare-And-Swap) internally instead of traditional locking.
+
+## Creation
+
+```java
+AtomicInteger count = new AtomicInteger(0);
+```
+
+## Common Methods
+
+Increment:
+
+```java
+count.incrementAndGet();
+```
+
+Get current value:
+
+```java
+count.get();
+```
+
+Add value:
+
+```java
+count.addAndGet(10);
+```
+
+Decrement:
+
+```java
+count.decrementAndGet();
+```
+
+## What does it guarantee?
+- Visibility ✅
+- Atomicity ✅
+- Thread Safety for atomic operations ✅
+
+## Advantages
+- No explicit locking
+- Better performance for counters
+- High concurrency support
+
+## Use Cases
+- Request counters
+- Metrics
+- Sequence generators
+- Statistics collection
+
+## When NOT to use?
+
+Not suitable for multi-step business operations.
+
+Example:
+
+```java
+if(balance >= amount) {
+    balance -= amount;
+}
+```
+
+This requires synchronization or locking because multiple operations must happen together.
+
+## Interview Answer
+"AtomicInteger provides thread-safe atomic operations on integers using CAS. It avoids traditional locking and is commonly used for counters and metrics in highly concurrent applications."
+
+---
+
+# Quick Comparison
+
+| Feature | volatile | synchronized | AtomicInteger |
+|----------|----------|-------------|---------------|
+| Visibility | ✅ | ✅ | ✅ |
+| Atomicity | ❌ | ✅ | ✅ |
+| Thread Safety | ❌ | ✅ | ✅ |
+| Uses Lock | ❌ | ✅ | ❌ |
+| Best For | Flags | Complex critical sections | Counters & metrics |
+
+# Easy Memory Trick
+
+volatile
+→ Visibility Only
+
+synchronized
+→ One Thread At A Time
+
+AtomicInteger
+→ Thread-Safe Counter Without Lock
+
 ---
 
 ## 6. ExecutorService
