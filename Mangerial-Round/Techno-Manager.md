@@ -131,7 +131,7 @@ NoSQL databases are excellent for horizontal scalability, flexible schemas, and 
     Partitioning or sharding if needed
 
 ---
-## 9.If scalability is still a concern, I would first explore scaling the SQL database using##
+## 9.If scalability is still a concern, I would first explore scaling the SQL database using
 
 I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or SOAP client adapters) would only translate requests and responses. Both would invoke the same business service containing the business logic. This avoids duplication, keeps the code maintainable, and allows us to replace the SOAP integration in the future with minimal changes. 
 
@@ -148,7 +148,7 @@ I would use an adapter/facade pattern. REST controllers and SOAP endpoints (or S
                |
       Repository/Database
 
-  - REST Controller handles HTTP requests/responses, JSON, validation, and authentication.
+- REST Controller handles HTTP requests/responses, JSON, validation, and authentication.
 - SOAP Adapter/Endpoint handles SOAP XML, WSDL, and converts SOAP requests into internal DTOs.
 - Both call the same business service, where all the business logic resides.
 - The business service interacts with the database or downstream services.

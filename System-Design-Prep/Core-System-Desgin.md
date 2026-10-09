@@ -787,7 +787,7 @@ OR
  
 ---
 
-## Rate Limiter ##
+# Rate Limiter 
 
 ***Introduction***
 
@@ -844,8 +844,6 @@ If you're using Kubernetes:
 **Spring Boot Application**
 
 If you want per-endpoint or per-user rate limiting, you can configure it in the application using libraries like Bucket4j or Resilience4j.
-		
-			
 
 **High-Level Design**
 
@@ -856,6 +854,7 @@ If you want per-endpoint or per-user rate limiting, you can configure it in the 
 </div>
 
 **Step 3: Rate Limiting Algorithms**
+
 **1. Token Bucket**
 <div style="margin-left:2rem">
   <img src="./images/token-bucket.png"  alt="Token Bucket Algorithm" width="550">
@@ -866,9 +865,7 @@ If you want per-endpoint or per-user rate limiting, you can configure it in the 
 - **Pros:** Easy to implement, memory-efficient, supports traffic bursts.
 - **Cons:** Requires careful parameter tuning.
 
-
-
-**Leaking Bucket**
+**2.Leaking Bucket**
 <div style="margin-left:2rem">
   <img src="./images/leaking-bucket.png"  alt="Leaking Bucket Algorithm" width="550">
 </div>
@@ -881,8 +878,7 @@ If you want per-endpoint or per-user rate limiting, you can configure it in the 
   Example: https://github.com/uber-go/ratelimit
 
 
-
-**3. Fixed Window Counter**
+**3.Fixed Window Counter**
 <div style="margin-left:2rem">
   <img src="./images/fixed-window-counter.png"  alt="Fixed Window Counter" width="550">
 </div>
@@ -928,7 +924,11 @@ could cause more requests than allowed quota to go through.
   1. Client sends request to middleware.
   2. Middleware checks counters in Redis.
   3. Request is processed or rejected based on limits.
-  
+
+- Rate limiting = setting the rule: Only 100 people can enter per minute.
+
+- Throttling = controlling entry: When too many people arrive, security stops or slows down additional entry.
+
 ---
 ## KAFKA ##
 
