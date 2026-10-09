@@ -91,7 +91,6 @@ WITH tmp AS (
         ON c.customer_id = o.customer_id
 )
 
-
 SELECT *
 FROM tmp
 WHERE rnk = 1;
@@ -103,12 +102,44 @@ SELECT
     emp_id,DATE_ADD(joining_date, INTERVAL 3 MONTH) AS probation_period_end
 FROM employee;
 ```
+## 12. Find employee with most experience in company
+```
+SELECT EMP_NAME , TIMESTAMPDIFF(YEAR ,JOINING_DATE,CURDATE()) AS COMPLETED_YEAR FROM EMPLOYEE 
+WHERE JOINING_DATE =(SELECT MIN(JOINING_DATE) FROM EMPLOYEE );
+```
+## 13. Find employee who have more than 3 year of exeprince 
+```
+SELECT * FROM (SELECT  EMP_NAME,
+    TIMESTAMPDIFF(DAY,JOINING_DATE,IFNULL(RESIGNED_DATE,CURDATE()))/365.25 
+    AS YEAR_OF_EXP FROM EMPLOYEE) AS EMP
+WHERE EMP.YEAR_OF_EXP  > 3;
+
+```
 ##
 ```
 ```
+
 ##
 ```
 ```
+
+##
+```
+```
+
+##
+```
+```
+
+##
+```
+```
+
+##
+```
+```
+
+
 ##
 ```
 ```

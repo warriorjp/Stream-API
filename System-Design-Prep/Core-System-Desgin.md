@@ -1283,10 +1283,39 @@ Responsibilities:
 - Static content serving
 - Kubernetes ingress support
 
----
-
 ## Interview Answer
 
-Nginx is a web server and reverse proxy used to route traffic to backend applications. It provides load balancing, SSL termination, request routing, and static content serving. In Kubernetes, Nginx is commonly used as an Ingress Controller to manage external traffic and distribute requests across application pods.
+Nginx is a web server and reverse proxy used to route traffic to backend applications. It provides load balancing,
+SSL termination, request routing, and static content serving. In Kubernetes, Nginx is commonly used as an Ingress 
+Controller to manage external traffic and distribute requests across application pods.
 
+---
+# Bloom Filter 
 
+- A Bloom Filter is a space-efficient data structure used to quickly check whether an element might exist in a set OR is definitely not present.
+- The filter is an optimization, not the source of truth. The database determines whether the account actually exists.
+
+Imagine Instagram has millions of accounts, and a user searches for @jay123. Before querying a database, 
+a Bloom Filter can help determine whether that username is definitely absent or might exist.
+
+<div style="margin-left:2rem">
+  <img src="./images/Bloom_filter.png"  alt="bloom filter width="500">
+</div>
+
+**Step 1:** A new account is created
+
+- A user registers @jay123. After the database successfully stores the account, the system adds the username to the Bloom Filter by setting the bits at its hash positions to 1.
+
+**Step 2:** Someone searches for @jay123
+
+- The application hashes the username using the filter's hash functions and checks the corresponding bit positions.
+
+**Step 3:** The filter gives a result
+
+- If any required bit is 0, the username is definitely absent from the set represented by the filter.
+
+- If every required bit is 1, the username might exist, so the application checks the database.
+
+**Step 4:** The database confirms
+
+- If the record exists, the application returns the profile. If not, it returns “user not found”—this is how a false positive is handled.
