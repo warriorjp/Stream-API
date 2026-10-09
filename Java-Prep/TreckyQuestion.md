@@ -1146,7 +1146,7 @@ This is much faster.
 
 ---
 
-## Why not serialize abstract classes in Java?
+## 30. Why not serialize abstract classes in Java?
 
 You cannot serialize an abstract class itself because:
 
@@ -1175,7 +1175,8 @@ Dog dog = new Dog("Tom");
 This object can be serialized because Animal implements Serializable.
 
 ---
-## A JWT (JSON Web Token) consists of 3 parts separated by dots (.):
+
+## 31. A JWT (JSON Web Token) consists of 3 parts separated by dots (.):
 
     xxxxx.yyyyy.zzzzz
     Header.Payload.Signature
@@ -1200,7 +1201,8 @@ If someone changes the payload, the signature becomes invalid.
 Because the payload is only Base64 encoded, not encrypted. Anyone can decode it.
 
  ---
-## How do you ensure the same Kafka message is not consumed twice?
+ 
+## 32. How do you ensure the same Kafka message is not consumed twice?
 
 ### 1. Store a unique event ID : 
  - Store the uniqueKey in seperate table which keep track of msg recived . If msg recived again then skip it
