@@ -34,54 +34,6 @@ Here, Application Gateway itself acts as a Layer 7 load balancer, so there's no 
 
 ---
 
-# SOLID #
-
-<div style="margin-left:3rem">
-   <img src="./images/SOLID.jpeg" width="500" />
-</div>
-
-**1.Single Responsibility Principle (SRP)**
-📌 Meaning
-
-One class should have only one reason to change.
-
-That means:
-→ One class = One responsibility
-
-**2.Open/Closed Principle (OCP)**
-📌 Meaning
-
-Software should be open for extension but closed for modification.
-
-That means:
-→ Add new functionality without changing old code
-
-**3.Liskov Substitution Principle (LSP)**
-📌 Meaning
-
-Child class should be replaceable with parent class without breaking code.
-
-That means:
-→ Subclasses must behave correctly like parent class
-
-**4.Interface Segregation Principle (ISP)**
-📌 Meaning
-
-Clients should not be forced to implement methods they do not use.
-
-That means:
-→ Small specific interfaces are better than one large interface
-
-**5.Dependency Inversion Principle (DIP)**
-📌 Meaning
-
-High-level modules should not depend on low-level modules. Both should depend on abstraction.
-
-That means:
-→ Depend on Interface, not Implementation
-
----
-
 ## Scale from Zero to Millions of Users
 
 **Introduction**
