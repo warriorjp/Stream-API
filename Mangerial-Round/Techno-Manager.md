@@ -292,9 +292,37 @@ Redis Cluster is designed for both:
 
 Instead of storing all data on a single Redis instance, Redis Cluster distributes the data across multiple Redis masters while ensuring each master has one or more replicas for failover.
 
+---
+## 14. Why do we need an Outbox table?
 
-  
+The Outbox Pattern is a very important system design concept used in microservices to reliably publish events to Kafka, 
+RabbitMQ, or other message brokers without losing events when a database transaction succeeds but message publishing fails.
 
-
+                    Order Service
+                         |
+                         v
+                Begin DB transaction
+                         |
+                +--------+--------+
+                |                 |
+                v                 v
+           Insert order     Insert outbox event
+                |                 |
+                +--------+--------+
+                         |
+                    Commit once
+                         |
+                         v
+                   Outbox table
+                         |
+               Polling publisher or CDC
+                         |
+                         v
+                        Kafka
+                         |
+             +-----------+-----------+
+             |                       |
+             v                       v
+      Payment Service         Inventory Service
 
 
