@@ -325,4 +325,18 @@ RabbitMQ, or other message brokers without losing events when a database transac
              v                       v
       Payment Service         Inventory Service
 
+---
 
+## 15. Your application is experiencing a production issue where database CPU utilization has reached 90–100%
+
+I would handle it in two phases: stabilize the system first, then identify and fix the root cause. I wouldn't immediately
+scale the database because high CPU could be caused by inefficient queries, excessive traffic, locks, or background jobs.
+
+**Possible Root Cause**
+
+- Expensive queries : Query is taking more time due to missing indexes
+- Connection overload : Connection pool size is less then the number of required connection
+- No Replication : Reed and Write happened on single node , primary node should be act as writer node and other replica 
+                   node as reader . So that we can scale reader and writer node separately depend on query.
+
+---
